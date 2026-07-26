@@ -1,0 +1,62 @@
+<header class="header-wrapper" role="banner">
+    <div class="header-inner">
+        <div class="right-side">
+            <!-- logo -->
+            <div class="logo">
+                <a href="/">
+                    <img src="" alt="">
+                </a>
+            </div>
+            <!-- mobile menu toggle -->
+            <button class="menu-toggle">
+                <app-solar-icon [name]="'hamburger-menu'"></app-solar-icon>
+            </button>
+            <!-- main nav -->
+            <nav id="primary-nav" class="menu-wrapper">
+                <ul class="menu">
+                    <li class="menu-item has-submenu">
+                        <button>فروشگاه
+                            <span class="chev">▾</span>
+                        </button>
+
+                        <ul id="shop-submenu" class="submenu">
+                            <li><a href="">همه محصولات</a></li>
+                            <li><a href="">شومیز</a></li>
+                            <li><a href="">تیشرت</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="">بلاگ</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="">پشتیبانی</a>
+                    </li>
+
+
+
+                </ul>
+            </nav>
+
+            <!-- search -->
+            <form class="search-box">
+                <label for="site-search">جستجو</label>
+                <input id="site-search" name="search" type="search">
+            </form>
+        </div>
+
+        <div class="left-side">
+            <ul class="menu">
+                <li class="menu-item account">
+                    <a href="">حساب کاربری</a>
+                </li>
+                <li class="menu-item cart">
+                    <a href="">
+                        <app-solar-icon [name]="'cart4'"></app-solar-icon>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</header>
