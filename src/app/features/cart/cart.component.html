@@ -1,1 +1,24 @@
-<p>cart works!</p>
+<div class="cart-wrapper">
+    <div class="cart-inner">
+        <div class="cart-image">
+            <img src="images/IMG_1499-copy-removebg-preview.png" alt="">
+        </div>
+        <div class="cart-detail">
+            <span>
+                <h5 for="">شومیز لینن</h5>
+            </span>
+            <div>
+                <span>{{ '1500,000' | persianNumber }} </span>
+                <span>تومان</span>
+            </div>
+        </div>
+        <div (click)="$event.stopPropagation()" class="cart-detail-btn">
+            <button (click)="openProductDetails(123)" class="secondary">
+                مشاهده جزییات
+                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                    style="width: 20px; height: 20px;"></app-solar-icon>
+
+            </button>
+        </div>
+    </div>
+</div>

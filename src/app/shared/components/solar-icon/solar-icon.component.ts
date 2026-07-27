@@ -8,5 +8,6 @@ import { Component, Input } from '@angular/core';
 export class SolarIconComponent {
   @Input() name: string = '';
   @Input() size?: number = 24;
+  
 }
 

@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { SolarIconComponent } from "../../shared/components/solar-icon/solar-icon.component";
+import { SHARED_IMPORTS  } from "../../shared/shared.imports";
 
 @Component({
   selector: 'app-header',
-  imports: [SolarIconComponent],
+  imports: [
+    ...SHARED_IMPORTS
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
+charCount = 0
+isSubmenuOpen = false
 }

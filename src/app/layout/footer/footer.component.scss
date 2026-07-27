@@ -1,0 +1,30 @@
+.footer-wrapper {
+    padding: 0 2rem 1rem 2rem;
+    .footer-inner {
+        padding: 1rem;
+        background-color: white;
+        border-radius: 30px;
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+}
+
+
+.icon {
+    border-radius: 50%;
+    background-color: var(--secondary-200);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border: 1px solid transparent;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    i {
+        display: flex;
+        font-size: 1.5rem;
+    }
+}

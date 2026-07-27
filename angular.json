@@ -34,7 +34,10 @@
                 "input": "src/assets"
               }
             ],
-            "styles": ["src/styles.scss"]
+            "styles": [
+              "src/styles.scss",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -88,7 +91,10 @@
                 "input": "src/assets"
               }
             ],
-            "styles": ["src/styles.scss"]
+            "styles": [
+              "src/styles.scss",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+            ]
           }
         }
       }
