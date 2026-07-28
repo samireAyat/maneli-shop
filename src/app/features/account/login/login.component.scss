@@ -1,0 +1,156 @@
+:host {
+    height: 100%;
+}
+
+.login-wrapper {
+    // padding: 1rem 2rem 1rem 2rem;
+    height: 100%;
+
+    .login-inner {
+        // padding: 1.5rem;
+        background-color: var(--white);
+        // border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+
+        .content {
+            height: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            // background-color: var(--primary-50);
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            padding:1rem;
+            border-radius: 20px;
+
+            .image-wrapper {
+                width: 350px;
+                height: auto;
+                object-fit: contain;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+
+
+
+
+            .login-form {
+                margin-top: 4rem;
+
+                .form-label {
+                    margin: 1rem 0;
+                    color: var(--title);
+                    align-self: flex-start;
+
+                }
+
+                form {
+                    flex-direction: column;
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+
+                    p {
+                        font-size: 14px;
+                        align-self: flex-start;
+                    }
+
+                    small {
+                        align-self: flex-start;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.4rem;
+
+                    }
+
+
+                    .form-control {
+                        position: relative;
+
+                        border-radius: 9px;
+
+                        .icon {
+                            position: absolute;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 40px;
+                            height: 45px;
+                            border-left: 1px solid var(--primary-200);
+                            background-color: var(--primary-50);
+                            border-top-right-radius: 9px;
+                            border-bottom-right-radius: 9px;
+                            top: 1px;
+                            right: 1px;
+                            color: var(--primary-800);
+
+                            &.invalid {
+                                border-left: 1px solid var(--error-700);
+                                color: var(--error-700);
+                            }
+
+                        }
+
+                        .input-label {
+                            font-size: 14px;
+                            color: var(--title);
+                            position: absolute;
+                            background: white;
+                            top: -7px;
+                            right: 10px;
+                        }
+
+                        .input {
+                            padding: 0 2.9rem 0 0.5rem;
+                            min-width: 300px;
+                            height: 45px;
+                            border-radius: 9px;
+                            outline: none;
+                            border: 1px solid var(--primary-200);
+
+                            &:focus {
+                                border: 1px solid var(--primary-400);
+                            }
+
+
+                        }
+
+                        &:focus-within {
+
+
+                            .icon {
+                                border-left: 1px solid var(--primary-400);
+
+                            }
+                        }
+                    }
+
+                    .submit-btn {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 0.5rem;
+
+                        button {
+                            border-radius: 10px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 100%;
+                            padding: 0.7rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
