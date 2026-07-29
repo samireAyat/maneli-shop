@@ -10,8 +10,8 @@ import { interval, take } from 'rxjs';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  isOTP = false
-  remainingSeconds = 10;
+  isOTP = true
+  remainingSeconds = 120;
   canResendCode = false
   phone = ''
   otpCode = ''
@@ -22,21 +22,22 @@ export class LoginComponent {
 
   setInterval() {
     this.canResendCode = false
-    this.remainingSeconds = 10;
+    this.remainingSeconds = 120;
     interval(1000)
-      .pipe(take(10))
+      .pipe(take(120))
       .subscribe(count => {
-        this.remainingSeconds = 10 - count - 1;
-
+        this.remainingSeconds = 120 - count - 1;
         if (this.remainingSeconds === 0) {
           this.canResendCode = true;
         }
       });
   }
 
-  resetInterval() {
-
-
+  get formettedTime() : string {
+    const minutes = Math.floor(this.remainingSeconds / 60)
+    const seconds = this.remainingSeconds % 60;
+    return `${minutes.toString().padStart(2,'0')} : ${seconds.toString().padStart(2,'0')}`
   }
+
 
 }

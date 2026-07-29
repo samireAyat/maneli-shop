@@ -26,5 +26,9 @@
     i {
         display: flex;
         font-size: 1.5rem;
+        transition: all 50ms ease-in-out;
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 }

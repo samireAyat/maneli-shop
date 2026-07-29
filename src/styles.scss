@@ -72,230 +72,426 @@ button {
                 background-color: var(--primary-100);
             }
         }
+    }
+
+    &.secondary {
+        background-color: var(--secondary-300);
+        padding: 0.5rem 0.8rem;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        transition: all 300ms ease;
+        font-size: 0.9rem;
+        gap: 0.5rem;
+        font-weight: 700;
+        cursor: pointer;
+        color: var(--secondaryHighlightBadgeText);
+
+        &:hover {
+            background-color: var(--secondary);
         }
+    }
+}
 
-        &.secondary {
-            background-color: var(--secondary-300);
-            padding: 0.5rem 0.8rem;
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            transition: all 300ms ease;
-            font-size: 0.9rem;
-            gap: 0.5rem;
-            font-weight: 700;
-            cursor: pointer;
-            color: var(--secondaryHighlightBadgeText);
+input {
+    outline: none;
+    font-family: IranYekan;
+}
 
-            &:hover {
-                background-color: var(--secondary);
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+.invalid {
+    border-color: var(--error-700) !important;
+}
+
+.input-group {
+    display: flex;
+    // align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+        font-size: 13px;
+        font-weight: 600;
+
+        &.requierd {
+            &::after {
+                content: "*";
+                color: var(--error-500);
+                margin-right: 5px;
+                display: inline-block;
             }
         }
     }
 
-    input {
-        outline: none;
-        font-family: IranYekan;
+    input,
+    .ng-select {
+        border: 1px solid var(--primary-400);
+        min-width: 300px;
+        height: 50px;
+        border-radius: 12px;
+        padding: 0 10px;
+
+        &:has(.ng-select-bottom) {
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        &:focus {
+            border: 1px solid var(--primary-700);
+        }
     }
 
-    li {
-        list-style: none;
+}
+
+.ng-select {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    .ng-select-container {
+        height: 100%;
+        align-items: center;
+        gap: 0.5rem;
     }
 
-    a {
-        text-decoration: none;
-        font-size: 0.9rem;
+    .ng-placeholder {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        color: var(--gray-500);
     }
 
-    ul {
-        padding: 0;
-        margin: 0;
+    .ng-input {
+        // position: unset;
     }
 
-    .invalid {
-        border-color: var(--error-700) !important;
+    .ng-value-container {
+        height: 100%;
     }
 
-    :root {
-        --primary-50: #FBFAF2;
-        --primary-100: #F7F5E5;
-        --primary-200: #EEECCB;
-        --primary-300: #E6E2B0;
-        --primary-400: #DDD996;
-        --primary-500: #D5CF7C;
-        --primary-600: #B1AC65;
-        --primary-700: #8C884E;
-        --primary-800: #686538;
-        --primary-900: #434121;
-        --primary-1000: #313015;
-        --primary: var(--primary-500);
-        --onPrimary: var(--title);
-        --primaryLight: #FBFBF2;
-        --onPrimaryLight: var(--body);
-        --primaryHover: var(--primary-200);
-        --onPrimaryHover: #fff;
-        --primaryActive: color-mix(in srgb, var(--primary) 100%, #000 5%);
-        --onPrimaryActive: var(--onPrimary);
-        --primaryButtonText: var(--primary);
-        --primaryOutlineButtonBorder: var(--primary);
 
 
-        //Secondary
-        --secondary-50: #FFF3EA;
-        --secondary-100: #FFE7D6;
-        --secondary-200: #FFCFAD;
-        --secondary-300: #FFB783;
-        --secondary-400: #FF9F5A;
-        --secondary-500: #FF8731;
-        --secondary-600: #CE6D27;
-        --secondary-700: #9C521D;
-        --secondary-800: #6B3814;
-        --secondary-900: #522B0F;
-        --secondary-1000: #391D0A;
-        --secondary: var(--secondary-500);
-        --onSecondary: #090C10;
-        --secondaryHover: color-mix(in srgb, var(--secondary) 100%, #000 5%);
-        --onSecondaryHover: var(--onSecondary);
-        --secondaryActive: var(--secondaryHover);
-        --onSecondaryActive: var(--onSecondaryHover);
-        --secondaryLight: #FFF3EB;
-        --onSecondaryLight: var(--body);
+    .ng-has-value {
+        display: flex;
+        height: 100%;
+        align-items: center;
 
 
 
-        //Error
-        --error: var(--error-600);
-        --error-50: #fcecec;
-        --error-100: #f8d8d8;
-        --error-200: #F3B8B8;
-        --error-300: #EE9999;
-        --error-400: #E97979;
-        --error-500: #E35A5A;
-        --error-600: rgb(222, 58, 58);
-        --error-700: #BD3131;
-        --error-800: #9B2929;
-        --error-900: #7A2020;
-        --error-1000: #591717;
-        --onError: #fff;
-        --errorHover: var(--error-700);
-        --onErrorHover: #fff;
-        --errorActive: var(--error-800);
-        --onErrorActive: #fff;
-        --errorLight: var(--error-50);
-        --onErrorLight: var(--nutral-600);
-        //Success
-        --success-50: #eef7f2;
-        --success-100: #E0F5E5;
-        --success-200: #C0E8C8;
-        --success-300: #9AD6A6;
-        --success-400: #71C783;
-        --success-500: #54BC6C;
-        --success: var(--success-500);
-        --success-600: #fff;
-        --success-700: #219341;
-        --success-800: #148237;
-        --success-900: #077D33;
-        --success-1000: #14532D;
-        --onSuccess: #fff;
-        --successHover: var(--success-700);
-        --onSuccessHover: #fff;
-        --successActive: var(--success-800);
-        --onSuccessActive: #fff;
-        --successLight: var(--success-50);
-        //Info
-        --info-5: #f4f7fe;
-        --info-10: #e6eeff;
-        --info-20: #B1C7F8;
-        --info-30: #8EAEF5;
-        --info-40: #6B95F1;
-        --info-50: #487CEE;
-        --info: #2563eb;
-        --info-70: #1F54C8;
-        --info-80: #1A45A5;
-        --info-90: #143681;
-        --info-100: #0F285E;
-        --onInfo: #fff;
-        --infoHover: var(--info-70);
-        --onInfoHover: #fff;
-        --infoActive: var(--info-80);
-        --onInfoActive: #fff;
-        --infoLight: var(--info-5);
-        --onInfoLight: var(--nutral-60);
+        .ng-value {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
 
-        //Warning
-        --warning-5: #fffdf5;
-        --warning-10: #FFF6D6;
-        --warning-20: #FFEFB6;
-        --warning-30: #FFE895;
-        --warning-40: #FFE074;
-        --warning-50: #FFD954;
-        --warning: rgb(255, 210, 51);
-        --warning-70: #ecc330; //TODO :: isEdited
-        --warning-80: #e4bc2e; //TODO :: isEdited
-        --warning-90: #dbb52c; //TODO :: isEdited
-        --warning-100: #d1ad2c; //TODO :: isEdited
-        --onWarning: #fff;
-        --warningHover: var(--warning-70);
-        --onWarningHover: var(--nutral-60);
-        --warningActive: var(--warning-80);
-        --onWarningActive: var(--nutral-60);
-        --warningLight: var(--warning-5);
-        --onWarningLight: var(--nutral-60);
-
-
-        //gray
-        --gray-10: #fbfcff;
-        --gray-50: #F4F6FD;
-        --gray-100: #E7ECF8;
-        --gray-200: #D6DDF0;
-        --gray-300: #C1CAE3;
-        --gray-400: #A3AFD1;
-        --gray-500: #7F8DB3;
-        --gray-600: #5F6F99;
-        --gray-700: #45557A;
-        --gray-800: #2E3A5C;
-        --gray-900: #1C243D;
-        --gray-1000: #0F1426;
-
-
-        --white: #fff;
-        --background: var(--secondaryLight);
-        --body: var(--gray-800);
-        --title: var(--gray-800);
-        --placeholder: var(--gray-600);
-        --helperText: var(--gray-700);
-        --iconGray: var(--gray-700);
-        --iconPrimary: var(--primary);
-        --iconSecondary: var(--secondary);
-        --border: var(--gray-100);
-
-        --inputBorder: var(--gray-300);
-        --inputBorderFocused: var(--secondary-300);
-
-        --tableRowsBackground: var(--white);
-
-        --primaryHighlightBadgeBackground: color-mix(in srgb, var(--primary) 4%, #000 2%);
-        --primaryHighlightBadgeText: var(--primary);
-        --secondaryHighlightBadgeBackground: color-mix(in srgb, var(--secondary) 30%, var(--white));
-        --secondaryHighlightBadgeText: var(--secondary-800);
-
-        --boxContainerLight: color-mix(in srgb, var(--background) 30%, #fff);
-        --pageContentBackground: var(--primaryLight);
-
-        --stepperActive: var(--primaryLight);
-
-
-        --serviceBackground: var(--primary-200);
-        --serviceBackground2: var(--secondaryLight);
-
-        --navbar: var(--primary);
-        --onNavbar: var(--onPrimary);
-        --navbarActive: #E6E2B0;
-
-        --onNavbarActive: var(--onNavbar);
-
-        --pocket: var(--primary);
-        --onPocket: var(--onPrimary);
-        --pocketMask: #A29B35;
-        --review: var(--background);
     }
+
+    .ng-clear-wrapper {
+        cursor: pointer;
+        position: relative;
+        width: 20px !important;
+        height: 20px;
+        -webkit-user-select: none;
+        user-select: none;
+        display: flex;
+
+        .ng-clear {
+            display: flex !important;
+            font-size: 18px;
+            line-height: unset !important;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-700);
+        }
+    }
+
+    .ng-dropdown-panel {
+        background-color: white;
+        margin-top: 2px;
+        // padding: 0.5rem 0.5rem 0.5rem 0;
+
+        border: 1px solid var(--primary-400);
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        top: 100%;
+        width: 100.5% !important;
+
+        .ng-dropdown-panel-items {
+            font-size: 14px;
+
+        }
+
+        .ng-option {
+
+            // &:nth-child(even) {
+            //     background: var(--primary-50);
+            // }
+
+            padding: 0.7rem 0.4rem;
+            transition: all 100ms ease;
+
+            &:hover {
+                background-color: var(--primary-100);
+                border-radius: 5px;
+            }
+        }
+
+        &.ng-select-bottom {
+            top: 100%;
+            margin-top: -1px;
+
+        }
+    }
+
+    .ng-arrow-wrapper {
+        display: flex;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        left: 5px;
+        justify-content: center;
+
+        &::before {
+            font-family: bootstrap-icons !important;
+            font-style: normal;
+            font-weight: 400 !important;
+            content: "\f282";
+            margin-left: 0;
+            transition: all ease 0.3s;
+            display: block;
+
+        }
+    }
+
+    &.ng-select-opened {
+        border: 1px solid var(--primary-600);
+
+        .ng-arrow-wrapper {
+            &::before {
+                transform: rotate(180deg);
+            }
+        }
+
+        .ng-dropdown-panel {
+            border: 1px solid var(--primary-600);
+        }
+    }
+
+}
+
+:root {
+    --primary-50: #FBFAF2;
+    --primary-100: #F7F5E5;
+    --primary-200: #EEECCB;
+    --primary-300: #E6E2B0;
+    --primary-400: #DDD996;
+    --primary-500: #D5CF7C;
+    --primary-600: #B1AC65;
+    --primary-700: #8C884E;
+    --primary-800: #686538;
+    --primary-900: #434121;
+    --primary-1000: #313015;
+    --primary: var(--primary-500);
+    --onPrimary: var(--title);
+    --primaryLight: #FBFBF2;
+    --onPrimaryLight: var(--body);
+    --primaryHover: var(--primary-200);
+    --onPrimaryHover: #fff;
+    --primaryActive: color-mix(in srgb, var(--primary) 100%, #000 5%);
+    --onPrimaryActive: var(--onPrimary);
+    --primaryButtonText: var(--primary);
+    --primaryOutlineButtonBorder: var(--primary);
+
+
+    //Secondary
+    --secondary-50: #FFF3EA;
+    --secondary-100: #FFE7D6;
+    --secondary-200: #FFCFAD;
+    --secondary-300: #FFB783;
+    --secondary-400: #FF9F5A;
+    --secondary-500: #FF8731;
+    --secondary-600: #CE6D27;
+    --secondary-700: #9C521D;
+    --secondary-800: #6B3814;
+    --secondary-900: #522B0F;
+    --secondary-1000: #391D0A;
+    --secondary: var(--secondary-500);
+    --onSecondary: #090C10;
+    --secondaryHover: color-mix(in srgb, var(--secondary) 100%, #000 5%);
+    --onSecondaryHover: var(--onSecondary);
+    --secondaryActive: var(--secondaryHover);
+    --onSecondaryActive: var(--onSecondaryHover);
+    --secondaryLight: #FFF3EB;
+    --onSecondaryLight: var(--body);
+
+
+
+    //Error
+    --error: var(--error-600);
+    --error-50: #fcecec;
+    --error-100: #f8d8d8;
+    --error-200: #F3B8B8;
+    --error-300: #EE9999;
+    --error-400: #E97979;
+    --error-500: #E35A5A;
+    --error-600: rgb(222, 58, 58);
+    --error-700: #BD3131;
+    --error-800: #9B2929;
+    --error-900: #7A2020;
+    --error-1000: #591717;
+    --onError: #fff;
+    --errorHover: var(--error-700);
+    --onErrorHover: #fff;
+    --errorActive: var(--error-800);
+    --onErrorActive: #fff;
+    --errorLight: var(--error-50);
+    --onErrorLight: var(--nutral-600);
+    //Success
+    --success-50: #eef7f2;
+    --success-100: #E0F5E5;
+    --success-200: #C0E8C8;
+    --success-300: #9AD6A6;
+    --success-400: #71C783;
+    --success-500: #54BC6C;
+    --success: var(--success-500);
+    --success-600: #fff;
+    --success-700: #219341;
+    --success-800: #148237;
+    --success-900: #077D33;
+    --success-1000: #14532D;
+    --onSuccess: #fff;
+    --successHover: var(--success-700);
+    --onSuccessHover: #fff;
+    --successActive: var(--success-800);
+    --onSuccessActive: #fff;
+    --successLight: var(--success-50);
+    //Info
+    --info-5: #f4f7fe;
+    --info-10: #e6eeff;
+    --info-20: #B1C7F8;
+    --info-30: #8EAEF5;
+    --info-40: #6B95F1;
+    --info-50: #487CEE;
+    --info: #2563eb;
+    --info-70: #1F54C8;
+    --info-80: #1A45A5;
+    --info-90: #143681;
+    --info-100: #0F285E;
+    --onInfo: #fff;
+    --infoHover: var(--info-70);
+    --onInfoHover: #fff;
+    --infoActive: var(--info-80);
+    --onInfoActive: #fff;
+    --infoLight: var(--info-5);
+    --onInfoLight: var(--nutral-60);
+
+    //Warning
+    --warning-5: #fffdf5;
+    --warning-10: #FFF6D6;
+    --warning-20: #FFEFB6;
+    --warning-30: #FFE895;
+    --warning-40: #FFE074;
+    --warning-50: #FFD954;
+    --warning: rgb(255, 210, 51);
+    --warning-70: #ecc330; //TODO :: isEdited
+    --warning-80: #e4bc2e; //TODO :: isEdited
+    --warning-90: #dbb52c; //TODO :: isEdited
+    --warning-100: #d1ad2c; //TODO :: isEdited
+    --onWarning: #fff;
+    --warningHover: var(--warning-70);
+    --onWarningHover: var(--nutral-60);
+    --warningActive: var(--warning-80);
+    --onWarningActive: var(--nutral-60);
+    --warningLight: var(--warning-5);
+    --onWarningLight: var(--nutral-60);
+
+
+    //gray
+    --gray-10: #fbfcff;
+    --gray-50: #F4F6FD;
+    --gray-100: #E7ECF8;
+    --gray-200: #D6DDF0;
+    --gray-300: #C1CAE3;
+    --gray-400: #A3AFD1;
+    --gray-500: #7F8DB3;
+    --gray-600: #5F6F99;
+    --gray-700: #45557A;
+    --gray-800: #2E3A5C;
+    --gray-900: #1C243D;
+    --gray-1000: #0F1426;
+
+
+    --white: #fff;
+    --background: var(--secondaryLight);
+    --body: var(--gray-800);
+    --title: var(--gray-800);
+    --placeholder: var(--gray-600);
+    --helperText: var(--gray-700);
+    --iconGray: var(--gray-700);
+    --iconPrimary: var(--primary);
+    --iconSecondary: var(--secondary);
+    --border: var(--gray-100);
+
+    --inputBorder: var(--gray-300);
+    --inputBorderFocused: var(--secondary-300);
+
+    --tableRowsBackground: var(--white);
+
+    --primaryHighlightBadgeBackground: color-mix(in srgb, var(--primary) 4%, #000 2%);
+    --primaryHighlightBadgeText: var(--primary);
+    --secondaryHighlightBadgeBackground: color-mix(in srgb, var(--secondary) 30%, var(--white));
+    --secondaryHighlightBadgeText: var(--secondary-800);
+
+    --boxContainerLight: color-mix(in srgb, var(--background) 30%, #fff);
+    --pageContentBackground: var(--primaryLight);
+
+    --stepperActive: var(--primaryLight);
+
+
+    --serviceBackground: var(--primary-200);
+    --serviceBackground2: var(--secondaryLight);
+
+    --navbar: var(--primary);
+    --onNavbar: var(--onPrimary);
+    --navbarActive: #E6E2B0;
+
+    --onNavbarActive: var(--onNavbar);
+
+    --pocket: var(--primary);
+    --onPocket: var(--onPrimary);
+    --pocketMask: #A29B35;
+    --review: var(--background);
+}
+
+
+.row {
+    display: grid;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    grid-template-columns: 1fr 1fr;
+
+    .col-lg-6 {
+
+        // flex: 0 0 auto;
+        // width: 33.33333333%;
+        &.last-item {
+            grid-column: 1 / -1;
+        }
+    }
+}

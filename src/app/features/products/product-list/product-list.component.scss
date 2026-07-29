@@ -1,0 +1,25 @@
+.product-list-wrapper {
+    // padding: 0 2rem;
+
+    .product-list-inner {
+        .label {
+            margin-bottom: 18px;
+            width: max-content;
+            display: block;
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary-50);
+            border-radius: 12px;
+        }
+
+        padding: 1rem 1.5rem;
+        background-color: var(--white);
+        border-radius: 25px;
+
+        .carts-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            row-gap: 1rem;
+            place-items: center;
+        }
+    }
+}

@@ -25,7 +25,9 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -37,7 +39,11 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css"
-            ]
+            ],
+
+            "security": {
+              "allowedHosts": []
+            }
           },
           "configurations": {
             "production": {
@@ -94,6 +100,7 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+
             ]
           }
         }

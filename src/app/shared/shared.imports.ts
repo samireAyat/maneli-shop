@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SolarIconComponent } from '../shared/components/solar-icon/solar-icon.component';
@@ -12,5 +13,6 @@ export const SHARED_IMPORTS = [
   ReactiveFormsModule,
   SolarIconComponent,
   PersianNumberPipe,
+  NgSelectModule
 
 ] as const;

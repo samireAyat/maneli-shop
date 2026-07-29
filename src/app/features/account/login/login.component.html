@@ -54,7 +54,7 @@
                             [size]="20"></app-solar-icon>
                     </small> -->
                     <div class="submit-btn">
-                        <button  class="primary outline" type="button" *ngIf="!canResendCode">{{remainingSeconds | persianNumber}}</button>
+                        <button style="direction: ltr;"  class="primary outline" type="button" *ngIf="!canResendCode">{{formettedTime  | persianNumber}}</button>
                         <button class="primary outline" type="button" (click)="setInterval()" *ngIf="canResendCode">ارسال مجدد کد</button>
                         <button class="primary" type="submit"> تایید و ادامه</button>
                     </div>

@@ -2,13 +2,17 @@
     <div class="product-detail-inner">
         <div class="right-side">
             <div class="product-detail-image">
-                <img src="images/IMG_1499-copy-removebg-preview.png" alt="">
+                <img src={{heroImage.path}} alt="">
             </div>
             <div class="product-detail-images">
-                <span class="image-item"><img src="images/IMG_1546-copy-510x631-removebg-preview.png" alt=""></span>
+                <span class="images-item" *ngFor="let image of images" (click)="selectedPhoto(image)" [class.selected]="image.isSelected">
+                    <img class="checkmark" *ngIf="image.isSelected" src="images/check1.png" alt="">
+                    <img class="product-image" src={{image.path}} alt="">
+                </span>
+                <!-- <span class="image-item"><img src="images/IMG_1546-copy-510x631-removebg-preview.png" alt=""></span>
                 <span class="image-item"><img src="images/IMG_1580-copy-510x632-removebg-preview.png" alt=""></span>
                 <span class="image-item"><img src="images/IMG_1585-copy-510x631-removebg-preview.png" alt=""></span>
-                <span class="image-item"><img src="images/IMG_1604-copy-510x765-removebg-preview.png" alt=""></span>
+                <span class="image-item"><img src="images/IMG_1604-copy-510x765-removebg-preview.png" alt=""></span> -->
             </div>
         </div>
         <div class="left-side">

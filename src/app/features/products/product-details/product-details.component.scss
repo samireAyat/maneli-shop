@@ -10,15 +10,15 @@
 }
 
 .product-detail-wrapper {
-    padding: 0 2rem 1rem 2rem;
+    padding: 0 2rem;
 
     .product-detail-inner {
-        padding:1.5rem;
+        padding: 1.5rem;
         background-color: var(--white);
         border-radius: 25px;
         display: flex;
 
-        justify-content: space-evenly;
+        justify-content: space-around;
 
         .right-side {
             .product-detail-image {
@@ -37,30 +37,51 @@
             }
 
             .product-detail-images {
+                position: relative;
                 display: flex;
                 margin-top: 1rem;
-                gap: 0.5rem;
+                gap: 1rem;
                 align-items: center;
 
-                span {
-                    width: 200px;
-                    height: 240px;
-                    display: block;
+                .images-item {
+                    width: 180px;
+                    height: 212px;
+                    display: flex;
                     background-color: var(--primary-50);
                     border-radius: 20px;
+                    border: 2px solid transparent;
+                    cursor: pointer;
+                    align-items: center;
+                    justify-content: center;
 
 
-                    img {
-                        width: 100%;
+                    .product-image {
+                        width: 90%;
                         height: 100%;
                         object-fit: cover;
                     }
+
+                    &.selected {
+                        box-shadow: var(--secondary-200) 0px 1px 4px;
+                        transform: scale(1.03);
+                        outline: 2px solid var(--secondary-100);
+                        outline-offset: 2px;
+                    }
+
+                    .checkmark {
+                        position: absolute;
+                        width: 25px;
+                        left: -13px;
+                        bottom: -5px;
+
+                    }
+
                 }
             }
         }
 
         .left-side {
-            background: var(--pageContentBackground);
+            // background: var(--pageContentBackground);
             padding: 0 2rem;
             border-radius: 20px;
 
