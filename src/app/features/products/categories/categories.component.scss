@@ -1,0 +1,30 @@
+.category-wrapper {
+    padding: 0 2rem;
+    height: 100%;
+
+    .category-inner {
+        height: calc(100% - 2rem);
+        padding: 1rem;
+        background-color: var(--white);
+        border-radius: 30px;
+        display: flex;
+        gap: 01rem;
+        flex-direction: column;
+
+    }
+}
+
+.selected {
+    border-color: var(--secondary-200);
+    background-color: var(--secondary-100);
+    border-width: 2px;
+
+    .title {
+        font-weight: 700;
+    }
+
+    .svg-icon {
+        background-color: var(--secondary-300);
+        transform: scale(1.04);
+    }
+}

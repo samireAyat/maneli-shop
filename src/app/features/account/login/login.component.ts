@@ -10,7 +10,7 @@ import { interval, take } from 'rxjs';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  isOTP = true
+  isOTP = false
   remainingSeconds = 120;
   canResendCode = false
   phone = ''

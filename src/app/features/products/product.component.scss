@@ -1,0 +1,79 @@
+.product-wrapper {
+    width: max-content;
+
+    .product-inner {
+        padding: 0.7rem;
+        border: 1px solid var(--primary-200);
+        border-radius: 20px;
+        cursor: pointer;
+        position: relative;
+        transition: all 300ms linear;
+
+        .product-image {
+            width: 250px;
+            height: 250px;
+            background-color: var(--primary-100);
+            border-radius: 20px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .product-detail {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            span {
+                margin-top: 18px !important;
+                margin-bottom: 18px;
+            }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--primary-200);
+            border-radius: 20px;
+            opacity: 0; // شروع با opacity صفر
+            transition: opacity 400ms ease-in-out; // انیمیشن نرم برای opacity
+            z-index: 1; // زیر محتوا ولی روی پس‌زمینه
+            pointer-events: none; // اجازه کلیک روی دکمه را می‌دهد
+        }
+
+        &:hover {
+            &::before {
+                opacity: 0.5
+            }
+
+            .product-detail-btn {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                pointer-events: auto;
+            }
+        }
+
+        .product-detail-btn {
+            // width: 100%;
+
+            position: absolute;
+            top: 40%;
+            left: 25%;
+            transform: translate(-50%, -50%) scale(0.8); // شروع با مقیاس کوچک
+            z-index: 10;
+            opacity: 0; // شروع با opacity صفر
+            transition: all 350ms cubic-bezier(0.34, 1.56, 0.64, 1); // انیمیشن با反弹
+            pointer-events: none; // در حالت مخفی قابل کلیک نیست
+        }
+    }
+
+
+}

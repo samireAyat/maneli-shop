@@ -1,0 +1,41 @@
+<div class="cart-preview">
+    <!-- هدر -->
+    <div class="cart-header">
+        <h4>🛒 سبد خرید</h4>
+        <span class="item-count">{{ itemCount }} کالا</span>
+        <button class="close-btn" (click)="close.emit()">✕</button>
+    </div>
+
+    <!-- لیست محصولات -->
+    <div class="cart-items" *ngIf="cartItems.length > 0; else emptyCart">
+        <div class="cart-item" *ngFor="let item of cartItems">
+            <img [src]="item.image" [alt]="item.name" class="item-image">
+            <div class="item-details">
+                <div class="item-name">{{ item.name }}</div>
+                <div class="item-price">{{ item.price * item.quantity | currency }}</div>
+                <div class="item-quantity">
+                    تعداد: {{ item.quantity }}
+                </div>
+            </div>
+            <button class="remove-btn" (click)="removeFromCart(item)">✕</button>
+        </div>
+    </div>
+
+    <ng-template #emptyCart>
+        <div class="empty-cart">
+            <span>🛒</span>
+            <p>سبد خرید شما خالی است</p>
+        </div>
+    </ng-template>
+
+    <!-- فوتر -->
+    <div class="cart-footer" *ngIf="cartItems.length > 0">
+        <div class="total">
+            <span>مجموع:</span>
+            <span class="total-price">{{ totalPrice | currency }}</span>
+        </div>
+        <button class="view-cart-btn" (click)="goToCart()">
+            مشاهده سبد خرید
+        </button>
+    </div>
+</div>

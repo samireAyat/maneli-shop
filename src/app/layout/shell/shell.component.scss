@@ -1,4 +1,13 @@
+::host {}
+
+.shell-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .content {
-    height: calc(100% - 190px);
-    margin-bottom: 1rem;
+    // height: calc(100% - 190px);
+    // margin-bottom: 1rem;
+    flex: 1 0 auto;
 }

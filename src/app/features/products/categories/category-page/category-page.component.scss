@@ -1,0 +1,26 @@
+.category-page-wrapper {
+    padding: 0 2rem;
+    height: 100%;
+
+    .category-page-inner {
+        height: calc(100% - 2rem);
+        padding: 1rem;
+        background-color: var(--white);
+        border-radius: 30px;
+        display: flex;
+        gap: 01rem;
+        flex-direction: column;
+
+    }
+
+    .category-product {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        border: 1px solid var(--gray-100);
+        border-radius: 20px;
+        padding: 0.5rem;
+        flex-grow: 1;
+        // background-color: var(--secondary-50);
+    }
+}
