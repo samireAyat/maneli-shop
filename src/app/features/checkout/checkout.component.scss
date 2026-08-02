@@ -1,68 +1,126 @@
-.checkout-wrapper {
-    padding: 0rem 2rem 1rem 2rem;
-    height: 100%;
+    .checkout-wrapper {
+        padding: 0rem 2rem 1rem 2rem;
+        height: 100%;
 
-    .checkout-inner {
-        padding: 2rem;
-        background-color: white;
-        border-radius: 30px;
-        display: flex;
-        justify-content: space-between;
-        height: calc(100% - 4rem);
+        .checkout-inner {
+            padding: 2rem;
+            background-color: white;
+            border-radius: 30px;
+            justify-content: space-between;
+            height: calc(100% - 4rem);
 
-        .image-wrapper {
-            width: 570px;
-            height: auto;
-            align-self: flex-end;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-        }
-
-        .form-wrapper {
-            padding: 1rem 3rem;
-            border: 1px solid var(--secondary-100);
-            border-radius: 10px;
-            position: relative;
-
-            .form-label {
-                right: 16px;
-                padding: 0.5rem;
-                border: 1px solid transparent;
-                background: var(--secondary-100);
-                border-radius: 7px;
-                position: absolute;
-                top: -16px;
-                font-size: 14px;
-                font-weight: 600;
-
+            .image-wrapper {
+                display: none;
             }
 
-            form {
-                margin-top: 35px;
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
+            .form-wrapper {
+                padding: 1rem;
+                border: 1px solid var(--secondary-100);
+                border-radius: 10px;
+                position: relative;
 
-                .submit-btn {
-                    width: 100%;
+                .form-label {
+                    right: 16px;
+                    padding: 0.5rem;
+                    border: 1px solid transparent;
+                    background: var(--secondary-100);
+                    border-radius: 7px;
+                    position: absolute;
+                    top: -16px;
+                    font-size: 14px;
+                    font-weight: 600;
+
+                }
+
+                form {
+                    margin-top: 35px;
                     display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    margin-top: 2rem;
-                    button {
+                    flex-direction: column;
+                    gap: 0.5rem;
+
+                    .submit-btn {
+                        width: 100%;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        width: 50%;
-                        padding: 0.8rem;
-                        border-radius: 10px;
+                        margin-top: 2rem;
+
+                        button {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 50%;
+                            padding: 0.8rem;
+                            border-radius: 10px;
+                        }
                     }
                 }
             }
         }
     }
-}
+
+    .row {
+        grid-template-columns: 1fr !important;
+    }
+
+    @media screen and (min-width: 875px) {
+        .checkout-wrapper {
+
+
+            .checkout-inner {
+                .image-wrapper {}
+
+                .form-wrapper {
+                    padding: 1rem 3rem;
+
+                    .form-label {}
+
+                    form {
+                        .submit-btn {
+
+                            button {}
+                        }
+                    }
+                }
+            }
+        }
+
+        .row {
+            grid-template-columns: 1fr 1fr !important;
+        }
+    }
+
+    @media screen and (min-width: 1470px) {
+        .checkout-wrapper {
+
+
+            .checkout-inner {
+                display: flex;
+                .image-wrapper {
+                    display: flex;
+                    width: 570px;
+                    height: auto;
+                    align-self: flex-end;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .form-wrapper {
+                    .form-label {}
+
+                    form {
+
+                        .submit-btn {
+
+
+                            button {}
+                        }
+                    }
+                }
+            }
+        }
+    }

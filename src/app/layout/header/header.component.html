@@ -8,22 +8,29 @@
                 </a>
             </div>
             <!-- mobile menu toggle -->
-            <button class="menu-toggle">
+            <button class="menu-toggle" (click)="isMenuOpen = !isMenuOpen">
                 <app-solar-icon [name]="'hamburger-menu'" style="width: 24px; height: 24px;"></app-solar-icon>
             </button>
             <!-- main nav -->
-            <nav id="primary-nav" class="menu-wrapper">
+            <nav id="primary-nav" class="menu-wrapper" [class.open]="isMenuOpen" (mouseleave)="isSubmenuOpen = false">
                 <ul class="menu">
-                    <li class="menu-item has-submenu" (mouseenter)="isSubmenuOpen = true"
-                        (mouseleave)="isSubmenuOpen = false">
+                    <li class="menu-item">
+                        <div class="menu-title">
+                            <app-solar-icon style="width: 18px; height: 18px;" [size]="18" [name]="'home-minimalistic'"></app-solar-icon>
+                            <a href="">خانه</a>
+                        </div>
+                    </li>
+                    <li class="menu-item has-submenu" (mouseenter)="isSubmenuOpen = true">
 
-                        <button>
-                            <app-solar-icon [name]="'bag3'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        <div class="menu-title">
+                            <button>
+                                <app-solar-icon [name]="'bag3'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
 
-                            فروشگاه
-                            <span class="chev">▾</span>
-                        </button>
+                                فروشگاه
+                                <span class="chev">▾</span>
+                            </button>
+                        </div>
 
                         <ul id="shop-submenu" class="submenu" *ngIf="isSubmenuOpen">
                             <li><a href="">همه محصولات</a>
@@ -35,18 +42,25 @@
                         </ul>
                     </li>
                     <li class="menu-item">
-                        <app-solar-icon [name]="'document-text'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
+                        <div class="menu-title">
+                            <app-solar-icon [name]="'document-text'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
 
-                        <a href="">بلاگ</a>
+                            <a href="">بلاگ</a>
+                        </div>
                     </li>
                     <li class="menu-item">
-                        <app-solar-icon [name]="'phone-calling-rounded'" [size]="20" style="width: 20px; height: 20px;"></app-solar-icon>
+                        <div class="menu-title">
+                            <app-solar-icon [name]="'phone-calling-rounded'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
 
-                        <a href="">پشتیبانی</a>
+                            <a href="">پشتیبانی</a>
+                        </div>
                     </li>
 
-
+                    <span class="close-icon" (click)="onCloseMenu()">
+                        <app-solar-icon [name]="'close'" style="width: 24px; height: 24px;"></app-solar-icon>
+                    </span>
 
                 </ul>
             </nav>
@@ -67,7 +81,7 @@
                 <li class="menu-item account">
                     <a href=""> ورود/ثبت‌نام</a>
                 </li>
-                <li class="menu-item cart" #cartIcon >
+                <li class="menu-item cart" #cartIcon>
                     <a href="/cart">
                         <app-solar-icon [name]="'cart4'"
                             style="width: 24px; height: 24px; display: block;"></app-solar-icon>
@@ -77,5 +91,15 @@
             </ul>
         </div>
 
+    </div>
+    <div class="mobile-search">
+        <form >
+            <label for="site-search">
+                <app-solar-icon [name]="'magnifer'" [size]="20" style="width: 20px; height: 20px;"></app-solar-icon>
+                <span *ngIf="charCount === 0">جستجو</span>
+            </label>
+            <input #searchInput (input)="charCount = searchInput.value.length" id="site-search" name="search"
+                type="search">
+        </form>
     </div>
 </header>

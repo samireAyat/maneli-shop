@@ -14,6 +14,7 @@
     }
 }
 
+
 .categories {
     display: flex;
     gap: 0.5rem;
@@ -23,8 +24,7 @@
     padding: 0.5rem;
 
     label {
-        font-size: 14px;
-        font-weight: 600;
+        display: none;
     }
 }
 
@@ -96,4 +96,16 @@
             transform: scale(1.06);
         }
     }
+}
+
+@media screen and (min-width: 590px) {
+    .categories {
+
+    label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+    }
+}
+
 }
