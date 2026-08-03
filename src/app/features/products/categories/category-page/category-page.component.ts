@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriesNavComponent } from "../categories-nav/categories-nav.component";
+import { SHARED_IMPORTS } from '../../../../shared/shared.imports';
 
 @Component({
   selector: 'app-category-page',
-  imports: [CategoriesNavComponent],
+  imports: [CategoriesNavComponent, SHARED_IMPORTS],
   templateUrl: './category-page.component.html',
   styleUrl: './category-page.component.scss',
 })

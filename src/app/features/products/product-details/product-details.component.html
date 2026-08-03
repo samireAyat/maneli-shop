@@ -1,11 +1,17 @@
 <div class="product-detail-wrapper">
+    <div class="main-label">
+        <app-solar-icon style="width: 20px; height: 20px;" [name]="'bill'" [size]="20"></app-solar-icon>
+        جزییات محصول
+    </div>
     <div class="product-detail-inner">
+
         <div class="right-side">
             <div class="product-detail-image">
                 <img src={{heroImage.path}} alt="">
             </div>
             <div class="product-detail-images">
-                <span class="images-item" *ngFor="let image of images" (click)="selectedPhoto(image)" [class.selected]="image.isSelected">
+                <span class="images-item" *ngFor="let image of images" (click)="selectedPhoto(image)"
+                    [class.selected]="image.isSelected">
                     <img class="checkmark" *ngIf="image.isSelected" src="images/check1.png" alt="">
                     <img class="product-image" src={{image.path}} alt="">
                 </span>

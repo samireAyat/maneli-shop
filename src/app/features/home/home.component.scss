@@ -1,10 +1,17 @@
 .home-wrapper {
-    padding: 0 2rem;
-    height: 100%;
+    // padding: 0 2rem;
+    height: calc(100% - 75px);
 
     .home-inner {
         height: 100%;
+        padding-top: 2rem;
 
 
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .home-wrapper {
+        // padding: 0 2rem;
     }
 }

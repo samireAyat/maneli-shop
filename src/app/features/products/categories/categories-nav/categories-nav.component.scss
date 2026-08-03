@@ -2,14 +2,17 @@
     // padding: 0 2rem;
     height: 100%;
 
+
     .category-nav-inner {
         height: 100%;
         // padding: 1rem;
         background-color: var(--white);
-        border-radius: 30px;
+        // border-radius: 30px;
         display: flex;
         gap: 01rem;
         flex-direction: column;
+        background: var(--secondary-50);
+        border-left: 1px solid var(--secondary-100);
 
     }
 }
@@ -17,11 +20,13 @@
 
 .categories {
     display: flex;
-    gap: 0.5rem;
+    // gap: 0.5rem;
     align-items: center;
-    border: 1px solid var(--gray-100);
-    border-radius: 20px;
-    padding: 0.5rem;
+
+    // border: 1px solid var(--gray-100);
+    // border-radius: 20px;
+    // padding: 0.5rem;
+    flex-direction: column;
 
     label {
         display: none;
@@ -29,46 +34,51 @@
 }
 
 .catrgory-card {
-    height: 40px;
+    // height: 40px;
     display: flex;
     align-items: center;
     gap: 0.3rem;
     max-width: max-content;
-    background-color: var(--secondary-100);
-    padding: 0.2rem 0.4rem;
-    border-radius: 10px;
-    border: 1px solid var(--secondary-200);
+    // background-color: var(--secondary-100);
+    padding: 0.5rem 0.4rem;
+    // border-radius: 10px;
+    // border: 1px solid var(--secondary-200);
     cursor: pointer;
     transition: all 100ms ease;
+    flex-direction: column;
+    min-width: 125px;
+    border-bottom: 1px solid var(--secondary-100);
 
     .title {
         font-size: 14px;
+        order: 2;
 
     }
 
 
     &:hover {
-        border-color: var(--secondary-300);
-        background-color: var(--secondary-100);
+        // border-color: var(--secondary-300);
+        // background-color: var(--secondary-100);
 
-        .svg-icon {
-            background-color: var(--secondary-300);
-            transition: all 300ms linear;
+        // .svg-icon {
+        //     background-color: var(--secondary-300);
+        //     transition: all 300ms linear;
 
-            img {
-                transform: scale(1.06);
-            }
-        }
+        //     img {
+        //         transform: scale(1.06);
+        //     }
+        // }
     }
 
     .svg-icon {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 300ms linear;
         border-radius: 50%;
+        order: 1;
 
         // background-color: var(--secondary-200);
         img {
@@ -82,16 +92,20 @@
 
 
 .selected {
-    border-color: var(--secondary-300);
-    background-color: var(--secondary-100);
-    border-width: 1px;
+    // border-color: var(--secondary-300);
+    // background-color: var(--secondary-100);
+    // border-width: 1px;
+    background-color: var(--white);
 
     .title {
         font-weight: 700;
+        color: var(--secondary-500);
     }
 
     .svg-icon {
         background-color: var(--secondary-300);
+        color: red;
+
         img {
             transform: scale(1.06);
         }
@@ -101,11 +115,54 @@
 @media screen and (min-width: 590px) {
     .categories {
 
-    label {
-        display: block;
-        font-size: 14px;
-        font-weight: 600;
+        label {
+        }
     }
-}
+
+    .catrgory-card {
+
+        flex-direction: unset;
+        min-width: 160px;
+        padding: 0.7rem;
+
+
+        .title {
+            font-size: 14px;
+            order: 2;
+
+        }
+
+
+        &:hover {
+            // border-color: var(--secondary-300);
+            // background-color: var(--secondary-100);
+
+            // .svg-icon {
+            //     background-color: var(--secondary-300);
+            //     transition: all 300ms linear;
+
+            //     img {
+            //         transform: scale(1.06);
+            //     }
+            // }
+        }
+
+        .svg-icon {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 300ms linear;
+            border-radius: 50%;
+            order: 1;
+
+            // background-color: var(--secondary-200);
+            img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
 
 }

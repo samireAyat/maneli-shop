@@ -1,19 +1,27 @@
 <div class="product-list-wrapper">
     <div class="product-list-inner">
-        <span class="label">
-            <h4>همه محصولات</h4>
-        </span>
-        <ngx-simplebar style="max-height: 635px">
-                    <div class="products-wrapper">
-            <app-product [id]="123"></app-product>
-            <app-product></app-product>
-            <app-product></app-product>
-            <app-product></app-product>
-            <app-product></app-product>
-            <app-product></app-product>
-            <app-product></app-product>
-            <app-product></app-product>
+        <div class="label">
+            <div style="color: var(--title);">
+                <app-solar-icon style="width: 20px; height: 20px;" [name]="'widget4'" [size]="20"></app-solar-icon>
+                <h4>همه محصولات</h4>
+            </div>
+            <div style="display: flex; align-items: center; color: var(--secondary-500); gap: 0.5rem;">
+                مشاهده همه
+                <app-solar-icon style="width: 16px; height: 16px;" [name]="'alt-arrow-left'" [size]="16"></app-solar-icon>
+            </div>
+
         </div>
+        <ngx-simplebar style="max-height: 635px">
+            <div class="products-wrapper">
+                <app-product [id]="123"></app-product>
+                <app-product></app-product>
+                <app-product></app-product>
+                <app-product></app-product>
+                <app-product></app-product>
+                <app-product></app-product>
+                <app-product></app-product>
+                <app-product></app-product>
+            </div>
         </ngx-simplebar>
     </div>
 </div>

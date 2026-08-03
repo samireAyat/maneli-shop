@@ -1,7 +1,13 @@
 <div class="cart-wrapper">
   <div class="cart-inner">
     <div class="cart-detail">
-      <label for="">سبد خرید</label>
+      <div class="label">
+
+        <app-solar-icon [name]="'bag3'" [size]="20" style="width: 20px; height: 20px"></app-solar-icon>
+        <h4> سبد خرید</h4>
+
+
+      </div>
       <ngx-simplebar style="max-height: 635px">
         <div class="desktop-view">
           <table>
@@ -129,29 +135,32 @@
 
               <div class="left">
                 <div class="product-title">شومیز لینن</div>
-                <div class="product-price">
-                  {{ "1200,000" | persianNumber }}
-                  تومان
-                </div>
+                <div class="product-size">سایز: XXL</div>
+                <div class="product-color">رنگ: کرم روشن</div>
+
               </div>
 
-
-
             </div>
-
-
             <div class="product-quantity">
               <div class="quantity">
-                <span>+</span>
+                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
+                    [size]="20"></app-solar-icon></span>
                 <span>1</span>
                 <span>
-                  <span style="display: none;">-</span>
-                  <span class="trashbin-icon">
-                    <app-solar-icon style="width: 18px; height: 18px" [name]="'trash-bin-minimalistic'"
-                      [size]="18"></app-solar-icon>
+                  <span>
+                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
+                      [size]="20"></app-solar-icon>
+                  </span>
+                  <span class="trashbin-icon" style="display: none;">
+                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
+                      [size]="20"></app-solar-icon>
 
                   </span>
                 </span>
+              </div>
+              <div class="product-price">
+                {{ "1200,000" | persianNumber }}
+                تومان
               </div>
 
             </div>
@@ -164,29 +173,32 @@
 
               <div class="left">
                 <div class="product-title">شومیز لینن</div>
-                <div class="product-price">
-                  {{ "1200,000" | persianNumber }}
-                  تومان
-                </div>
+                <div class="product-size">سایز: XXL</div>
+                <div class="product-color">رنگ: کرم روشن</div>
+
               </div>
 
-
-
             </div>
-
-
             <div class="product-quantity">
               <div class="quantity">
-                <span>+</span>
+                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
+                    [size]="20"></app-solar-icon></span>
                 <span>1</span>
                 <span>
-                  <span style="display: none;">-</span>
-                  <span class="trashbin-icon">
-                    <app-solar-icon style="width: 18px; height: 18px" [name]="'trash-bin-minimalistic'"
-                      [size]="18"></app-solar-icon>
+                  <span>
+                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
+                      [size]="20"></app-solar-icon>
+                  </span>
+                  <span class="trashbin-icon" style="display: none;">
+                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
+                      [size]="20"></app-solar-icon>
 
                   </span>
                 </span>
+              </div>
+              <div class="product-price">
+                {{ "1200,000" | persianNumber }}
+                تومان
               </div>
 
             </div>
@@ -199,33 +211,75 @@
 
               <div class="left">
                 <div class="product-title">شومیز لینن</div>
-                <div class="product-price">
-                  {{ "1200,000" | persianNumber }}
-                  تومان
-                </div>
+                <div class="product-size">سایز: XXL</div>
+                <div class="product-color">رنگ: کرم روشن</div>
+
               </div>
 
-
-
             </div>
-
-
             <div class="product-quantity">
               <div class="quantity">
-                <span>+</span>
+                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
+                    [size]="20"></app-solar-icon></span>
                 <span>1</span>
                 <span>
-                  <span style="display: none;">-</span>
-                  <span class="trashbin-icon">
-                    <app-solar-icon style="width: 18px; height: 18px" [name]="'trash-bin-minimalistic'"
-                      [size]="18"></app-solar-icon>
+                  <span>
+                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
+                      [size]="20"></app-solar-icon>
+                  </span>
+                  <span class="trashbin-icon" style="display: none;">
+                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
+                      [size]="20"></app-solar-icon>
 
                   </span>
                 </span>
               </div>
+              <div class="product-price">
+                {{ "1200,000" | persianNumber }}
+                تومان
+              </div>
 
             </div>
           </div>
+          <div class="cart-item">
+            <div class="top">
+              <div class="product-image right">
+                <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
+              </div>
+
+              <div class="left">
+                <div class="product-title">شومیز لینن</div>
+                <div class="product-size">سایز: XXL</div>
+                <div class="product-color">رنگ: کرم روشن</div>
+
+              </div>
+
+            </div>
+            <div class="product-quantity">
+              <div class="quantity">
+                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
+                    [size]="20"></app-solar-icon></span>
+                <span>1</span>
+                <span>
+                  <span>
+                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
+                      [size]="20"></app-solar-icon>
+                  </span>
+                  <span class="trashbin-icon" style="display: none;">
+                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
+                      [size]="20"></app-solar-icon>
+
+                  </span>
+                </span>
+              </div>
+              <div class="product-price">
+                {{ "1200,000" | persianNumber }}
+                تومان
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
       </ngx-simplebar>
