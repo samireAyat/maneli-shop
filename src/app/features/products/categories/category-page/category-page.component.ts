@@ -11,7 +11,7 @@ import { SHARED_IMPORTS } from '../../../../shared/shared.imports';
 })
 export class CategoryPageComponent {
   constructor(private route: ActivatedRoute) { }
-  slug: string = '';
+  slug: string = 'all';
   textPreview = ''
 
   ngOnInit() {

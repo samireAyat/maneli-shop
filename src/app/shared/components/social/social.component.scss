@@ -1,0 +1,31 @@
+.social-wrapper {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 0.8rem;
+    border-radius: 10px;
+
+    .social-inner {
+        .icons {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            
+
+            .icon {
+                i {
+                    cursor: pointer;
+                    width: 25px;
+                    height: 25px;
+                    font-size: 25px;
+                    display: flex;
+                    color: var(--title);
+                    transition: all 200ms ease-in-out;
+                }
+                &:hover {
+                    i {
+                        color: var(--secondary-400);
+                    }
+                }
+            }
+        }
+    }
+}

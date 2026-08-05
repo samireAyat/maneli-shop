@@ -10,8 +10,9 @@ export const routes: Routes = [
             { path: 'products/:id', loadComponent: () => import('./features/products/product-details/product-details.component').then(m => m.ProductDetailsComponent) },
             { path: 'cart', loadComponent: () => import('./features/cart/cart.component').then(m => m.CartComponent) },
             {path: 'categories' , loadComponent: () => import('./features/products/categories/categories.component').then(m => m.CategoriesComponent)},
-            {path: 'categories/:slug' , loadComponent: () => import('./features/products/categories/category-page/category-page.component').then(m => m.CategoryPageComponent)},
+            {path: 'categories/:slug' , loadComponent: () => import('./features/products/categories/categories.component').then(m => m.CategoriesComponent)},
             { path: 'checkout', loadComponent: () => import('./features/checkout/checkout.component').then(m => m.CheckoutComponent) },
+            {path: 'my-account' , loadComponent: () => import('./features/account/my-account/my-account.component').then(m => m.MyAccountComponent), data: {hideHeader: true}},
             { path: 'admin', loadComponent: () => import('./features/admin/admin.component').then(m => m.AdminComponent) },
             // { path: '**', redirectTo: '' }
         ]

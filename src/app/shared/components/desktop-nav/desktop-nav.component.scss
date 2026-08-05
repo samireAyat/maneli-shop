@@ -1,14 +1,19 @@
-.footer-menu-wrapper {
-    .footer-menu-inner {
+.desktop-nav-wrapper {
+
+    .desktop-nav-inner {
+        background: var(--primary-50);
+        padding: 1rem;
         // position: relative;
         // position: fixed;
         // bottom: 0;
-        background-color: var(--white);
+        // background-color: var(--white);
         // border-radius: 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
+        // width: 100%;
+        // border-top: 1px solid var(--secondary-100);
+
 
         // padding: 0.5rem 0.8rem;
         // display: flex;
@@ -34,7 +39,7 @@
             .menu {
                 display: flex;
                 // flex-direction: column;
-                justify-content: space-evenly;
+                // justify-content: space-evenly;
                 // position: absolute;
                 background: white;
                 // gap: 0.5rem;
@@ -92,7 +97,7 @@
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            flex-direction: column;
+                            flex-direction: row;
                             gap: 0.4rem;
                             transition: all 200ms linear;
                         }
@@ -105,47 +110,7 @@
                         }
                     }
 
-                    // background: var(--primaryLight);
-                    // 
 
-                    &.has-submenu {
-                        position: relative;
-
-                        button {
-                            display: flex;
-                            align-items: center;
-                            gap: 5px;
-                        }
-
-                        .submenu {
-                            z-index: 100;
-                            width: calc(100% - 3rem);
-                            background: white;
-                            padding: 0.5rem 0.5rem;
-                            right: 100%;
-                            border-radius: 7px;
-                            display: flex;
-                            flex-direction: column;
-                            gap: 0.5rem;
-                            top: -14px;
-                            border: 1px solid var(--gray-100);
-                            margin-top: 0.3rem;
-                            margin-right: 1.5rem;
-                            background-color: var(--secondary-50);
-
-                            li {
-                                padding: 0.5rem;
-                                border-radius: 7px;
-                                display: flex;
-                                align-items: center;
-                                gap: 15px;
-
-                                &:hover {
-                                    background-color: var(--secondary-100);
-                                }
-                            }
-                        }
-                    }
 
                     button {
                         color: var(--title);
@@ -248,7 +213,47 @@
         }
 
         .search-box {
-            display: none;
+                width: 600px;
+                background-color: white;
+                border-radius: 12px;
+                // margin-top: 0.5rem;
+                padding: 0.2rem 0.6rem;
+                position: relative;
+                border: 1px solid var(--primary-200);
+
+                form {
+                    label {
+                        font-size: 0.8rem;
+                        position: absolute;
+                        top: 13px;
+                        padding-right: 0.6rem;
+                        color: var(--gray-500);
+                        display: flex;
+                        align-items: center;
+                        gap: 0.2rem;
+                    }
+
+                    input {
+                        padding: 0.3rem 1.9rem 0.3rem 0.7rem;
+                        height: 40px;
+                        border-radius: 10px;
+                        border: 1px solid transparent;
+                        outline: none;
+                        width: 100%;
+
+                        // min-width: 300px;
+
+
+
+
+                    }
+
+                }
+
+                &:focus-within {
+                    border-color: var(--primary);
+                }
+            
         }
 
 
@@ -290,21 +295,5 @@
             }
         }
 
-    }
-}
-
-@media screen and (min-width: 670px) {
-    .menu-item {
-        padding: 0.5rem !important;
-
-        .menu-title {
-
-            a {
-                font-size: 14px !important;
-                font-weight: 600;
-                flex-direction: unset !important;
-                align-items: unset !important;
-            }
-        }
     }
 }

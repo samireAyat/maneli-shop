@@ -6,7 +6,7 @@
     .product-list-inner {
         height: calc(100% - 1rem);
         padding-bottom: 1rem;
-        padding-top: 1rem;
+        padding-top: 2rem;
 
 
         .label {
@@ -38,15 +38,14 @@
         }
 
 
-        background-color: var(--white);
+        // background-color: var(--white);
         border-radius: 30px;
 
         .products-wrapper {
             // padding: 2rem;
-            padding: 1rem;
+            gap: 1rem 0.5rem;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            row-gap: 1rem;
             place-items: center;
         }
     }

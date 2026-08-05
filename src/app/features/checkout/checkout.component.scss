@@ -1,16 +1,19 @@
     .checkout-wrapper {
         // padding: 0rem 2rem 1rem 2rem;
-    //    padding:  0rem 1rem 1rem 1rem;
-    //    height: calc(100% - 58px);
-    height: 100%;
+        //    padding:  0rem 1rem 1rem 1rem;
+        //    height: calc(100% - 58px);
+        height: 100%;
+        // padding-top: 1rem;
 
         .checkout-inner {
             // padding: 2rem;
-            padding: 1.5rem 0.5rem 1.5rem 0.5rem;
-            background-color: white;
+            // padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+            // background-color: white;
+            border-top: 1px solid var(--secondary-100);
             // border-radius: 30px;
             justify-content: space-between;
             // height: calc(100% - 3rem);
+            position: relative;
 
             .image-wrapper {
                 display: none;
@@ -19,9 +22,9 @@
             .form-wrapper {
                 // padding: 1rem;
                 padding: 0.5rem;
-                border: 1px solid var(--secondary-100);
+                // border: 1px solid var(--secondary-100);
                 border-radius: 10px;
-                position: relative;
+                // position: relative;
                 // height: calc(100% - 11px);
 
                 .form-label {
@@ -31,7 +34,7 @@
                     background: var(--secondary-100);
                     border-radius: 7px;
                     position: absolute;
-                    top: -16px;
+                    top: -20px;
                     font-size: 14px;
                     font-weight: 600;
                     display: flex;
@@ -41,7 +44,7 @@
                 }
 
                 form {
-                    margin-top: 35px;
+                    // margin-top: 35px;
                     display: flex;
                     flex-direction: column;
                     gap: 0.5rem;
@@ -70,6 +73,7 @@
 
     .row {
         grid-template-columns: 1fr !important;
+
         .input-group input {
             // min-width: 170px !important;
         }
@@ -77,9 +81,11 @@
 
     @media screen and (min-width: 450px) {
         .checkout-wrapper {
-            padding: 0rem 2rem 1rem 2rem;
+
+            // padding: 0rem 2rem 1rem 2rem;
             .checkout-inner {
                 padding: 2rem;
+
                 .form-wrapper {
                     padding: 1rem;
                 }
@@ -93,6 +99,7 @@
 
             .checkout-inner {
                 height: calc(100% - 60px);
+
                 .image-wrapper {}
 
                 .form-wrapper {
@@ -121,6 +128,7 @@
 
             .checkout-inner {
                 display: flex;
+
                 .image-wrapper {
                     display: flex;
                     width: 570px;
@@ -148,6 +156,7 @@
                 }
             }
         }
+
         .row {
             input {
                 min-width: 320px !important;

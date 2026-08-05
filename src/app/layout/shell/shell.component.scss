@@ -10,4 +10,26 @@
     // height: calc(100% - 190px);
     // margin-bottom: 1rem;
     flex: 1 0 auto;
+
+
+}
+
+.mobile-menu {
+    display: block;
+}
+
+.desktop-menu {
+    display: none;
+}
+
+@media (min-width: 1000px) {
+    .content {}
+
+    .mobile-menu {
+        display: none;
+    }
+
+    .desktop-menu {
+        display: block;
+    }
 }

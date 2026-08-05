@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { SHARED_IMPORTS } from '../../../shared/shared.imports';
 import { interval, take } from 'rxjs';
 
@@ -10,11 +10,12 @@ import { interval, take } from 'rxjs';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  isOTP = true;
+  isOTP = false;
   remainingSeconds = 120;
   canResendCode = false;
   phone = '';
   otpCode = '';
+  @ViewChild('step2') step2: HTMLElement | any
 
   ngOnInit() {
     this.setInterval();
@@ -40,4 +41,10 @@ export class LoginComponent {
       .toString()
       .padStart(2, '0')}`;
   }
+
+  showStep2 = false
+  
+  onStep2() {
+   this.showStep2 = true
+}
 }

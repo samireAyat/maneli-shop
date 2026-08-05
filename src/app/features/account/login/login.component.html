@@ -1,7 +1,6 @@
 <div class="login-wrapper">
     <div class="login-inner">
-        <div class="content">
-
+        <div *ngIf="!showStep2" class="content">
             <div class="image-wrapper">
                 <img *ngIf="!isOTP" src="images/login7.png" alt="">
                 <img *ngIf="isOTP" src="images/otp2.png" alt="">
@@ -15,14 +14,13 @@
                     <p>لطفا شماره موبایل خود را وارد کنید.</p>
                     <div class="form-control">
                         <!-- <label class="input-label">شماره موبایل</label> -->
-                        <span [class.invalid]="loginForm.submitted && phoneInput.invalid" class="icon" >
+                        <span [class.invalid]="loginForm.submitted && phoneInput.invalid" class="icon">
                             <app-solar-icon style="width: 20px; height: 20px;" [name]="'smart-phone'"
                                 [size]="20"></app-solar-icon>
                         </span>
 
-                        <input required #phoneInput="ngModel" name="input"  [(ngModel)]="phone" class="input" type="text" placeholder="شماره موبایل"
-                         [class.invalid]="loginForm.submitted && phoneInput.invalid"
-                        >
+                        <input required #phoneInput="ngModel" name="input" [(ngModel)]="phone" class="input" type="text"
+                            placeholder="شماره موبایل" [class.invalid]="loginForm.submitted && phoneInput.invalid">
                     </div>
                     <div class="submit-btn">
                         <button type="submit" class="primary">ارسال کد تایید</button>
@@ -36,14 +34,13 @@
                     </small>
                     <div class="form-control">
                         <!-- <label class="input-label">شماره موبایل</label> -->
-                        <span [class.invalid]="otpForm.submitted && otpInput.invalid" class="icon" >
+                        <span [class.invalid]="otpForm.submitted && otpInput.invalid" class="icon">
                             <app-solar-icon style="width: 22px; height: 22px;" [name]="'shield-keyhole'"
                                 [size]="22"></app-solar-icon>
                         </span>
 
-                        <input required #otpInput="ngModel" name="input" [(ngModel)]="otpCode" class="input" type="text" placeholder=""
-                        [class.invalid]="otpForm.submitted && otpInput.invalid" 
-                        >
+                        <input required #otpInput="ngModel" name="input" [(ngModel)]="otpCode" class="input" type="text"
+                            placeholder="" [class.invalid]="otpForm.submitted && otpInput.invalid">
                     </div>
                     <!-- <small >
                         
@@ -54,13 +51,31 @@
                             [size]="20"></app-solar-icon>
                     </small> -->
                     <div class="submit-btn">
-                        <button style="direction: ltr;"  class="primary outline" type="button" *ngIf="!canResendCode">{{formettedTime  | persianNumber}}</button>
-                        <button class="primary outline" type="button" (click)="setInterval()" *ngIf="canResendCode">ارسال مجدد کد</button>
-                        <button class="primary" type="submit"> تایید و ادامه</button>
+                        <button style="direction: ltr;" class="primary outline" type="button"
+                            *ngIf="!canResendCode">{{formettedTime | persianNumber}}</button>
+                        <button class="primary outline" type="button" (click)="setInterval()"
+                            *ngIf="canResendCode">ارسال مجدد کد</button>
+                        <button class="primary" type="submit" (click)="onStep2()"> تایید و ادامه</button>
                     </div>
                 </form>
 
             </div>
+        </div>
+        <div *ngIf="showStep2" class="step2">
+            <div class="image-wrapper">
+                <img src="images/login-step2.png" alt="">
+            </div>
+            <div class="step2-content">
+                <h4>خوشحالیم که بازم همراهتیم...</h4>
+                <p>هر وقت زمان داشتی حساب کاربریت رو تکمیل کن :)</p>
+
+            </div>
+
+                <div class="btn">
+                    <button class="primary outline">تکمیل حساب کاربری</button>
+                    <button class="primary">صفحه اصلی</button>
+                </div>
+
         </div>
     </div>
 </div>
