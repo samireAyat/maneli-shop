@@ -12,10 +12,12 @@
     display: flex;
     gap: 1rem;
     flex-direction: column;
+    padding-top: 2rem;
 
     .cart-detail {
-      border-top: 1px solid var(--secondary-100);
+      border-top: 1px dashed var(--secondary-200);
       margin-top: 0rem;
+      padding-top: 1rem;
 
       .desktop-view {
         display: none;
@@ -32,7 +34,7 @@
         background: var(--secondary-100);
         border-radius: 10px;
         position: absolute;
-        top: 72px;
+        top: 95px;
         right: 20px;
         z-index: 100;
       }
@@ -73,8 +75,6 @@
               img {
                 width: 100%;
               }
-
-              ;
             }
 
             .left {
@@ -85,14 +85,12 @@
               .product-price {
                 display: flex;
                 align-items: center;
-
               }
 
               .product-title {
                 margin-top: 1.5rem;
               }
             }
-
           }
 
           .product-quantity {
@@ -112,7 +110,7 @@
               width: max-content;
               background-color: var(--primary-50);
 
-              >span {
+              > span {
                 color: var(--error-600);
                 cursor: pointer;
                 font-size: 17px;
@@ -122,7 +120,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-
 
                 &:nth-child(1) {
                   // border-left: 1px solid var(--gray-400);
@@ -152,15 +149,12 @@
                 // color: var(--secondary-500);
               }
             }
-
           }
-
         }
       }
     }
   }
 }
-
 
 @media screen and (min-width: 795px) {
   .cart-wrapper {
@@ -177,8 +171,6 @@
               img {
                 width: 100%;
               }
-
-              ;
             }
 
             .product-quantity {
@@ -197,7 +189,7 @@
                 border-radius: 30px;
                 width: max-content;
 
-                >span {
+                > span {
                   color: var(--error-600);
                   cursor: pointer;
                   font-size: 17px;
@@ -207,7 +199,6 @@
                   display: flex;
                   align-items: center;
                   justify-content: center;
-
 
                   &:nth-child(1) {
                     // border-left: 1px solid var(--gray-400);
@@ -232,9 +223,9 @@
                 cursor: pointer;
                 transition: all 100ms linear;
 
-                &:hover {}
+                &:hover {
+                }
               }
-
             }
           }
         }
@@ -244,10 +235,6 @@
         }
       }
     }
-
-
-
-
   }
 
   td {

@@ -1,165 +1,160 @@
-    .checkout-wrapper {
-        // padding: 0rem 2rem 1rem 2rem;
-        //    padding:  0rem 1rem 1rem 1rem;
-        //    height: calc(100% - 58px);
-        height: 100%;
-        // padding-top: 1rem;
+.checkout-wrapper {
+  // padding: 0rem 2rem 1rem 2rem;
+  //    padding:  0rem 1rem 1rem 1rem;
+  //    height: calc(100% - 58px);
+  height: 100%;
+  padding-top: 2rem;
 
-        .checkout-inner {
-            // padding: 2rem;
-            // padding: 1.5rem 0.5rem 1.5rem 0.5rem;
-            // background-color: white;
-            border-top: 1px solid var(--secondary-100);
-            // border-radius: 30px;
-            justify-content: space-between;
-            // height: calc(100% - 3rem);
-            position: relative;
+  .checkout-inner {
+    // padding: 2rem;
+    // padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+    // background-color: white;
+    border-top: 1px dashed var(--secondary-200);
+    // border-radius: 30px;
+    justify-content: space-between;
+    // height: calc(100% - 3rem);
+    position: relative;
 
-            .image-wrapper {
-                display: none;
-            }
-
-            .form-wrapper {
-                // padding: 1rem;
-                padding: 0.5rem;
-                // border: 1px solid var(--secondary-100);
-                border-radius: 10px;
-                // position: relative;
-                // height: calc(100% - 11px);
-
-                .form-label {
-                    right: 16px;
-                    padding: 0.5rem;
-                    border: 1px solid transparent;
-                    background: var(--secondary-100);
-                    border-radius: 7px;
-                    position: absolute;
-                    top: -20px;
-                    font-size: 14px;
-                    font-weight: 600;
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-
-                }
-
-                form {
-                    // margin-top: 35px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.5rem;
-                    // margin-bottom: 3rem;
-
-                    .submit-btn {
-                        width: 100%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        margin-top: 0.5rem;
-
-                        button {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 50%;
-                            padding: 0.8rem;
-                            border-radius: 10px;
-                        }
-                    }
-                }
-            }
-        }
+    .image-wrapper {
+      display: none;
     }
 
-    .row {
-        grid-template-columns: 1fr !important;
+    .form-wrapper {
+      // padding: 1rem;
+      padding: 0.5rem;
+      // border: 1px solid var(--secondary-100);
+      border-radius: 10px;
+      // position: relative;
+      // height: calc(100% - 11px);
 
-        .input-group input {
-            // min-width: 170px !important;
+      .form-label {
+        right: 16px;
+        padding: 0.5rem;
+        border: 1px solid transparent;
+        background: var(--secondary-100);
+        border-radius: 7px;
+        position: absolute;
+        top: -20px;
+        font-size: 14px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      form {
+        // margin-top: 35px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        // margin-bottom: 3rem;
+
+        .submit-btn {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 0.5rem;
+
+          button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            padding: 0.8rem;
+            border-radius: 10px;
+          }
         }
+      }
     }
+  }
+}
 
-    @media screen and (min-width: 450px) {
-        .checkout-wrapper {
+.row {
+  grid-template-columns: 1fr !important;
 
-            // padding: 0rem 2rem 1rem 2rem;
-            .checkout-inner {
-                padding: 2rem;
+  .input-group input {
+    // min-width: 170px !important;
+  }
+}
 
-                .form-wrapper {
-                    padding: 1rem;
-                }
-            }
-        }
+@media screen and (min-width: 450px) {
+  .checkout-wrapper {
+    // padding: 0rem 2rem 1rem 2rem;
+    .checkout-inner {
+      padding: 2rem;
+
+      .form-wrapper {
+        padding: 1rem;
+      }
     }
+  }
+}
 
-    @media screen and (min-width: 770px) {
-        .checkout-wrapper {
+@media screen and (min-width: 770px) {
+  .checkout-wrapper {
+    .checkout-inner {
+      height: calc(100% - 60px);
 
+      .image-wrapper {
+      }
 
-            .checkout-inner {
-                height: calc(100% - 60px);
+      .form-wrapper {
+        padding: 1rem 2rem;
 
-                .image-wrapper {}
+        .form-label {
+        }
 
-                .form-wrapper {
-                    padding: 1rem 2rem;
-
-                    .form-label {}
-
-                    form {
-                        .submit-btn {
-
-                            button {}
-                        }
-                    }
-                }
+        form {
+          .submit-btn {
+            button {
             }
+          }
         }
-
-        .row {
-            grid-template-columns: 1fr 1fr !important;
-        }
+      }
     }
+  }
 
-    @media screen and (min-width: 1470px) {
-        .checkout-wrapper {
+  .row {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
 
+@media screen and (min-width: 1470px) {
+  .checkout-wrapper {
+    .checkout-inner {
+      display: flex;
 
-            .checkout-inner {
-                display: flex;
+      .image-wrapper {
+        display: flex;
+        width: 570px;
+        height: auto;
+        align-self: flex-end;
 
-                .image-wrapper {
-                    display: flex;
-                    width: 570px;
-                    height: auto;
-                    align-self: flex-end;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
 
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-                }
-
-                .form-wrapper {
-                    .form-label {}
-
-                    form {
-
-                        .submit-btn {
-
-
-                            button {}
-                        }
-                    }
-                }
-            }
+      .form-wrapper {
+        .form-label {
         }
 
-        .row {
-            input {
-                min-width: 320px !important;
+        form {
+          .submit-btn {
+            button {
             }
+          }
         }
+      }
     }
+  }
+
+  .row {
+    input {
+      min-width: 320px !important;
+    }
+  }
+}

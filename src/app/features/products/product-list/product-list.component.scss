@@ -1,58 +1,64 @@
 .product-list-wrapper {
-    // padding: 0 2rem;
-    height: 100%;
-    border-top: 1px solid var(--secondary-100);
+  // padding: 0 2rem;
+  height: 100%;
 
-    .product-list-inner {
-        height: calc(100% - 1rem);
-        padding-bottom: 1rem;
-        padding-top: 2rem;
+  padding-top: 2rem;
 
+  .product-list-inner {
+    height: calc(100% - 1rem);
+    padding-bottom: 1rem;
+    padding-top: 3rem;
+    border-top: 1px dashed var(--secondary-200);
 
-        .label {
-            padding: 0 1rem;
-            font-weight: 600;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.5rem;
-            position: absolute;
-            top: 78px;
-            // width: 94%;
-            width: calc(100% - 2rem);
-            overflow: visible;
-            right: 0;
+    .label {
+      padding: 0 1rem;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      position: absolute;
+      top: 100px;
+      // width: 94%;
+      width: calc(100% - 2rem);
+      overflow: visible;
+      right: 0;
 
-            div {
-                display: flex;
-                align-items: center;
-                color: var(--secondary-500);
-                gap: 0.5rem;
-                background: var(--secondary-100);
-                padding: 0.5rem;
-                border-radius: 10px;
-                // margin-right: auto;
-            }
-
-        }
-
-
-        // background-color: var(--white);
-        border-radius: 30px;
-
-        .products-wrapper {
-            // padding: 2rem;
-            gap: 1rem 0.5rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            place-items: center;
-        }
+      div {
+        display: flex;
+        align-items: center;
+        color: var(--secondary-500);
+        gap: 0.5rem;
+        background: var(--secondary-100);
+        padding: 0.5rem;
+        border-radius: 10px;
+        // margin-right: auto;
+      }
     }
+
+    // background-color: var(--white);
+
+    .products-wrapper {
+      // padding: 2rem;
+      gap: 1rem 0.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      place-items: center;
+    }
+  }
 }
 
 @media screen and (min-width: 800px) {
-    .product-list-inner {
-        padding: 0 1rem;
+  .product-list-inner {
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  :host::ng-deep {
+    ngx-simplebar {
+      max-height: 630px !important;
     }
+  }
 }

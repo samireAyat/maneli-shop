@@ -1,91 +1,100 @@
 <div class="product-detail-wrapper">
-    <div class="main-label">
-        <app-solar-icon style="width: 20px; height: 20px;" [name]="'bill'" [size]="20"></app-solar-icon>
-        جزییات محصول
-    </div>
-    <div class="product-detail-inner">
-
-        <div class="right-side">
-            <div class="product-detail-image">
-                <img src={{heroImage.path}} alt="">
-            </div>
-            <div class="product-detail-images">
-                <span class="images-item" *ngFor="let image of images" (click)="selectedPhoto(image)"
-                    [class.selected]="image.isSelected">
-                    <img class="checkmark" *ngIf="image.isSelected" src="images/check1.png" alt="">
-                    <img class="product-image" src={{image.path}} alt="">
-                </span>
-                <!-- <span class="image-item"><img src="images/IMG_1546-copy-510x631-removebg-preview.png" alt=""></span>
+  <div class="main-label">
+    <app-solar-icon
+      style="width: 20px; height: 20px"
+      [name]="'bill'"
+      [size]="20"
+    ></app-solar-icon>
+    جزییات محصول
+  </div>
+  <div class="product-detail-inner">
+    <div class="right-side">
+      <div class="product-detail-image">
+        <img src="{{ heroImage.path }}" alt="" />
+      </div>
+      <div class="product-detail-images">
+        <span
+          class="images-item"
+          *ngFor="let image of images"
+          (click)="selectedPhoto(image)"
+          [class.selected]="image.isSelected"
+        >
+          <img
+            class="checkmark"
+            *ngIf="image.isSelected"
+            src="images/check1.png"
+            alt=""
+          />
+          <img class="product-image" src="{{ image.path }}" alt="" />
+        </span>
+        <!-- <span class="image-item"><img src="images/IMG_1546-copy-510x631-removebg-preview.png" alt=""></span>
                 <span class="image-item"><img src="images/IMG_1580-copy-510x632-removebg-preview.png" alt=""></span>
                 <span class="image-item"><img src="images/IMG_1585-copy-510x631-removebg-preview.png" alt=""></span>
                 <span class="image-item"><img src="images/IMG_1604-copy-510x765-removebg-preview.png" alt=""></span> -->
-            </div>
+      </div>
+    </div>
+    <div class="left-side">
+      <div class="product-detail">
+        <span class="product-name">
+          <h2 for="">شومیز لینن</h2>
+        </span>
+        <div class="product-price">
+          <span class="icon">
+            <app-solar-icon
+              [name]="'tag-price'"
+              style="width: 24px; height: 24px"
+            ></app-solar-icon>
+          </span>
+          <h3 id="price">
+            {{ "1500,000" | persianNumber }}
+          </h3>
+          <span>تومان</span>
         </div>
-        <div class="left-side">
-            <div class="product-detail">
-                <span class="product-name">
-                    <h2 for="">
-                        شومیز لینن
-
-                    </h2>
-                </span>
-                <div class="product-price">
-                    <span class="icon">
-                        <app-solar-icon [name]="'tag-price'" style="width: 24px; height: 24px;"></app-solar-icon>
-
-                    </span>
-                    <h3 id="price">
-                        {{ '1500,000' | persianNumber }}
-                    </h3>
-                    <span>تومان</span>
-                </div>
-                <div class="product-description">
-                    <p>
+        <div class="product-description">
+          <!-- <p>
                         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
                         چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی
                         مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
                         درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری
-                    </p>
-                </div>
-                <div class="product-colors">
-                    <div class="label">
-                        <div class="icon">
-                            <app-solar-icon [name]="'pallete'" style="width: 24px; height: 24px;"></app-solar-icon>
-
-                        </div>
-                        <h4 for="">رنگ</h4>
-
-
-                    </div>
-                    <div class="color-input">
-                        <input type="text" class="color">
-                        <input type="text" class="color">
-                        <input type="text" class="color">
-                    </div>
-                </div>
-                <div class="product-size">
-                    <div class="label">
-                        <div class="icon">
-                            <app-solar-icon [name]="'ruler'" style="width: 24px; height: 24px;"></app-solar-icon>
-
-                        </div>
-                        <h4 for="">سایز</h4>
-
-                    </div>
-                    <div class="size-input">
-                        <input type="text" class="size" value="S">
-                        <input type="text" class="size" value="M">
-                        <input type="text" class="size" value="L">
-                        <input type="text" class="size" value="XL">
-                    </div>
-                </div>
-                <div class="add-to-cart">
-                    <button class="secondary">
-                        افزودن به سبد خرید
-                    </button>
-                </div>
-            </div>
+                    </p> -->
         </div>
+        <div class="product-colors">
+          <div class="label">
+            <div class="icon">
+              <app-solar-icon
+                [name]="'pallete'"
+                style="width: 24px; height: 24px"
+              ></app-solar-icon>
+            </div>
+            <h4 for="">رنگ</h4>
+          </div>
+          <div class="color-input">
+            <input type="text" class="color" />
+            <input type="text" class="color" />
+            <input type="text" class="color" />
+          </div>
+        </div>
+        <div class="product-size">
+          <div class="label">
+            <div class="icon">
+              <app-solar-icon
+                [name]="'ruler'"
+                style="width: 24px; height: 24px"
+              ></app-solar-icon>
+            </div>
+            <h4 for="">سایز</h4>
+          </div>
+          <div class="size-input">
+            <input type="text" class="size" value="S" />
+            <input type="text" class="size" value="M" />
+            <input type="text" class="size" value="L" />
+            <input type="text" class="size" value="XL" />
+          </div>
+        </div>
+        <div class="add-to-cart">
+          <button class="secondary">افزودن به سبد خرید</button>
+        </div>
+      </div>
     </div>
-
+  </div>
 </div>

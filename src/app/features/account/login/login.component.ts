@@ -10,12 +10,12 @@ import { interval, take } from 'rxjs';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  isOTP = false;
+  isOTP = true;
   remainingSeconds = 120;
   canResendCode = false;
   phone = '';
   otpCode = '';
-  @ViewChild('step2') step2: HTMLElement | any
+  @ViewChild('step2') step2: HTMLElement | any;
 
   ngOnInit() {
     this.setInterval();
@@ -42,9 +42,9 @@ export class LoginComponent {
       .padStart(2, '0')}`;
   }
 
-  showStep2 = false
-  
+  showStep2 = false;
+
   onStep2() {
-   this.showStep2 = true
-}
+    this.showStep2 = true;
+  }
 }
