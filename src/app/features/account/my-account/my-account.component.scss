@@ -1,7 +1,6 @@
 .account-wrapper {
     height: 100%;
 
-
     .account-inner {
         height: 100%;
 
@@ -10,15 +9,23 @@
             background-color: var(--secondary-300);
         }
 
-        .mobile-view {
+        .sidebar-content-section {
             padding: 2rem;
             display: block;
-            // width: calc(100% - 2rem);
             margin: -108px auto 0;
-
             border-radius: 16px;
 
             .login-btn {
+                background: #fff;
+                padding: 1rem;
+                display: flex;
+                border-radius: 10px;
+                flex-wrap: wrap;
+                gap: 2rem;
+                justify-content: space-between;
+                font-size: 14px;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
                 button {
                     width: 100%;
                     border-radius: 10px;
@@ -27,80 +34,109 @@
                 }
             }
 
-            .account-info {
-                background: #fff;
-                padding: 1rem;
+            .content {
                 display: flex;
-                border-radius: 10px;
-                flex-wrap: wrap;
-                gap: 2rem;
-                // align-items: center;
-                justify-content: space-between;
-                font-size: 14px;
-                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-                .user-info {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.5rem;
-
-                }
-
-                .edit-btn {
-
-                    span {
-                        cursor: pointer;
-                        display: flex;
-                        align-items: center;
-                        gap: 0.3rem;
-                        color: var(--gray-700);
-                    }
-                }
-
-                .orders-info {
-                    display: flex;
-                    justify-content: space-around;
+                .account-sidebar {
                     width: 100%;
 
-                    >span {
-                        cursor: pointer;
+                    .account-info {
+                        background: #fff;
+                        padding: 1rem;
                         display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        row-gap: 0.5rem;
-                        color: var(--gray-700);
-                    }
-                }
-            }
-
-            .content-wrapper {
-                margin: 1rem 0;
-                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-                padding: 0 0.7rem;
-                border-radius: 10px;
-
-                ul {
-                    width: 100%;
-
-                    li {
-                        width: 100%;
-                        padding: 1rem 0;
-                        display: flex;
-                        align-items: center;
+                        border-radius: 10px;
+                        flex-wrap: wrap;
+                        gap: 2rem;
+                        // align-items: center;
                         justify-content: space-between;
-                        color: var(--title);
-                        border-bottom: 1px solid var(--gray-100);
+                        font-size: 14px;
+                        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-                        a {
-                            text-decoration: none;
-                            font-size: 0.9rem;
+                        .user-info {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.5rem;
+
+                        }
+
+                        .edit-btn {
+
+                            span {
+                                cursor: pointer;
+                                display: flex;
+                                align-items: center;
+                                gap: 0.3rem;
+                                color: var(--gray-700);
+                            }
+                        }
+
+                        .orders-info {
+                            display: flex;
+                            justify-content: space-around;
+                            width: 100%;
+
+                            >span {
+                                cursor: pointer;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                row-gap: 0.5rem;
+                                color: var(--gray-700);
+                            }
+                        }
+
+                    }
+
+                    .sidebar-wrapper {
+                        margin: 1rem 0;
+                        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                        padding: 0 0.7rem;
+                        border-radius: 10px;
+
+
+                        li {
+                            width: 100%;
+                            padding: 1rem 0;
                             display: flex;
                             align-items: center;
-                            gap: 0.3rem;
+                            justify-content: space-between;
+                            color: var(--title);
+                            border-bottom: 1px solid var(--gray-100);
+
+                            a {
+                                text-decoration: none;
+                                font-size: 0.9rem;
+                                display: flex;
+                                align-items: center;
+                                gap: 0.3rem;
+                            }
                         }
+
+                    }
+
+                    &.mobile-hidden {
+                        display: none;
+                    }
+
+                }
+
+                .account-content {
+                    margin-top: 6rem;
+
+                    &.mobile-full {
+                        width: 100%;
                     }
                 }
+
+
             }
+
+            .social {
+                margin-bottom: 3rem;
+            }
+
+
+
         }
 
         .desktop-view {
@@ -111,34 +147,102 @@
     }
 }
 
-@media screen and (min-width: 500px) {
-    .account-wrapper {
-        .account-inner {
-            .background {
-                display: none;
-            }
-            .mobile-view {
-                display: none;
 
-                .account-btn {
-                    button {}
+
+@media screen and (min-width: 750px) {
+.account-wrapper {
+
+    .account-inner {
+
+
+        .background {
+            display: none;
+        }
+
+        .sidebar-content-section {
+            margin: unset;
+            .login-btn {
+                button {
+                }
+            }
+
+            .content {
+
+
+                .account-sidebar {
+                    width: unset;
+
+                    .account-info {
+
+                        .user-info {
+
+                        }
+
+                        .edit-btn {
+
+                            span {
+                            }
+                        }
+
+                        .orders-info {
+                            display: none;
+
+                            >span {
+
+                            }
+                        }
+
+                    }
+
+                    .sidebar-wrapper {
+
+
+
+                        li {
+
+
+                            a {
+
+                            }
+                        }
+
+                    }
+
+                    &.mobile-hidden {
+                        display: unset;
+                    }
+
                 }
 
-                .content-wrapper {
+                .account-content {
+                    margin-top: 6rem;
 
-
-                    ul {
-
-
-                        li {}
+                    &.mobile-full {
+                        width: unset;
                     }
                 }
+
+
             }
 
-            .desktop-view {
-                display: block;
+            .social {
+                display: none;
+            }
+
+            &.not-login {
+                display: none;
             }
 
         }
+
+        .desktop-view {
+            &.not-login {
+                display: block;
+            }
+        }
+
     }
 }
+}
+
+@media screen and (min-width: 500px) {}

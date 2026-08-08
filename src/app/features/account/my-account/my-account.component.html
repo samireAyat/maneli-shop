@@ -1,139 +1,146 @@
 <div class="account-wrapper">
     <div class="account-inner">
         <div class="background"></div>
-        <div class="mobile-view">
+        <div class="sidebar-content-section" [class.not-login]="!loggedIn">
             <div class="login-btn" *ngIf="!loggedIn">
                 <button class="primary">
                     <a href="/login">ورود / ثبت‌نام</a>
                 </button>
             </div>
-            <div class="account-info" *ngIf="loggedIn">
-                <div class="user-info">
-                    <span style="color: var(--secondary-500);">سمیرا اکبری آیت</span>
-                    <span>09338785101</span>
+            <div class="content">
+                <div class="account-sidebar" [class.mobile-hidden]="isChildRouteActive">
+                    <div class="account-info" *ngIf="loggedIn">
+                        <div class="user-info">
+                            <span style="color: var(--secondary-500);">سمیرا اکبری آیت</span>
+                            <span>09338785101</span>
+                        </div>
+                        <div class="edit-btn">
+                            <span>
+                                <app-solar-icon style="width: 15px; height: 15px; display: block;" [name]="'pen'"
+                                    [size]="15"></app-solar-icon>
+                                ویرایش
+                            </span>
+                        </div>
+                        <div class="orders-info">
+                            <span>سفارشات
+                                <span>{{4 | persianNumber}}</span>
+                            </span>
+                            <span>تحویل نشده
+                                <span>{{0 | persianNumber}}</span>
+                            </span>
+                            <span>مرجوعی
+                                <span>{{0 | persianNumber}}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <ul class="sidebar-wrapper">
+                        <li *ngIf="loggedIn">
+                            <a routerLink="/my-account/orders">
+                                <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
+                                    <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
+                                        [name]="'notes'"></app-solar-icon>
+
+                                </span>
+                                سفارش‌های من
+
+                            </a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        </li>
+
+                        <li *ngIf="loggedIn">
+                            <a routerLink="/my-account/favorites">
+                                <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
+                                    <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
+                                        [name]="'heart'"></app-solar-icon>
+
+                                </span>
+                                لیست علاقه‌مندی‌ها
+
+                            </a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        </li>
+                        <li *ngIf="loggedIn">
+                            <a routerLink="/my-account/address-list">
+                                <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
+                                    <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
+                                        [name]="'map-point'"></app-solar-icon>
+
+                                </span>
+                                لیست آدرس‌ها
+
+                            </a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        </li>
+                        <li *ngIf="loggedIn">
+                            <a routerLink="/my-account/account-info" (click)="slug = 'account-info'">
+                                <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
+                                    <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
+                                        [name]="'user-check'"></app-solar-icon>
+                                </span>
+                                اطلاعات حساب کاربری
+                            </a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        </li>
+
+                        <li *ngIf="loggedIn">
+                            <a href="">
+                                <span style="color: var(--error-500); display: flex; gap: 0.5rem;">
+                                    <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
+                                        [name]="'arrows-a-logout'"></app-solar-icon>
+
+                                </span>
+                                خروج
+
+                            </a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+
+                        </li>
+
+
+                        <li>
+                            <a href="">راهنمای خرید</a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        </li>
+                        <li>
+                            <a href="">شرایط بازگشت</a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        </li>
+                        <li>
+                            <a href="">پرسش‌های متداول</a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        </li>
+                        <li>
+                            <a href="">قوانین و مقررات</a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        </li>
+                        <li>
+                            <a href=""> درباره ما</a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        </li>
+                        <li>
+                            <a href="">تماس با ما</a>
+                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        </li>
+
+                    </ul>
+
                 </div>
-                <div class="edit-btn">
-                    <span>
-                        <app-solar-icon style="width: 15px; height: 15px; display: block;" [name]="'pen'"
-                            [size]="15"></app-solar-icon>
-                        ویرایش
-                    </span>
+                <div class="account-content" [class.mobile-full]="isChildRouteActive" [style.display]="!isChildRouteActive ? 'none' : ''">
+                    <div class="">
+                        <router-outlet></router-outlet>
+                    </div>
                 </div>
-                <div class="orders-info">
-                    <span>سفارشات
-                        <span>{{4 | persianNumber}}</span>
-                    </span>
-                    <span>تحویل نشده
-                        <span>{{0 | persianNumber}}</span>
-                    </span>
-                    <span>مرجوعی
-                        <span>{{0 | persianNumber}}</span>
-                    </span>
-                </div>
-            </div>
-            <div class="content-wrapper">
-                <ul>
-                    <li *ngIf="loggedIn">
-                        <a href="">
-                            <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
-                                <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
-                                    [name]="'notes'"></app-solar-icon>
-
-                            </span>
-                            سفارش‌های من
-
-                        </a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-                    </li>
-                    <li *ngIf="loggedIn">
-                        <a href="">
-                            <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
-                                <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
-                                    [name]="'heart'"></app-solar-icon>
-
-                            </span>
-                            لیست علاقه‌مندی‌ها
-
-                        </a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-                    </li>
-                    <li *ngIf="loggedIn">
-                        <a href="">
-                            <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
-                                <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
-                                    [name]="'map-point'"></app-solar-icon>
-
-                            </span>
-                            لیست آدرس‌ها
-
-                        </a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-                    </li>
-                    <li *ngIf="loggedIn">
-                        <a href="">
-                            <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
-                                <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
-                                    [name]="'user-check'"></app-solar-icon>
-                            </span>
-
-                            اطلاعات حساب کاربری
-
-                        </a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-                    </li>
-
-                    <li>
-                        <a href="">
-                            <span style="color: var(--error-500); display: flex; gap: 0.5rem;">
-                                <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
-                                    [name]="'arrows-a-logout'"></app-solar-icon>
-
-                            </span>
-                            خروج
-
-                        </a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-
-                    </li>
-
-
-                    <li>
-                        <a href="">راهنمای خرید</a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-                    </li>
-                    <li>
-                        <a href="">شرایط بازگشت</a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-                    </li>
-                    <li>
-                        <a href="">پرسش‌های متداول</a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-                    </li>
-                    <li>
-                        <a href="">قوانین و مقررات</a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-                    </li>
-                    <li>
-                        <a href=""> درباره ما</a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-                    </li>
-                    <li>
-                        <a href="">تماس با ما</a>
-                        <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                            style="width: 20px; height: 20px;"></app-solar-icon>
-                    </li>
-
-                </ul>
             </div>
 
             <div class="social">
@@ -141,7 +148,7 @@
             </div>
         </div>
 
-        <div class="desktop-view">
+        <div class="desktop-view" *ngIf="!loggedIn" [class.not-login]="!loggedIn">
             <app-login></app-login>
 
         </div>

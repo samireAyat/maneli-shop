@@ -29,24 +29,38 @@ export class ShellComponent {
   showHeader: boolean = true;
   showDesktopNav: boolean = true;
   showMobileNav: boolean = true;
-  constructor(private router: Router, private route: ActivatedRoute) {
-    debugger;
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        let current = this.route.firstChild;
+constructor(
+  private router: Router,
+  private route: ActivatedRoute
+) {
+  this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe(() => {
 
-        while (current?.firstChild) {
-          current = current.firstChild;
+      let current = this.route.firstChild;
+
+      let routeData: any = {};
+
+      while (current) {
+
+        if (current.snapshot.data) {
+          routeData = {
+            ...routeData,
+            ...current.snapshot.data
+          };
         }
 
-        this.showHeader = !current?.snapshot.data?.['hideHeader'];
-        this.showDesktopNav = !current?.snapshot.data?.['hideNav'];
-        this.showMobileNav = !current?.snapshot.data?.['hideMobileNav'];
-      });
-  }
+        current = current.firstChild;
+      }
 
-  ngOnInit() {}
+      this.showHeader = !routeData['hideHeader'];
+      this.showDesktopNav = !routeData['hideNav'] && routeData['loggedIn'];
+      this.showMobileNav =!routeData['hideMobileNav'] && routeData['loggedIn'];
+
+    });
+}
+
+  ngOnInit() { }
 
   get showFooter(): boolean {
     return !this.router.url.startsWith('/categories');

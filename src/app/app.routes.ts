@@ -1,4 +1,11 @@
 import { Routes } from '@angular/router';
+import path from 'path';
+import { MyAccountComponent } from './features/account/my-account/my-account.component';
+import { OrdersComponent } from './features/account/my-account/orders/orders.component';
+import { FavoritsComponent } from './features/account/my-account/favorits/favorits.component';
+import { AddressListComponent } from './features/account/my-account/address-list/address-list.component';
+import { AccountInfoComponent } from './features/account/my-account/account-info/account-info.component';
+import { EditProfileComponent } from './features/account/my-account/edit-profile/edit-profile.component';
 
 export const routes: Routes = [
   {
@@ -48,19 +55,40 @@ export const routes: Routes = [
       },
       {
         path: 'my-account',
-        loadComponent: () =>
-          import('./features/account/my-account/my-account.component').then(
-            (m) => m.MyAccountComponent
-          ),
-        data: { hideHeader: true, hideNav: true },
+        component: MyAccountComponent,
+        data: { hideHeader: true, hideNav: false, hideMobileNav: false, loggedIn: true },
+        children: [
+          {
+            path: 'orders',
+            component: OrdersComponent
+          },
+          {
+            path: 'favorites',
+            component: FavoritsComponent
+          },
+          {
+            path: 'address-list',
+            component: AddressListComponent
+          },
+          {
+            path: 'account-info',
+            component: AccountInfoComponent
+          },
+          {
+            path: 'edit-profile',
+            component: EditProfileComponent
+          }
+        ]
       },
+
+
       {
         path: 'login',
         loadComponent: () =>
           import('./features/account/login/login.component').then(
             (m) => m.LoginComponent
           ),
-        data: { hideNav: true, hideMobileNav: true, hideHeader: true },
+        data: { hideNav: true, hideMobileNav: true, hideHeader: true, loggedIn: false },
       },
       {
         path: 'admin',
