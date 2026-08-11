@@ -13,6 +13,29 @@
     padding: 2rem;
 }
 
+table {
+    border-radius: 10px;
+    border-spacing: 0;
+    overflow: hidden;
+    border-collapse: separate;
+    width: 100%;
+    tr {
+        height: 50px;
+    }
+}
+
+table,
+th,
+td {
+    border: 1px dotted var(--secondary-200);
+    text-align: center;
+    // border-collapse: collapse;
+}
+
+th {
+    height: 40px;
+    background-color: var(--secondary-50);
+}
 
 html,
 body,
@@ -174,6 +197,7 @@ ul {
         align-items: center;
         font-size: 13px;
         color: var(--gray-500);
+        height: 100%;
     }
 
     .ng-input {

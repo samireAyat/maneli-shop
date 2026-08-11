@@ -1,0 +1,41 @@
+<div class="page-header">
+
+    <div class="page-title">
+        <h1>محصولات</h1>
+    </div>
+
+    <button type="button" class="create-product-btn" routerLink="/admin/products/create">
+        <span>+</span>
+        ایجاد محصول جدید
+    </button>
+
+
+</div>
+<div class="product-list">
+    <table>
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>نام محصول</th>
+                <th>سایزهای محصول</th>
+                <th>رنگهای محصول</th>
+                <th>دسته بندی</th>
+                <th>قیمت</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let product of productList; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{product.Name}}</td>
+                <td>{{product.Sizes}}</td>
+                <td>{{product.Colors}}</td>
+                <td>{{product.Category}}</td>
+                <td>{{product.Price}}</td>
+                <td [routerLink]="['/admin/products/edit' , product._id]">
+                    <button (click)="editProduct(product._id, i)">ویرایش</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

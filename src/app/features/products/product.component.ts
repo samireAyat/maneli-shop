@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SHARED_IMPORTS } from "../../shared/shared.imports";
+import { ProductService } from './services/product.service';
 import {
   trigger,
   state,
@@ -25,6 +26,7 @@ import {
 })
 export class ProductComponent {
   @Input() id = 0
+
 
   openProductDetails(id: number) {
 

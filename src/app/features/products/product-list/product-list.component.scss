@@ -49,16 +49,29 @@
   }
 }
 
-@media screen and (min-width: 800px) {
-  .product-list-inner {
-    padding: 0 1rem;
+.product-image {
+  width: 250px;
+  height: 250px;
+  background-color: var(--primary-100);
+  border-radius: 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
-@media screen and (min-width: 1000px) {
-  :host::ng-deep {
-    ngx-simplebar {
-      max-height: 675px !important;
+  @media screen and (min-width: 800px) {
+    .product-list-inner {
+      padding: 0 1rem;
     }
   }
-}
+
+  @media screen and (min-width: 1000px) {
+    :host::ng-deep {
+      ngx-simplebar {
+        max-height: 675px !important;
+      }
+    }
+  }

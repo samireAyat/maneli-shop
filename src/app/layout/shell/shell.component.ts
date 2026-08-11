@@ -36,7 +36,6 @@ constructor(
   this.router.events
     .pipe(filter(event => event instanceof NavigationEnd))
     .subscribe(() => {
-
       let current = this.route.firstChild;
 
       let routeData: any = {};

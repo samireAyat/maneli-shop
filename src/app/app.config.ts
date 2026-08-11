@@ -7,12 +7,14 @@ import { PortalModule } from '@angular/cdk/portal';   // اضافه کردن
 import { routes } from './app.routes';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideHttpClient(),
     importProvidersFrom(OverlayModule, PortalModule), // <-- اضافه کنید
 
     provideAnimationsAsync(),

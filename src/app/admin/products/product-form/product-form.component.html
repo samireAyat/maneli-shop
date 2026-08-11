@@ -1,0 +1,268 @@
+<div class="admin-product-form-wrapper">
+
+    <div class="admin-product-form-inner">
+
+        <form
+            #createProductForm="ngForm"
+            (ngSubmit)="createProduct(createProductForm)"
+        >
+
+            <!-- نام محصول -->
+            <div class="input-group">
+
+                <label for="productName">
+                    نام محصول
+                </label>
+
+                <input
+                    id="productName"
+                    type="text"
+                    name="productName"
+                    [(ngModel)]="product.Name"
+                    required
+                    placeholder="نام محصول را وارد کنید"
+                >
+
+            </div>
+
+
+            <!-- قیمت -->
+            <div class="input-group">
+
+                <label for="productPrice">
+                    قیمت
+                </label>
+
+                <input
+                    id="productPrice"
+                    type="number"
+                    name="productPrice"
+                    [(ngModel)]="product.Price"
+                    required
+                    min="0"
+                    placeholder="قیمت محصول"
+                >
+
+            </div>
+
+
+            <!-- دسته بندی -->
+            <div class="input-group">
+
+                <label>
+                    دسته‌بندی
+                </label>
+
+                <ng-select
+                    name="productCategory"
+                    [items]="categories"
+                    [(ngModel)]="product.Category"
+                    placeholder="انتخاب دسته‌بندی"
+                    [clearable]="true"
+                >
+                </ng-select>
+
+            </div>
+
+
+            <!-- تصاویر -->
+            <div class="input-group">
+
+                <label>
+                    عکس‌های محصول
+                </label>
+
+
+                <!-- دکمه انتخاب عکس -->
+                <div
+                    class="upload-box"
+                    (click)="fileInput.click()"
+                >
+
+                    <div class="upload-icon">
+                        📷
+                    </div>
+
+                    <div class="upload-title">
+                        انتخاب تصاویر محصول
+                    </div>
+
+                    <div class="upload-description">
+                        حداکثر ۱۰ تصویر — JPG, PNG, WEBP
+                    </div>
+
+                </div>
+
+
+                <input
+                    #fileInput
+                    type="file"
+                    name="productImages"
+                    multiple
+                    accept="image/jpeg,image/png,image/webp"
+                    (change)="onFilesSelected($event)"
+                    hidden
+                >
+
+
+                <!-- ========================= -->
+                <!-- تصاویر قبلی -->
+                <!-- ========================= -->
+
+                @if (existingImages.length > 0) {
+
+                    <div class="image-section">
+
+                        <div class="image-section-title">
+                            تصاویر فعلی
+                        </div>
+
+                        <div class="image-preview-wrapper">
+
+                            @for (
+                                image of existingImages;
+                                track image;
+                                let i = $index
+                            ) {
+
+                                <div class="image-preview">
+
+                                    <img
+                                        [src]="'http://localhost:3000' + image"
+                                        alt="تصویر محصول"
+                                    >
+
+                                    <button
+                                        type="button"
+                                        class="remove-image"
+                                        (click)="removeExistingImage(i)"
+                                    >
+                                        ×
+                                    </button>
+
+                                </div>
+
+                            }
+
+                        </div>
+
+                    </div>
+
+                }
+
+
+                <!-- ========================= -->
+                <!-- تصاویر جدید -->
+                <!-- ========================= -->
+
+                @if (imagePreviews.length > 0) {
+
+                    <div class="image-section">
+
+                        <div class="image-section-title">
+                            تصاویر جدید
+                        </div>
+
+                        <div class="image-preview-wrapper">
+
+                            @for (
+                                image of imagePreviews;
+                                track $index;
+                                let i = $index
+                            ) {
+
+                                <div class="image-preview">
+
+                                    <img
+                                        [src]="image"
+                                        alt="پیش‌نمایش تصویر محصول"
+                                    >
+
+                                    <button
+                                        type="button"
+                                        class="remove-image"
+                                        (click)="removeImage(i)"
+                                    >
+                                        ×
+                                    </button>
+
+                                </div>
+
+                            }
+
+                        </div>
+
+                    </div>
+
+                }
+
+            </div>
+
+
+            <!-- سایزها -->
+            <div class="input-group">
+
+                <label>
+                    سایزهای محصول
+                </label>
+
+                <ng-select
+                    name="productSizes"
+                    [(ngModel)]="product.Sizes"
+                    [multiple]="true"
+                    [closeOnSelect]="false"
+                    [clearable]="true"
+                    placeholder="انتخاب سایزها"
+                >
+                </ng-select>
+
+            </div>
+
+
+            <!-- رنگ ها -->
+            <div class="input-group">
+
+                <label>
+                    رنگ‌های محصول
+                </label>
+
+                <ng-select
+                    name="productColors"
+                    [(ngModel)]="product.Colors"
+                    [multiple]="true"
+                    [closeOnSelect]="false"
+                    [clearable]="true"
+                    placeholder="انتخاب رنگ‌ها"
+                >
+                </ng-select>
+
+            </div>
+
+
+            <!-- دکمه ها -->
+            <div class="footer">
+
+                <button
+                    class="primary"
+                    type="submit"
+                    [disabled]="createProductForm.invalid || isSubmitting"
+                >
+                    {{ isEditing ? 'تایید و ذخیره' : 'ایجاد محصول' }}
+                </button>
+
+
+                <button
+                    class="primary outline"
+                    type="button"
+                    routerLink="/admin/products"
+                >
+                    انصراف
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
