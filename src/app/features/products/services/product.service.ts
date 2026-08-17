@@ -25,8 +25,9 @@ export class ProductService {
     );
   }
 
-  updateProduct(formData: FormData, id: string) : Observable<ProductsViewModel> {
-        return this.http.put<ProductsViewModel>(
+  updateProduct(formData: FormData, id: string): Observable<ProductsViewModel> {
+
+    return this.http.put<ProductsViewModel>(
       `${this.apiUrl}/${id}`,
       formData
     );

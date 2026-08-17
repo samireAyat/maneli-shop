@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { SHARED_IMPORTS } from '../../../shared/shared.imports';
 import { interval, take } from 'rxjs';
+import { UserViewModel } from '../../../viewModels/user.viewModel';
+import { AuthService } from '../../../core/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +13,21 @@ import { interval, take } from 'rxjs';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  isOTP = true;
+  isOTP = false;
   remainingSeconds = 120;
   canResendCode = false;
   phone = '';
   otpCode = '';
+  user: UserViewModel = new UserViewModel()
   @ViewChild('step2') step2: HTMLElement | any;
 
   ngOnInit() {
     this.setInterval();
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/home'])
+    }
   }
-
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
   setInterval() {
     this.canResendCode = false;
     this.remainingSeconds = 120;
@@ -46,5 +53,21 @@ export class LoginComponent {
 
   onStep2() {
     this.showStep2 = true;
+  }
+
+  login() {
+    this.authService.login(this.user).subscribe({
+      next: res => {
+        if (res.Message === 'success') {
+          if (res.User.Role === 'user') {
+            this.router.navigate(['/home'])
+          } else {
+            this.router.navigate(['/admin'])
+          }
+        }
+
+      }
+    })
+
   }
 }

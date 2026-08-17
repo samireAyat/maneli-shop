@@ -11,6 +11,7 @@ import { MobileNavComponent } from '../mobile-nav/mobile-nav.component';
 import { filter } from 'rxjs';
 import { NgIf } from '@angular/common';
 import { DesktopNavComponent } from '../../shared/components/desktop-nav/desktop-nav.component';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-shell',
@@ -27,41 +28,68 @@ import { DesktopNavComponent } from '../../shared/components/desktop-nav/desktop
 })
 export class ShellComponent {
   showHeader: boolean = true;
-  showDesktopNav: boolean = true;
+  showDesktopNavv: boolean = true;
   showMobileNav: boolean = true;
-constructor(
-  private router: Router,
-  private route: ActivatedRoute
-) {
-  this.router.events
-    .pipe(filter(event => event instanceof NavigationEnd))
-    .subscribe(() => {
-      let current = this.route.firstChild;
+  isLoggedIn = false
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    public authService: AuthService,
 
-      let routeData: any = {};
+  ) {
 
-      while (current) {
 
-        if (current.snapshot.data) {
-          routeData = {
-            ...routeData,
-            ...current.snapshot.data
-          };
-        }
 
-        current = current.firstChild;
-      }
+    // this.router.events
+    //   .pipe(filter(event => event instanceof NavigationEnd))
+    //   .subscribe(() => {
+    //     let current = this.route.firstChild;
 
-      this.showHeader = !routeData['hideHeader'];
-      this.showDesktopNav = !routeData['hideNav'] && routeData['loggedIn'];
-      this.showMobileNav =!routeData['hideMobileNav'] && routeData['loggedIn'];
+    //     let routeData: any = {};
 
-    });
-}
+    //     while (current) {
 
-  ngOnInit() { }
+    //       if (current.snapshot.data) {
+    //         routeData = {
+    //           ...routeData,
+    //           ...current.snapshot.data
+    //         };
+    //       }
+
+    //       current = current.firstChild;
+    //     }
+
+    //     // this.showHeader = !routeData['hideHeader'];
+
+
+    //   });
+
+  }
+
+  get isLoginPage(): boolean {
+    return this.router.url === '/login';
+  }
+
+  get isMyAccountPage(): boolean {
+    return this.router.url === '/my-account'
+  }
+
+  ngOnInit() {
+  }
 
   get showFooter(): boolean {
     return !this.router.url.startsWith('/categories');
+  }
+
+  showDesktopNav(): boolean {
+    if (this.isLoginPage) {
+      return false;
+    }
+
+    if (this.isMyAccountPage && !this.authService.isLoggedIn()) {
+      return false;
+    }
+
+    return true;
   }
 }

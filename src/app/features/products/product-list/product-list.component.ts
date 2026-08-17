@@ -5,6 +5,7 @@ import { SimplebarAngularModule } from "simplebar-angular";
 import { SHARED_IMPORTS } from '../../../shared/shared.imports';
 import { ProductService } from '../services/product.service';
 import { ProductsViewModel } from '../../../viewModels/products.viewModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +15,7 @@ import { ProductsViewModel } from '../../../viewModels/products.viewModel';
 })
 export class ProductListComponent {
   productsList : ProductsViewModel[] = []
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router) {
     this.getProducts()
   }
 
@@ -29,6 +30,10 @@ export class ProductListComponent {
 
       }
     })
+  }
+
+  openProductDetails(id : string) {
+    this.router.navigate(['/products',id])
   }
 
 }

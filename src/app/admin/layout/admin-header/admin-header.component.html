@@ -1,9 +1,19 @@
 <header class="admin-header">
 
-    <h2>پنل مدیریت</h2>
+    <h2> مدیریت</h2>
 
-    <div class="admin-user">
-        مدیر سیستم
+    <div class="admin-user" style="display: flex; align-items: center; gap: 0.5rem;">
+        <span>
+
+            سلام
+            {{authService.currentUser()}}
+        </span>
+        <span (click)="logOut()" ngbTooltip="خروج"  style="color: var(--error-500); display: flex; gap: 0.5rem;">
+            <app-solar-icon style="width: 20px; height: 20px; cursor: pointer;" [size]="20" [name]="'arrows-a-logout'"></app-solar-icon>
+
+        </span>
+
+
     </div>
 
 </header>

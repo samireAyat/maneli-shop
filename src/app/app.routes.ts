@@ -19,7 +19,6 @@ export const routes: Routes = [
         path: 'home',
         loadComponent: () =>
           import('./features/home/home.component').then((m) => m.HomeComponent),
-        data: { hideHeader: false, hideNav: false, hideMobileNav: false, loggedIn: true }
       },
       // { path: 'products', loadComponent: () => import('./features/products/product-list/product-list.component').then(m => m.ProductListComponent) },
       {
@@ -39,7 +38,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/products/categories/categories.component').then(
             (m) => m.CategoriesComponent
-          ), data: { hideHeader: true, hideNav: false, hideMobileNav: false, loggedIn: true }
+          )
       },
       {
         path: 'categories/:slug',
@@ -58,7 +57,6 @@ export const routes: Routes = [
       {
         path: 'my-account',
         component: MyAccountComponent,
-        data: { hideHeader: true, hideNav: false, hideMobileNav: false, loggedIn: true },
         children: [
           {
             path: 'orders',
@@ -90,7 +88,6 @@ export const routes: Routes = [
           import('./features/account/login/login.component').then(
             (m) => m.LoginComponent
           ),
-        data: { hideNav: true, hideMobileNav: true, hideHeader: true, loggedIn: false },
       },
 
     ],

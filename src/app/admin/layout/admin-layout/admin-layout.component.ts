@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductFormComponent } from './../../products/product-form/product-form.component'
-import { RouterOutlet } from "@angular/router";
+import { ActivatedRoute, Router, RouterOutlet } from "@angular/router";
 import { AdminSidebarComponent } from '../admin-sidebar/admin-sidebar.component';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -11,5 +12,17 @@ import { AdminHeaderComponent } from '../admin-header/admin-header.component';
   styleUrl: './admin-layout.component.scss',
 })
 export class AdminLayoutComponent {
+constructor(private router: Router, public authService: AuthService, private route: ActivatedRoute) {
+
+}
+
+ngOnInit() {
+  if (this.authService.currentUserRole() === 'user') {
+    this.authService.logout()
+    this.router.navigate(['/login'])
+  }
+}
+
+
 
 }

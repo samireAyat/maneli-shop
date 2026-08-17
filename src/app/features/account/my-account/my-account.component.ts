@@ -8,6 +8,7 @@ import { AddressListComponent } from './address-list/address-list.component';
 import { AccountInfoComponent } from './account-info/account-info.component';
 import { FavoritsComponent } from './favorits/favorits.component';
 import { filter } from 'rxjs';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-my-account',
@@ -24,7 +25,7 @@ export class MyAccountComponent {
   mobileView = false
   isChildRouteActive = false;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {
 
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -41,6 +42,11 @@ export class MyAccountComponent {
 
       });
   }
+
+  ngOnInit() {
+    this.loggedIn = this.authService.isLoggedIn()
+  }
+
 
 
 

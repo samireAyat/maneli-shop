@@ -66,8 +66,20 @@
                         <a href="/my-account">
                             <app-solar-icon [name]="'user'" [size]="20"
                                 style="width: 20px; height: 20px; display: block;"></app-solar-icon>
-                            پروفایل</a>
+                            @if(authService.isLoggedIn()) {
+                            سلام <strong>{{authService.currentUser()}}</strong>
+                            } @else {
+                            پروفایل
+                            }
+                        </a>
+
                     </div>
+                    @if(authService.isLoggedIn()) {
+                    <ul class="submenu">
+                        <li><a href="/my-account">حساب کاربری</a></li>
+                        <li><a (click)="logout()">خروج</a> </li>
+                    </ul>
+                    }
                 </li>
                 <li class="menu-item cart" #cartIcon>
                     <div class="menu-title">

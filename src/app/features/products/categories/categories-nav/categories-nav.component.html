@@ -3,7 +3,7 @@
 
         <div class="categories">
             <label for="">دسته بندی‌ها:</label>
-            <div class="catrgory-card" (click)="slug = 'all'" [class.selected]="slug === 'all'"
+            <div class="catrgory-card" (click)="slug = 'all';onCategorySelected()" [class.selected]="slug === 'all'"
                 [routerLink]="['/categories' , 'all']">
                 <span class="title">همه دسته بندی‌ها</span>
                 <span class="svg-icon">
@@ -19,14 +19,14 @@
                     </svg> -->
                 </span>
             </div>
-            <div class="catrgory-card" (click)="slug = 'blouse'" [class.selected]="slug === 'blouse'"
+            <div class="catrgory-card" (click)="slug = 'blouse'; onCategorySelected()" [class.selected]="slug === 'blouse'"
                 [routerLink]="['/categories' , 'blouse']">
                 <span class="title">شومیز</span>
                 <span class="svg-icon">
                     <img src="images/svg/blouse.svg" alt="">
                 </span>
             </div>
-            <div class="catrgory-card" (click)="slug = 'shirt'" [class.selected]="slug === 'shirt'"
+            <div class="catrgory-card" (click)="slug = 'shirt';onCategorySelected()" [class.selected]="slug === 'shirt'"
                 [routerLink]="['/categories' , 'shirt']">
                 <span class="title">تی‌شرت</span>
                 <span class="svg-icon">

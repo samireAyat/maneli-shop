@@ -11,9 +11,8 @@
                     <h4>ورود / ثبت نام</h4>
                 </div>
                 <form #loginForm="ngForm" *ngIf="!isOTP">
-                    <p>لطفا شماره موبایل خود را وارد کنید.</p>
+                    <!-- <p>لطفا شماره موبایل خود را وارد کنید.</p>
                     <div class="form-control">
-                        <!-- <label class="input-label">شماره موبایل</label> -->
                         <span [class.invalid]="loginForm.submitted && phoneInput.invalid" class="icon">
                             <app-solar-icon style="width: 20px; height: 20px;" [name]="'smart-phone'"
                                 [size]="20"></app-solar-icon>
@@ -21,9 +20,31 @@
 
                         <input required #phoneInput="ngModel" name="input" [(ngModel)]="phone" class="input" type="text"
                             placeholder="شماره موبایل" [class.invalid]="loginForm.submitted && phoneInput.invalid">
+                    </div> -->
+                    <div class="form-control">
+                        <label class="input-label">آدرس ایمیل </label>
+                        <span [class.invalid]="loginForm.submitted && emailInput.invalid" class="icon">
+                            <app-solar-icon style="width: 20px; height: 20px;" [name]="'smart-phone'"
+                                [size]="20"></app-solar-icon>
+                        </span>
+
+                        <input required #emailInput="ngModel" name="input" [(ngModel)]="user.Email" class="input"
+                            type="email" placeholder="آدرس ایمیل"
+                            [class.invalid]="loginForm.submitted && emailInput.invalid">
+                    </div>
+                    <div class="form-control">
+                        <label class="input-label">رمز عبور</label>
+                        <span [class.invalid]="loginForm.submitted && passwordInput.invalid" class="icon">
+                            <app-solar-icon style="width: 20px; height: 20px;" [name]="'smart-phone'"
+                                [size]="20"></app-solar-icon>
+                        </span>
+
+                        <input required #passwordInput="ngModel" name="input" [(ngModel)]="user.Password" class="input"
+                            type="email" placeholder="رمز عبور"
+                            [class.invalid]="loginForm.submitted && emailInput.invalid">
                     </div>
                     <div class="submit-btn">
-                        <button type="submit" class="primary">ارسال کد تایید</button>
+                        <button type="submit" class="primary" (click)="login()">ارسال کد تایید</button>
                     </div>
                 </form>
                 <form #otpForm="ngForm" *ngIf="isOTP">
@@ -71,10 +92,10 @@
 
             </div>
 
-                <div class="btn">
-                    <button class="primary outline">تکمیل حساب کاربری</button>
-                    <button class="primary">صفحه اصلی</button>
-                </div>
+            <div class="btn">
+                <button class="primary outline">تکمیل حساب کاربری</button>
+                <button class="primary">صفحه اصلی</button>
+            </div>
 
         </div>
     </div>

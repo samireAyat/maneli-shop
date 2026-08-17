@@ -16,13 +16,36 @@
       </div>
     </div>
     <ngx-simplebar style="max-height: 580px">
-      <div class="products-wrapper" *ngFor="let product of productsList">
+      <div class="products-wrapper">
+        <ng-container *ngFor="let product of productsList">
+          <div class="product-inner">
 
-        <div *ngIf="product.Images.length > 0" class="product-image">
-          <img [src]="productImageAddress(product.Images[0])" alt="">
-        </div>
-        <div>{{product.Name}}</div>
+            <div *ngIf="product.Variants.length > 0" class="product-image">
+              <img [src]="productImageAddress(product.Variants[0].Images[0])" alt="">
+            </div>
+
+
+            <div class="product-detail">
+              <span>
+                <h5 for="">{{product.Name}} </h5>
+              </span>
+              <div>
+                <span>{{ product.Price| persianNumber }} </span>
+                <span>تومان</span>
+              </div>
+            </div>
+            <div (click)="$event.stopPropagation()" class="product-detail-btn">
+              <button (click)="openProductDetails(product._id)" class="secondary">
+                مشاهده جزییات
+                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                  style="width: 20px; height: 20px;"></app-solar-icon>
+
+              </button>
+            </div>
+          </div>
+        </ng-container>
       </div>
+
     </ngx-simplebar>
   </div>
 </div>

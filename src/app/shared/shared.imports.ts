@@ -6,7 +6,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SolarIconComponent } from '../shared/components/solar-icon/solar-icon.component';
-import { PersianNumberPipe } from '../shared/pipes/persian-number-pipe'
+import { PersianNumberPipe } from '../shared/pipes/persian-number-pipe';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap'
 
 
 
@@ -17,4 +18,5 @@ export const SHARED_IMPORTS = [
   SolarIconComponent,
   PersianNumberPipe,
   NgSelectModule,
+  NgbTooltip
 ] as const;

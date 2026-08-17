@@ -3,6 +3,8 @@ import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { CategoriesNavComponent } from "./categories-nav/categories-nav.component";
 import { SHARED_IMPORTS } from '../../../shared/shared.imports';
 import { CategoryPageComponent } from "./category-page/category-page.component";
+import { ProductService } from '../services/product.service';
+import { ProductsViewModel } from '../../../viewModels/products.viewModel';
 
 @Component({
   selector: 'app-categories',
@@ -11,23 +13,35 @@ import { CategoryPageComponent } from "./category-page/category-page.component";
   styleUrl: './categories.component.scss',
 })
 export class CategoriesComponent {
-  constructor(private route : ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private productService: ProductService) { }
+  product: ProductsViewModel[] = []
   slug: string = 'all';
   textPreview = ''
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.slug = params.get('slug') || '';
-      if (this.slug === 'all') {
-        this.textPreview = 'this is all products'
+      // this.productService.getProducts().subscribe({
+      //   next: res => {
+      //     if (this.slug === 'all') {
+      //       this.product = res
+      //     } else if (this.slug === 'shirt') {
+      //       this.product = this.product.filter(item => item.Category === 'shirt')
+      //     } else {
+      //       this.product = this.product.filter(item => item.Category === 'blouse')
+      //     }
 
-      } else if (this.slug === 'blouse') {
-        this.textPreview = 'this is blouses products'
-      }
-      else if (this.slug === 'shirt') {
-        this.textPreview = 'this is shirts products'
-      }
+      //   }
+      // })
     });
+
+  }
+
+
+  onSelected(products: ProductsViewModel[]) {
+    debugger
+    this.product = products
+    
 
   }
 }

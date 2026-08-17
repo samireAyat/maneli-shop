@@ -2,260 +2,407 @@
 
     <div class="admin-product-form-inner">
 
-        <form
-            #createProductForm="ngForm"
-            (ngSubmit)="createProduct(createProductForm)"
-        >
+        <form #createProductForm="ngForm" (ngSubmit)="createProduct(createProductForm)">
 
-            <!-- نام محصول -->
+            <!-- ========================= -->
+            <!-- اطلاعات اصلی محصول -->
+            <!-- ========================= -->
+
             <div class="input-group">
 
                 <label for="productName">
                     نام محصول
                 </label>
 
-                <input
-                    id="productName"
-                    type="text"
-                    name="productName"
-                    [(ngModel)]="product.Name"
-                    required
-                    placeholder="نام محصول را وارد کنید"
-                >
+                <input id="productName" type="text" name="productName" [(ngModel)]="product.Name" required
+                    placeholder="نام محصول را وارد کنید">
 
             </div>
 
 
             <!-- قیمت -->
+
             <div class="input-group">
 
                 <label for="productPrice">
                     قیمت
                 </label>
 
-                <input
-                    id="productPrice"
-                    type="number"
-                    name="productPrice"
-                    [(ngModel)]="product.Price"
-                    required
-                    min="0"
-                    placeholder="قیمت محصول"
-                >
+                <input id="productPrice" type="number" name="productPrice" [(ngModel)]="product.Price" required min="0"
+                    placeholder="قیمت محصول">
 
             </div>
 
 
-            <!-- دسته بندی -->
+            <!-- دسته‌بندی -->
+
             <div class="input-group">
 
                 <label>
                     دسته‌بندی
                 </label>
 
-                <ng-select
-                    name="productCategory"
-                    [items]="categories"
-                    [(ngModel)]="product.Category"
-                    placeholder="انتخاب دسته‌بندی"
-                    [clearable]="true"
-                >
+                <ng-select name="productCategory" [items]="categories" bindLabel="FaTitle" bindValue="EnTitle" [(ngModel)]="product.Category"
+                    placeholder="انتخاب دسته‌بندی" [clearable]="true">
                 </ng-select>
 
             </div>
 
 
-            <!-- تصاویر -->
+            <!-- توضیحات -->
+
             <div class="input-group">
 
-                <label>
-                    عکس‌های محصول
+                <label for="productDescription">
+                    توضیحات محصول
                 </label>
 
+                <textarea id="productDescription" name="productDescription" [(ngModel)]="product.Description" rows="5"
+                    placeholder="توضیحات محصول را وارد کنید"></textarea>
 
-                <!-- دکمه انتخاب عکس -->
-                <div
-                    class="upload-box"
-                    (click)="fileInput.click()"
-                >
+            </div>
 
-                    <div class="upload-icon">
-                        📷
+
+            <!-- ========================= -->
+            <!-- رنگ‌ها / Variants -->
+            <!-- ========================= -->
+
+            <div class="variants-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h3>
+                            رنگ‌های محصول
+                        </h3>
+
+                        <p>
+                            برای هر رنگ، تصاویر و سایزهای مربوط به آن را مشخص کنید.
+                        </p>
                     </div>
 
-                    <div class="upload-title">
-                        انتخاب تصاویر محصول
-                    </div>
-
-                    <div class="upload-description">
-                        حداکثر ۱۰ تصویر — JPG, PNG, WEBP
-                    </div>
+                    <button type="button" class="primary" (click)="addVariant()">
+                        + افزودن رنگ
+                    </button>
 
                 </div>
 
 
-                <input
-                    #fileInput
-                    type="file"
-                    name="productImages"
-                    multiple
-                    accept="image/jpeg,image/png,image/webp"
-                    (change)="onFilesSelected($event)"
-                    hidden
-                >
-
-
                 <!-- ========================= -->
-                <!-- تصاویر قبلی -->
+                <!-- Variant -->
                 <!-- ========================= -->
 
-                @if (existingImages.length > 0) {
+                @for (
+                variant of product.Variants;
+                track variant.ID;
+                let variantIndex = $index
+                ) {
 
-                    <div class="image-section">
+                <div class="variant-card">
 
-                        <div class="image-section-title">
-                            تصاویر فعلی
+
+                    <!-- Header -->
+
+                    <div class="variant-header">
+
+                        <h4>
+                            رنگ {{ variantIndex + 1 }}
+                        </h4>
+                        <div class="input-group">
+
+                            <ng-select [name]="'variantColor_' + variantIndex" [items]="colors"
+                                [(ngModel)]="variant.Color" required placeholder="انتخاب رنگ" [clearable]="true">
+                            </ng-select>
                         </div>
 
-                        <div class="image-preview-wrapper">
+                        <button type="button" class="remove-variant" (click)="removeVariant(variantIndex)">
+                            حذف رنگ
+                        </button>
 
-                            @for (
-                                image of existingImages;
+
+
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- رنگ -->
+                    <!-- ========================= -->
+
+
+
+
+                    <!-- ========================= -->
+                    <!-- تصاویر رنگ -->
+                    <!-- ========================= -->
+
+                    <div class="input-group">
+
+                        <label>
+                            تصاویر این رنگ
+                        </label>
+
+
+                        <!-- Upload -->
+
+                        <div class="upload-box" (click)="variantFileInput.click()">
+
+                            <div class="upload-icon">
+                                📷
+                            </div>
+
+                            <div class="upload-title">
+                                انتخاب تصاویر
+                            </div>
+
+                            <div class="upload-description">
+                                حداکثر ۱۰ تصویر — JPG, PNG, WEBP
+                            </div>
+
+                        </div>
+
+
+                        <input #variantFileInput type="file" [name]="'variantImages_' + variantIndex" multiple
+                            accept="image/jpeg,image/png,image/webp" (change)="
+                                    onVariantFilesSelected(
+                                        $event,
+                                        variantIndex
+                                    )
+                                " hidden>
+
+
+                        <!-- ========================= -->
+                        <!-- تصاویر قبلی -->
+                        <!-- ========================= -->
+
+                        <div class="image-section">
+
+                            <div class="image-section-title">
+                                تصاویر فعلی
+                            </div>
+
+
+                            <div class="image-preview-wrapper">
+
+                                @for (
+                                image of variantExistingImages[variantIndex];
                                 track image;
-                                let i = $index
-                            ) {
-
+                                let imageIndex = $index
+                                ) {
                                 <div class="image-preview">
+                                    <img [src]="
+                                                        'http://localhost:3000' + image
+                                                    " alt="تصویر محصول">
 
-                                    <img
-                                        [src]="'http://localhost:3000' + image"
-                                        alt="تصویر محصول"
-                                    >
 
-                                    <button
-                                        type="button"
-                                        class="remove-image"
-                                        (click)="removeExistingImage(i)"
-                                    >
+                                    <button type="button" class="remove-image" (click)="
+                                                        removeExistingVariantImage(
+                                                            variantIndex,
+                                                            imageIndex
+                                                        )
+                                                    ">
                                         ×
                                     </button>
 
-                                </div>
 
-                            }
+
+                                </div>
+                                }
+
+
+                            </div>
 
                         </div>
 
+
+
+
+                        <!-- ========================= -->
+                        <!-- تصاویر جدید -->
+                        <!-- ========================= -->
+                        <div class="image-section">
+
+                            <div class="image-section-title">
+                                تصاویر جدید
+                            </div>
+
+
+                            <div class="image-preview-wrapper">
+                                @for (
+                                    image of variantImagePreviews[variantIndex];
+                                    track $index;
+                                    let imageIndex = $index
+                                ) {
+                                        <div class="image-preview">
+                                    <img [src]="image" alt="پیش‌نمایش تصویر">
+
+
+                                    <button type="button" class="remove-image" (click)="
+                                                        removeVariantImage(
+                                                            variantIndex,
+                                                            imageIndex
+                                                        )
+                                                    ">
+                                        ×
+                                    </button>
+
+
+
+                                </div>
+                                    }
+
+
+
+                            </div>
+
+                        </div>
+
+
+
                     </div>
+
+
+                    <!-- ========================= -->
+                    <!-- سایزهای این رنگ -->
+                    <!-- ========================= -->
+
+                    <div class="sizes-section">
+
+                        <div class="section-header">
+
+                            <div>
+
+                                <h3>
+                                    سایزهای این رنگ
+                                </h3>
+
+                            </div>
+
+                            <button type="button" class="secondary" (click)="addSize(variantIndex)">
+                                + افزودن سایز
+                            </button>
+
+                        </div>
+
+
+                        <!-- Size -->
+
+                        @for (
+                        size of variant.Sizes;
+                        track size.ID;
+                        let sizeIndex = $index
+                        ) {
+
+                        <div class="size-row">
+
+
+                            <!-- سایز -->
+
+                            <div class="input-group">
+
+                                <label>
+                                    سایز {{sizeIndex + 1}}
+                                </label>
+
+                                <ng-select [name]="
+                                                'variant_' +
+                                                variantIndex +
+                                                '_size_' +
+                                                sizeIndex
+                                            " [items]="sizes" [(ngModel)]="size.Name" required
+                                    placeholder="انتخاب سایز" [clearable]="true">
+                                </ng-select>
+
+                            </div>
+
+
+                            <!-- موجودی -->
+
+                            <div class="input-group">
+
+                                <label>
+                                    موجودی
+                                </label>
+
+                                <input type="number" [name]="
+                                                'variant_' +
+                                                variantIndex +
+                                                '_stock_' +
+                                                sizeIndex
+                                            " [(ngModel)]="size.Stock" min="0" placeholder="موجودی">
+
+                            </div>
+
+
+                            <!-- حذف سایز -->
+
+                            <button type="button" class="remove-size" (click)="
+                                            removeSize(
+                                                variantIndex,
+                                                sizeIndex
+                                            )
+                                        ">
+                                حذف سایز
+                            </button>
+
+                        </div>
+
+                        }
+
+
+                        <!-- وقتی سایزی وجود ندارد -->
+
+                        @if (variant.Sizes.length === 0) {
+
+                        <div class="empty-sizes">
+
+                            هنوز سایزی برای این رنگ اضافه نشده است.
+
+                        </div>
+
+                        }
+
+                    </div>
+
+                </div>
 
                 }
 
 
                 <!-- ========================= -->
-                <!-- تصاویر جدید -->
+                <!-- بدون Variant -->
                 <!-- ========================= -->
 
-                @if (imagePreviews.length > 0) {
+                @if (product.Variants.length === 0) {
 
-                    <div class="image-section">
+                <div class="empty-variants">
 
-                        <div class="image-section-title">
-                            تصاویر جدید
-                        </div>
+                    <p>
+                        هنوز رنگی برای محصول اضافه نشده است.
+                    </p>
 
-                        <div class="image-preview-wrapper">
-
-                            @for (
-                                image of imagePreviews;
-                                track $index;
-                                let i = $index
-                            ) {
-
-                                <div class="image-preview">
-
-                                    <img
-                                        [src]="image"
-                                        alt="پیش‌نمایش تصویر محصول"
-                                    >
-
-                                    <button
-                                        type="button"
-                                        class="remove-image"
-                                        (click)="removeImage(i)"
-                                    >
-                                        ×
-                                    </button>
-
-                                </div>
-
-                            }
-
-                        </div>
-
-                    </div>
+                </div>
 
                 }
 
             </div>
 
 
-            <!-- سایزها -->
-            <div class="input-group">
+            <!-- ========================= -->
+            <!-- دکمه‌ها -->
+            <!-- ========================= -->
 
-                <label>
-                    سایزهای محصول
-                </label>
-
-                <ng-select
-                    name="productSizes"
-                    [(ngModel)]="product.Sizes"
-                    [multiple]="true"
-                    [closeOnSelect]="false"
-                    [clearable]="true"
-                    placeholder="انتخاب سایزها"
-                >
-                </ng-select>
-
-            </div>
-
-
-            <!-- رنگ ها -->
-            <div class="input-group">
-
-                <label>
-                    رنگ‌های محصول
-                </label>
-
-                <ng-select
-                    name="productColors"
-                    [(ngModel)]="product.Colors"
-                    [multiple]="true"
-                    [closeOnSelect]="false"
-                    [clearable]="true"
-                    placeholder="انتخاب رنگ‌ها"
-                >
-                </ng-select>
-
-            </div>
-
-
-            <!-- دکمه ها -->
             <div class="footer">
 
-                <button
-                    class="primary"
-                    type="submit"
-                    [disabled]="createProductForm.invalid || isSubmitting"
-                >
+                <button class="primary" type="submit" [disabled]="
+                        createProductForm.invalid ||
+                        isSubmitting
+                    ">
                     {{ isEditing ? 'تایید و ذخیره' : 'ایجاد محصول' }}
                 </button>
 
 
-                <button
-                    class="primary outline"
-                    type="button"
-                    routerLink="/admin/products"
-                >
+                <button class="primary outline" type="button" (click)="cancel()">
                     انصراف
                 </button>
 
