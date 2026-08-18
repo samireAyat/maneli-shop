@@ -1,16 +1,20 @@
 <div class="category-wrapper">
   <div class="category-inner">
     <div class="content">
-      <div class="label">
-        <app-solar-icon style="width: 20px; height: 20px" [name]="'widget2'" [size]="20"></app-solar-icon>
-        دسته‌بندی‌ها
-      </div>
+      <div class="content-inner">
+        <div class="label">
+          <app-solar-icon style="width: 20px; height: 20px" [name]="'widget2'" [size]="20"></app-solar-icon>
+          دسته‌بندی‌ها
+        </div>
 
-      <app-categories-nav (selectedCatrgory)="onSelected($event)"></app-categories-nav>
-      <div class="category-product">
-        @if (product) {
-        {{ product[0]?.Name }}
-        }
+        <app-categories-nav (selectedCatrgory)="onSelected($event)"></app-categories-nav>
+        <div class="category-product">
+          @if (product) {
+          @for (product of product; track $index) {
+          <app-product [product]="product"></app-product>
+          }
+          }
+        </div>
       </div>
     </div>
   </div>

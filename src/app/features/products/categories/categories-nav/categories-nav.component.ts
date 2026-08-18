@@ -13,21 +13,25 @@ import { ProductsViewModel } from '../../../../viewModels/products.viewModel';
 })
 export class CategoriesNavComponent {
   constructor(private productService: ProductService) { }
-  slug = ''
+  slug = 'all'
   @Output() selectedCatrgory = new EventEmitter<ProductsViewModel[]>()
   product: ProductsViewModel[] = []
 
-  onCategorySelected() {
-    debugger
+  ngOnInit() {
+    this.onCategorySelected('all')
+  }
+
+  onCategorySelected(category: string) {
+    this.slug = category;
     this.productService.getProducts().subscribe({
       next: res => {
-        debugger
+        
         if (this.slug === 'all') {
-          // this.product = res
+          this.product = res
         } else if (this.slug === 'shirt') {
           this.product = res.filter(item => item.Category === 'shirt')
         } else {
-          this.product = this.product.filter(item => item.Category === 'blouse')
+          this.product = res.filter(item => item.Category === 'blouse')
         }
 
         this.selectedCatrgory.emit(this.product)

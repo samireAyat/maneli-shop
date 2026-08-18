@@ -1,507 +1,344 @@
 <div class="cart-wrapper">
+
   <div class="cart-inner">
+
     <div class="cart-detail">
-      <div class="label">
 
-        <app-solar-icon [name]="'bag3'" [size]="20" style="width: 20px; height: 20px"></app-solar-icon>
-        <h4> سبد خرید</h4>
+      <!-- Header -->
+      <div class="cart-header">
 
+        <div class="cart-title">
+
+          <app-solar-icon [name]="'bag3'" [size]="22" class="cart-icon">
+          </app-solar-icon>
+
+          <div>
+            <h4>سبد خرید</h4>
+
+            @if (cartItems?.Items?.length) {
+            <span>
+              {{ cartItems.Items.length | persianNumber }}
+              کالا
+            </span>
+            }
+
+          </div>
+
+        </div>
 
       </div>
+
+
+      <!-- Cart Content -->
       <ngx-simplebar style="max-height: 630px">
+
+        <!-- ========================= -->
+        <!-- Desktop -->
+        <!-- ========================= -->
+
         <div class="desktop-view">
-          <table>
-            <tr>
-              <th width="100px">ردیف</th>
-              <th></th>
-              <th width="300px">عنوان محصول</th>
-              <th width="300px">قیمت</th>
-              <th width="300px">تعداد</th>
-              <th width="300px">قیمت کل</th>
-            </tr>
-            <tr>
-              <td width="100px">3</td>
-              <td>
-                <div class="product-image">
-                  <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-title">شومیز لینن</div>
-              </td>
-              <td width="300px">
-                <div class="product-price">
-                  {{ "1200,000" | persianNumber }}
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-quantity">
-                  <div class="quantity">
-                    <span>-</span>
-                    <span>1</span>
-                    <span>
-                      <span style="display: none;">-</span>
-                      <span class="trashbin-icon">
-                        <app-solar-icon style="width: 18px; height: 18px" [name]="'trash-bin-minimalistic'"
-                          [size]="18"></app-solar-icon>
 
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-total"></div>
-              </td>
-            </tr>
-            <tr>
-              <td width="100px">3</td>
-              <td>
-                <div class="product-image">
-                  <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-title">شومیز لینن</div>
-              </td>
-              <td width="300px">
-                <div class="product-price">
-                  {{ "1200,000" | persianNumber }}
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-quantity">
-                  <div class="quantity">
-                    <span>-</span>
-                    <span>1</span>
-                    <span>
-                      <span style="display: none;">-</span>
-                      <span class="trashbin-icon">
-                        <app-solar-icon style="width: 18px; height: 18px" [name]="'trash-bin-minimalistic'"
-                          [size]="18"></app-solar-icon>
+          <table class="cart-table">
 
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-total"></div>
-              </td>
-            </tr>
-            <tr>
-              <td width="100px">3</td>
-              <td>
-                <div class="product-image">
-                  <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-title">شومیز لینن</div>
-              </td>
-              <td width="300px">
-                <div class="product-price">
-                  {{ "1200,000" | persianNumber }}
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-quantity">
-                  <div class="quantity">
-                    <span>-</span>
-                    <span>1</span>
-                    <span>
-                      <span style="display: none;">-</span>
-                      <span class="trashbin-icon">
-                        <app-solar-icon style="width: 18px; height: 18px" [name]="'trash-bin-minimalistic'"
-                          [size]="18"></app-solar-icon>
+            <thead>
+              <tr>
 
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-total"></div>
-              </td>
-            </tr>
-            <tr>
-              <td width="100px">3</td>
-              <td>
-                <div class="product-image">
-                  <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-title">شومیز لینن</div>
-              </td>
-              <td width="300px">
-                <div class="product-price">
-                  {{ "1200,000" | persianNumber }}
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-quantity">
-                  <div class="quantity">
-                    <span>-</span>
-                    <span>1</span>
-                    <span>
-                      <span style="display: none;">-</span>
-                      <span class="trashbin-icon">
-                        <app-solar-icon style="width: 18px; height: 18px" [name]="'trash-bin-minimalistic'"
-                          [size]="18"></app-solar-icon>
+                <th class="product-column">
+                  محصول
+                </th>
 
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-total"></div>
-              </td>
-            </tr>
-            <tr>
-              <td width="100px">3</td>
-              <td>
-                <div class="product-image">
-                  <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-title">شومیز لینن</div>
-              </td>
-              <td width="300px">
-                <div class="product-price">
-                  {{ "1200,000" | persianNumber }}
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-quantity">
-                  <div class="quantity">
-                    <span>-</span>
-                    <span>1</span>
-                    <span>
-                      <span style="display: none;">-</span>
-                      <span class="trashbin-icon">
-                        <app-solar-icon style="width: 18px; height: 18px" [name]="'trash-bin-minimalistic'"
-                          [size]="18"></app-solar-icon>
+                <th>
+                  قیمت
+                </th>
 
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-total"></div>
-              </td>
-            </tr>
-            <tr>
-              <td width="100px">3</td>
-              <td>
-                <div class="product-image">
-                  <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-title">شومیز لینن</div>
-              </td>
-              <td width="300px">
-                <div class="product-price">
-                  {{ "1200,000" | persianNumber }}
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-quantity">
-                  <div class="quantity">
-                    <span>-</span>
-                    <span>1</span>
-                    <span>
-                      <span style="display: none;">-</span>
-                      <span class="trashbin-icon">
-                        <app-solar-icon style="width: 18px; height: 18px" [name]="'trash-bin-minimalistic'"
-                          [size]="18"></app-solar-icon>
+                <th>
+                  رنگ
+                </th>
 
-                      </span>
-                    </span>
+                <th>
+                  تعداد
+                </th>
+
+                <th>
+                  قیمت کل
+                </th>
+
+              </tr>
+            </thead>
+
+
+            <tbody>
+
+              <tr *ngFor="let item of cartItems.Items; let i = index">
+
+                <!-- Product -->
+                <td class="product-column">
+
+                  <div class="product-info">
+
+                    <div class="product-image">
+
+                      @if (item?.Variant?.Images?.[0]) {
+
+                      <img [src]="'http://localhost:3000' + item?.Variant?.Images?.[0]" alt="" />
+
+                      }
+
+                    </div>
+
+
+                    <div class="product-detail">
+
+                      <div class="product-title">
+                        {{ item.Product?.Name }}
+                      </div>
+
+                      <div class="product-size">
+                        سایز:
+                        <strong>
+                          {{ item.Size?.Name }}
+                        </strong>
+                      </div>
+
+                    </div>
+
                   </div>
-                </div>
-              </td>
-              <td width="300px">
-                <div class="product-total"></div>
-              </td>
-            </tr>
+
+                </td>
+
+
+                <!-- Price -->
+                <td>
+
+                  <div class="product-price">
+
+                    {{ item.Product?.Price! | persianNumber }}
+
+                    <span>
+                      تومان
+                    </span>
+
+                  </div>
+
+                </td>
+
+
+                <!-- Color -->
+                <td>
+
+                  <div class="product-color">
+
+                    <span class="color-dot"></span>
+
+                    <span>
+                      {{ item.Variant?.Color }}
+                    </span>
+
+                  </div>
+
+                </td>
+
+
+                <!-- Quantity -->
+                <td>
+
+                  <div class="quantity">
+
+                    <button type="button" (click)="increase()">
+
+                      <app-solar-icon [name]="'add-circle'" [size]="20">
+                      </app-solar-icon>
+
+                    </button>
+
+
+                    <span>
+                      {{ item.Quantity | persianNumber }}
+                    </span>
+
+
+                    <button type="button" (click)="decrease()">
+
+                      @if (item.Quantity > 1) {
+
+                      <app-solar-icon [name]="'minus-circle'" [size]="20">
+                      </app-solar-icon>
+
+                      } @else {
+
+                      <app-solar-icon [name]="'trash-bin-minimalistic'" [size]="19">
+                      </app-solar-icon>
+
+                      }
+
+                    </button>
+
+                  </div>
+
+                </td>
+
+
+                <!-- Total -->
+                <td>
+
+                  <div class="product-total">
+
+                    {{
+                    (item.Product?.Price! * item.Quantity)
+                    | persianNumber
+                    }}
+
+                    <span>
+                      تومان
+                    </span>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
           </table>
+
         </div>
+
+
+        <!-- ========================= -->
+        <!-- Mobile -->
+        <!-- ========================= -->
+
         <div class="mobile-view">
-          <div class="cart-item">
-            <div class="top">
-              <div class="product-image right">
-                <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
+
+          <div class="cart-item" *ngFor="let item of cartItems.Items">
+
+            <!-- Top -->
+            <div class="item-top">
+
+              <div class="product-image">
+
+                @if (item?.Variant?.Images?.[0]) {
+
+                <img [src]="'http://localhost:3000' + item?.Variant?.Images?.[0]" alt="" />
+                }
+
               </div>
 
-              <div class="left">
-                <div class="product-title">شومیز لینن</div>
-                <div class="product-size">سایز: XXL</div>
-                <div class="product-color">رنگ: کرم روشن</div>
+
+              <div class="product-detail">
+
+                <div class="product-title">
+                  {{ item.Product?.Name }}
+                </div>
+
+                <div class="product-size">
+
+                  سایز:
+                  <strong>
+                    {{ item.Size?.Name }}
+                  </strong>
+
+                </div>
+
+
+                <div class="product-color">
+
+                  <span class="color-dot"></span>
+
+                  {{ item.Variant?.Color }}
+
+                </div>
 
               </div>
 
             </div>
-            <div class="product-quantity">
+
+
+            <!-- Bottom -->
+            <div class="item-bottom">
+
+
+              <!-- Quantity -->
               <div class="quantity">
-                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
-                    [size]="20"></app-solar-icon></span>
-                <span>1</span>
+
+                <button type="button" (click)="increase()">
+
+                  <app-solar-icon [name]="'add-circle'" [size]="20">
+                  </app-solar-icon>
+
+                </button>
+
+
                 <span>
-                  <span>
-                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
-                      [size]="20"></app-solar-icon>
-                  </span>
-                  <span class="trashbin-icon" style="display: none;">
-                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
-                      [size]="20"></app-solar-icon>
-
-                  </span>
+                  {{ item.Quantity | persianNumber }}
                 </span>
-              </div>
-              <div class="product-price">
-                {{ "1200,000" | persianNumber }}
-                تومان
+
+
+                <button type="button" (click)="decrease()">
+
+                  @if (item.Quantity > 1) {
+
+                  <app-solar-icon [name]="'minus-circle'" [size]="20">
+                  </app-solar-icon>
+
+                  } @else {
+
+                  <app-solar-icon [name]="'trash-bin-minimalistic'" [size]="19">
+                  </app-solar-icon>
+
+                  }
+
+                </button>
+
               </div>
 
-            </div>
-          </div>
-          <div class="cart-item">
-            <div class="top">
-              <div class="product-image right">
-                <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-              </div>
 
-              <div class="left">
-                <div class="product-title">شومیز لینن</div>
-                <div class="product-size">سایز: XXL</div>
-                <div class="product-color">رنگ: کرم روشن</div>
+              <!-- Price -->
+              <div class="product-total">
 
-              </div>
+                {{
+                (item.Product?.Price! * item.Quantity)
+                | persianNumber
+                }}
 
-            </div>
-            <div class="product-quantity">
-              <div class="quantity">
-                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
-                    [size]="20"></app-solar-icon></span>
-                <span>1</span>
                 <span>
-                  <span>
-                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
-                      [size]="20"></app-solar-icon>
-                  </span>
-                  <span class="trashbin-icon" style="display: none;">
-                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
-                      [size]="20"></app-solar-icon>
-
-                  </span>
+                  تومان
                 </span>
-              </div>
-              <div class="product-price">
-                {{ "1200,000" | persianNumber }}
-                تومان
-              </div>
-
-            </div>
-          </div>
-          <div class="cart-item">
-            <div class="top">
-              <div class="product-image right">
-                <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-              </div>
-
-              <div class="left">
-                <div class="product-title">شومیز لینن</div>
-                <div class="product-size">سایز: XXL</div>
-                <div class="product-color">رنگ: کرم روشن</div>
 
               </div>
 
             </div>
-            <div class="product-quantity">
-              <div class="quantity">
-                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
-                    [size]="20"></app-solar-icon></span>
-                <span>1</span>
-                <span>
-                  <span>
-                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
-                      [size]="20"></app-solar-icon>
-                  </span>
-                  <span class="trashbin-icon" style="display: none;">
-                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
-                      [size]="20"></app-solar-icon>
 
-                  </span>
-                </span>
-              </div>
-              <div class="product-price">
-                {{ "1200,000" | persianNumber }}
-                تومان
-              </div>
-
-            </div>
-          </div>
-          <div class="cart-item">
-            <div class="top">
-              <div class="product-image right">
-                <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-              </div>
-
-              <div class="left">
-                <div class="product-title">شومیز لینن</div>
-                <div class="product-size">سایز: XXL</div>
-                <div class="product-color">رنگ: کرم روشن</div>
-
-              </div>
-
-            </div>
-            <div class="product-quantity">
-              <div class="quantity">
-                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
-                    [size]="20"></app-solar-icon></span>
-                <span>1</span>
-                <span>
-                  <span>
-                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
-                      [size]="20"></app-solar-icon>
-                  </span>
-                  <span class="trashbin-icon" style="display: none;">
-                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
-                      [size]="20"></app-solar-icon>
-
-                  </span>
-                </span>
-              </div>
-              <div class="product-price">
-                {{ "1200,000" | persianNumber }}
-                تومان
-              </div>
-
-            </div>
-          </div>
-          <div class="cart-item">
-            <div class="top">
-              <div class="product-image right">
-                <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-              </div>
-
-              <div class="left">
-                <div class="product-title">شومیز لینن</div>
-                <div class="product-size">سایز: XXL</div>
-                <div class="product-color">رنگ: کرم روشن</div>
-
-              </div>
-
-            </div>
-            <div class="product-quantity">
-              <div class="quantity">
-                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
-                    [size]="20"></app-solar-icon></span>
-                <span>1</span>
-                <span>
-                  <span>
-                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
-                      [size]="20"></app-solar-icon>
-                  </span>
-                  <span class="trashbin-icon" style="display: none;">
-                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
-                      [size]="20"></app-solar-icon>
-
-                  </span>
-                </span>
-              </div>
-              <div class="product-price">
-                {{ "1200,000" | persianNumber }}
-                تومان
-              </div>
-
-            </div>
-          </div>
-          <div class="cart-item">
-            <div class="top">
-              <div class="product-image right">
-                <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-              </div>
-
-              <div class="left">
-                <div class="product-title">شومیز لینن</div>
-                <div class="product-size">سایز: XXL</div>
-                <div class="product-color">رنگ: کرم روشن</div>
-
-              </div>
-
-            </div>
-            <div class="product-quantity">
-              <div class="quantity">
-                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
-                    [size]="20"></app-solar-icon></span>
-                <span>1</span>
-                <span>
-                  <span>
-                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
-                      [size]="20"></app-solar-icon>
-                  </span>
-                  <span class="trashbin-icon" style="display: none;">
-                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
-                      [size]="20"></app-solar-icon>
-
-                  </span>
-                </span>
-              </div>
-              <div class="product-price">
-                {{ "1200,000" | persianNumber }}
-                تومان
-              </div>
-
-            </div>
-          </div>
-          <div class="cart-item">
-            <div class="top">
-              <div class="product-image right">
-                <img src="images/IMG_1499-copy-removebg-preview.png" alt="" />
-              </div>
-
-              <div class="left">
-                <div class="product-title">شومیز لینن</div>
-                <div class="product-size">سایز: XXL</div>
-                <div class="product-color">رنگ: کرم روشن</div>
-
-              </div>
-
-            </div>
-            <div class="product-quantity">
-              <div class="quantity">
-                <span><app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'add-circle'"
-                    [size]="20"></app-solar-icon></span>
-                <span>1</span>
-                <span>
-                  <span>
-                    <app-solar-icon style="width: 20px; height: 20px;display: flex;" [name]="'minus-circle'"
-                      [size]="20"></app-solar-icon>
-                  </span>
-                  <span class="trashbin-icon" style="display: none;">
-                    <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
-                      [size]="20"></app-solar-icon>
-
-                  </span>
-                </span>
-              </div>
-              <div class="product-price">
-                {{ "1200,000" | persianNumber }}
-                تومان
-              </div>
-
-            </div>
           </div>
 
         </div>
+
+
+        <!-- Empty Cart -->
+        @if (!cartItems?.Items?.length) {
+
+        <div class="empty-cart">
+
+          <app-solar-icon [name]="'bag-3'" [size]="42">
+          </app-solar-icon>
+
+          <h3>
+            سبد خرید شما خالی است
+          </h3>
+
+          <p>
+            هنوز محصولی به سبد خرید اضافه نکرده‌اید.
+          </p>
+
+        </div>
+
+        }
 
       </ngx-simplebar>
+
     </div>
+
   </div>
+
 </div>

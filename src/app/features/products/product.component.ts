@@ -8,6 +8,8 @@ import {
   animate,
   transition,
 } from '@angular/animations'; // <-- import کردن توابع مورد نیاز
+import { ProductsViewModel } from '../../viewModels/products.viewModel';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -25,11 +27,15 @@ import {
   ],
 })
 export class ProductComponent {
-  @Input() id = 0
+  constructor(private router: Router) { }
+  @Input() product = new ProductsViewModel()
 
+  productImageAddress(images: any) {
+    return 'http://localhost:3000' + images
+  }
 
-  openProductDetails(id: number) {
-
+  openProductDetails(id: string) {
+    this.router.navigate(['/products', id])
   }
 }
 

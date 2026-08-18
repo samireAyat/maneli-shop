@@ -19,9 +19,7 @@ export class ProductListComponent {
     this.getProducts()
   }
 
-   productImageAddress(images : any) {
-    return 'http://localhost:3000' + images
-  }
+
 
   getProducts() {
     this.productService.getProducts().subscribe({
@@ -32,8 +30,6 @@ export class ProductListComponent {
     })
   }
 
-  openProductDetails(id : string) {
-    this.router.navigate(['/products',id])
-  }
+
 
 }

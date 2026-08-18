@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { CategoriesNavComponent } from "./categories-nav/categories-nav.component";
 import { SHARED_IMPORTS } from '../../../shared/shared.imports';
-import { CategoryPageComponent } from "./category-page/category-page.component";
 import { ProductService } from '../services/product.service';
 import { ProductsViewModel } from '../../../viewModels/products.viewModel';
+import { ProductComponent } from "../product.component";
 
 @Component({
   selector: 'app-categories',
-  imports: [RouterLink, CategoriesNavComponent, SHARED_IMPORTS, CategoryPageComponent],
+  imports: [RouterLink, CategoriesNavComponent, SHARED_IMPORTS, ProductComponent],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',
 })
@@ -39,7 +39,6 @@ export class CategoriesComponent {
 
 
   onSelected(products: ProductsViewModel[]) {
-    debugger
     this.product = products
     
 
