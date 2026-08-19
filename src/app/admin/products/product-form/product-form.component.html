@@ -94,7 +94,7 @@
 
                 @for (
                 variant of product.Variants;
-                track variant.ID;
+                track variant._id;
                 let variantIndex = $index
                 ) {
 
@@ -111,7 +111,7 @@
                         <div class="input-group">
 
                             <ng-select [name]="'variantColor_' + variantIndex" [items]="colors"
-                                [(ngModel)]="variant.Color" required placeholder="انتخاب رنگ" [clearable]="true">
+                                [(ngModel)]="variant.Color" bindLabel="name" bindValue="name" required placeholder="انتخاب رنگ" [clearable]="true">
                             </ng-select>
                         </div>
 
@@ -289,7 +289,7 @@
 
                         @for (
                         size of variant.Sizes;
-                        track size.ID;
+                        track size._id;
                         let sizeIndex = $index
                         ) {
 

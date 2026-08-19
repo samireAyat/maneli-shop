@@ -16,12 +16,8 @@ constructor(private router: Router, public authService: AuthService, private rou
 
 }
 
-ngOnInit() {
-  if (this.authService.currentUserRole() === 'user') {
-    this.authService.logout()
-    this.router.navigate(['/login'])
-  }
-}
+
+
 
 
 

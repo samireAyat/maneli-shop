@@ -7,6 +7,7 @@ import { AddressListComponent } from './features/account/my-account/address-list
 import { AccountInfoComponent } from './features/account/my-account/account-info/account-info.component';
 import { EditProfileComponent } from './features/account/my-account/edit-profile/edit-profile.component';
 import { ADMIN_ROUTES } from './admin/admin.route';
+import { adminGuard } from './core/guards/admin-guard';
 
 export const routes: Routes = [
   {
@@ -98,7 +99,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./admin/layout/admin-layout/admin-layout.component').then(
         (m) => m.AdminLayoutComponent
-      ),
+      ), canActivate: [adminGuard],
     children: ADMIN_ROUTES
   },
   { path: '**', redirectTo: '' }

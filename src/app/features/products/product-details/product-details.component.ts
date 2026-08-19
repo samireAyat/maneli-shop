@@ -1,16 +1,23 @@
 import { Component } from '@angular/core';
 import { SHARED_IMPORTS } from "../../../shared/shared.imports";
 import { AuthService } from '../../../core/services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { ProductsViewModel } from '../../../viewModels/products.viewModel';
 import { ProductVariantViewModel } from '../../../viewModels/ProductVariant.viewModel';
 import { ProductSizeViewModel } from '../../../viewModels/productSize.viewModel';
 import path from 'path';
+import { CartService } from '../../cart/services/cart.service';
+import { CartViewModel } from '../../../viewModels/cart.viewModel';
+import { CartItemViewModel } from '../../../viewModels/CartItem.viewModel';
+import { CartProductViewModel } from '../../../viewModels/cartProduct.viewModel';
+import { CartSizeViewModel } from '../../../viewModels/cartSize.viewModel';
+import { AddToCartRequestViewModel } from '../../../viewModels/AddToCartRequest.viewModel';
+
 
 @Component({
   selector: 'app-product-details',
-  imports: [SHARED_IMPORTS],
+  imports: [SHARED_IMPORTS, RouterLink],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })
@@ -18,7 +25,7 @@ export class ProductDetailsComponent {
 
   id = '';
   product: ProductsViewModel = new ProductsViewModel()
-  constructor(private authService: AuthService, private route: ActivatedRoute, private productService: ProductService) {
+  constructor(private authService: AuthService, private route: ActivatedRoute, private productService: ProductService, private cartService: CartService) {
     this.id = this.route.snapshot.params['id']
 
 
@@ -81,7 +88,7 @@ export class ProductDetailsComponent {
 
           this.variantsImages = [
             {
-              id: this.selectedVariant?.ID ?? -1,
+              id: this.selectedVariant?._id ?? -1,
               images: (this.selectedVariant?.Images ?? []).map(
                 (item, index) => ({
                   id: index,
@@ -140,8 +147,6 @@ export class ProductDetailsComponent {
     this.selectedSize = null;
   }
 
-  selectedItemOfVariant = ProductVariantViewModel
-
 
 
   variantsImages: {
@@ -179,7 +184,7 @@ export class ProductDetailsComponent {
     });
 
     const selected = this.variantsImages
-      .find(v => v.id === variant.ID)
+      .find(v => v.id === variant._id)
       ?.images[index];
 
     if (selected) {
@@ -187,4 +192,45 @@ export class ProductDetailsComponent {
     }
   }
 
+
+  // onSelectedSize(size: any) {
+  //   this.cartItem.Size = size.Name;
+  //   this.cartItem.SizeID = size._id
+  // }
+
+  // onSelectColor(color: any) {
+
+  // }
+  quantity = 1
+
+  addToCart() {
+    debugger
+    if (!this.selectedVariant) {
+      return
+    }
+    if (!this.selectedSize) {
+      return
+    }
+    const request: AddToCartRequestViewModel = {
+      ProductID: this.product._id,
+      VariantID: this.selectedVariant._id,
+      SizeID: this.selectedSize._id,
+      Quantity: this.quantity,
+    }
+    this.cartService.postCard(request).subscribe({
+      next: res => {
+        console.log(res);
+        
+      }
+    })
+  }
+
+  // addToCart(product: ProductsViewModel) {
+  //   debugger
+  //   this.cartService.postCard(this.cartItem).subscribe({
+  //     next: res => {
+
+  //     }
+  //   })
+  // }
 }

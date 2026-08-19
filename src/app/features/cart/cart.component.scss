@@ -302,7 +302,7 @@
 
 .cart-header {
   padding: 22px 28px;
-  border-bottom: 1px solid #eeeeee;
+  // border-bottom: 1px solid #eeeeee;
 }
 
 .cart-title {
@@ -336,7 +336,8 @@
 // =========================
 
 .desktop-view {
-  width: 100%;
+  width: 50%;
+  border: 1px solid var(--gray-100);
 }
 
 .cart-table {
@@ -455,7 +456,7 @@
   height: 12px;
   display: inline-block;
   border-radius: 50%;
-  background: #6c91c9;
+
   border: 1px solid #ddd;
 }
 

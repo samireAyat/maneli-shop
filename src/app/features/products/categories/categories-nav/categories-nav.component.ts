@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { ActivatedRoute, RouterLink } from "@angular/router";
 import { SHARED_IMPORTS } from '../../../../shared/shared.imports';
 import { ProductService } from '../../services/product.service';
 import { map } from 'rxjs';
@@ -12,20 +12,23 @@ import { ProductsViewModel } from '../../../../viewModels/products.viewModel';
   styleUrl: './categories-nav.component.scss',
 })
 export class CategoriesNavComponent {
-  constructor(private productService: ProductService) { }
-  slug = 'all'
+  constructor(private productService: ProductService, private route: ActivatedRoute) { }
+  slug = ''
   @Output() selectedCatrgory = new EventEmitter<ProductsViewModel[]>()
   product: ProductsViewModel[] = []
 
   ngOnInit() {
-    this.onCategorySelected('all')
+    this.route.paramMap.subscribe(params => {
+      this.slug = params.get('slug') || '';
+    });
+    this.onCategorySelected(this.slug)
   }
 
   onCategorySelected(category: string) {
     this.slug = category;
     this.productService.getProducts().subscribe({
       next: res => {
-        
+
         if (this.slug === 'all') {
           this.product = res
         } else if (this.slug === 'shirt') {

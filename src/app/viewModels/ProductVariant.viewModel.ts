@@ -1,20 +1,20 @@
 import { ProductSizeViewModel } from "./productSize.viewModel";
 
 export class ProductVariantViewModel {
-    ID: string;
+    _id: string;
     Color: string;
     Images: string[];
     Sizes: ProductSizeViewModel[];
     IsSelected : boolean
 ;
     constructor(
-        ID?: string,
+        _id?: string,
         Color?: string,
         Images?: string[],
         Sizes?: ProductSizeViewModel[],
         isSelected?: boolean,
     ) {
-        this.ID = ID || '';
+        this._id = _id || '';
         this.Color = Color || '';
         this.Images = Images || [];
         this.Sizes = Sizes || [];

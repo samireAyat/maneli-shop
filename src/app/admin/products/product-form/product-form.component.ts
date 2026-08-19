@@ -8,6 +8,7 @@ import { ProductService } from '../../../features/products/services/product.serv
 import { SHARED_IMPORTS } from '../../../shared/shared.imports';
 import { ProductVariantViewModel } from '../../../viewModels/ProductVariant.viewModel'
 import { ProductSizeViewModel } from '../../../viewModels/productSize.viewModel'
+import { PRODUCT_COLORS } from '../../../constants/product-colors';
 
 
 @Component({
@@ -47,13 +48,9 @@ export class ProductFormComponent implements OnInit {
   ]
   
 
-  colors: string[] = [
-    'آبی',
-    'مشکی',
-    'قرمز',
-    'قهوه‌ای',
-    'سبز'
-  ]
+  colors= PRODUCT_COLORS;
+
+  
 
   sizes: string[] = [
     'XS',
@@ -123,7 +120,7 @@ export class ProductFormComponent implements OnInit {
     const variant = new ProductVariantViewModel();
 
 
-    variant.ID = crypto.randomUUID();
+    variant._id = crypto.randomUUID();
 
     this.product.Variants.push(variant);
 
@@ -214,7 +211,7 @@ export class ProductFormComponent implements OnInit {
 
     const size = new ProductSizeViewModel();
 
-    size.ID = crypto.randomUUID();
+    size._id = crypto.randomUUID();
 
     this.product.Variants[variantIndex].Sizes.push(size);
 
@@ -466,13 +463,13 @@ formData.append(
   'Variants',
   JSON.stringify(
     this.product.Variants.map((variant, variantIndex) => ({
-      ID: variant.ID,
+      ID: variant._id,
       Color: variant.Color,
 
       Images: this.variantExistingImages[variantIndex] ?? [],
 
       Sizes: variant.Sizes.map(size => ({
-        ID: size.ID,
+        ID: size._id,
         Name: size.Name,
         Stock: size.Stock
       }))

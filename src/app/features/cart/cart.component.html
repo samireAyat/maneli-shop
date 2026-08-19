@@ -1,3 +1,4 @@
+
 <div class="cart-wrapper">
 
   <div class="cart-inner">
@@ -31,11 +32,6 @@
 
       <!-- Cart Content -->
       <ngx-simplebar style="max-height: 630px">
-
-        <!-- ========================= -->
-        <!-- Desktop -->
-        <!-- ========================= -->
-
         <div class="desktop-view">
 
           <table class="cart-table">
@@ -68,10 +64,7 @@
 
 
             <tbody>
-
               <tr *ngFor="let item of cartItems.Items; let i = index">
-
-                <!-- Product -->
                 <td class="product-column">
 
                   <div class="product-info">
@@ -105,9 +98,6 @@
                   </div>
 
                 </td>
-
-
-                <!-- Price -->
                 <td>
 
                   <div class="product-price">
@@ -128,7 +118,7 @@
 
                   <div class="product-color">
 
-                    <span class="color-dot"></span>
+                    <span class="color-dot" [style.background]="getColorHex(item.Variant.Color)"></span>
 
                     <span>
                       {{ item.Variant?.Color }}
@@ -137,14 +127,11 @@
                   </div>
 
                 </td>
-
-
-                <!-- Quantity -->
                 <td>
 
                   <div class="quantity">
 
-                    <button type="button" (click)="increase()">
+                    <button type="button" (click)="increase(item)">
 
                       <app-solar-icon [name]="'add-circle'" [size]="20">
                       </app-solar-icon>
@@ -157,7 +144,7 @@
                     </span>
 
 
-                    <button type="button" (click)="decrease()">
+                    <button type="button" (click)="decrease(item)">
 
                       @if (item.Quantity > 1) {
 
@@ -202,6 +189,10 @@
 
           </table>
 
+          <div>
+            
+          </div>
+
         </div>
 
 
@@ -242,11 +233,10 @@
                 </div>
 
 
-                <div class="product-color">
+                <div class="product-color" >
 
-                  <span class="color-dot"></span>
-
-                  {{ item.Variant?.Color }}
+                  <div   class="color-dot"></div>
+                  {{ item.Variant.Color }}
 
                 </div>
 
@@ -262,7 +252,7 @@
               <!-- Quantity -->
               <div class="quantity">
 
-                <button type="button" (click)="increase()">
+                <button type="button" (click)="increase(item)">
 
                   <app-solar-icon [name]="'add-circle'" [size]="20">
                   </app-solar-icon>
@@ -275,7 +265,7 @@
                 </span>
 
 
-                <button type="button" (click)="decrease()">
+                <button type="button" (click)="decrease(item)">
 
                   @if (item.Quantity > 1) {
 

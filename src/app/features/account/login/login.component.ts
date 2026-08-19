@@ -56,13 +56,16 @@ export class LoginComponent {
   }
 
   login() {
+    debugger
     this.authService.login(this.user).subscribe({
       next: res => {
         if (res.Message === 'success') {
-          if (res.User.Role === 'user') {
-            this.router.navigate(['/home'])
-          } else {
+          this.authService.setCurrentUser(res.User);
+          if (res.User.Role === 'admin') {
+            
             this.router.navigate(['/admin'])
+          } else {
+            this.router.navigate(['/home'])
           }
         }
 

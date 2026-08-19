@@ -16,7 +16,16 @@ export class AuthService {
   );
 
   currentUser = signal(localStorage.getItem('name'))
-  currentUserRole = signal(localStorage.getItem('role'))
+  // currentUserRole = signal(localStorage.getItem('role'))
+
+  currentUserRole(): string | null {
+    const user = localStorage.getItem('currentUser');
+
+    if (!user) {
+      return null;
+    }
+    return JSON.parse(user).Role;
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -30,11 +39,15 @@ export class AuthService {
         tap(res => {
           console.log('USER:', res.User);
           localStorage.setItem('token', res.Token);
-          localStorage.setItem('name' , res.User.Name)
-          localStorage.setItem('role' , res.User.Role)
+          localStorage.setItem('name', res.User.Name)
+          localStorage.setItem('role', res.User.Role)
           this.isLoggedIn.set(true);
         })
       );
+  }
+
+  setCurrentUser(user: any) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
 

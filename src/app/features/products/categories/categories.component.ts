@@ -15,7 +15,7 @@ import { ProductComponent } from "../product.component";
 export class CategoriesComponent {
   constructor(private route: ActivatedRoute, private productService: ProductService) { }
   product: ProductsViewModel[] = []
-  slug: string = 'all';
+  slug: string = '';
   textPreview = ''
 
   ngOnInit() {
@@ -40,7 +40,6 @@ export class CategoriesComponent {
 
   onSelected(products: ProductsViewModel[]) {
     this.product = products
-    
 
   }
 }

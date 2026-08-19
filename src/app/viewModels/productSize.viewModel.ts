@@ -1,14 +1,14 @@
 export class ProductSizeViewModel {
-    ID: string;
+    _id: string;
     Name: string;
     Stock: number;
 
     constructor(
-        ID?: string,
+        _id?: string,
         Name?: string,
         Stock?: number
     ) {
-        this.ID = ID || '';
+        this._id = _id || '';
         this.Name = Name || '';
         this.Stock = Stock || 0;
     }
