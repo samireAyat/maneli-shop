@@ -6,11 +6,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PersianNumberPipe implements PipeTransform {
 
-  transform(value: string | number): string {
+  transform(value: number | string | null | undefined): string {
 
-    return value
-      .toString()
-      .replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d]);
+    if (value === null || value === undefined) {
+      return '';
+    }
+
+    // تبدیل به عدد و جدا کردن سه‌تایی
+    const formattedNumber = Number(value).toLocaleString('en-US');
+
+    // تبدیل ارقام انگلیسی به فارسی
+    return formattedNumber.replace(
+      /\d/g,
+      digit => '۰۱۲۳۴۵۶۷۸۹'[Number(digit)]
+    );
   }
-
 }

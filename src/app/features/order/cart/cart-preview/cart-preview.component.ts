@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { SHARED_IMPORTS } from "../../../shared/shared.imports";
+import { SHARED_IMPORTS } from "../../../../shared/shared.imports";
 
 @Component({
   selector: 'app-cart-preview',

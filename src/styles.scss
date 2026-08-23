@@ -19,6 +19,7 @@ table {
     overflow: hidden;
     border-collapse: separate;
     width: 100%;
+
     tr {
         height: 50px;
     }
@@ -44,6 +45,10 @@ button {
     direction: rtl;
     margin: 0;
     padding: 0;
+}
+
+textarea {
+    font-family: IranYekan;
 }
 
 body {
@@ -161,6 +166,22 @@ ul {
         }
     }
 
+    textarea {
+        border: 1px solid var(--primary-400);
+        // min-width: 300px;
+        border-radius: 12px;
+        padding: 10px;
+        outline: none;
+
+        &:focus {
+            border: 1px solid var(--primary-700);
+        }
+
+        &::placeholder {
+            font-family: IranYekan !important;
+        }
+    }
+
     input,
     .ng-select {
         border: 1px solid var(--primary-400);
@@ -168,6 +189,7 @@ ul {
         height: 50px;
         border-radius: 12px;
         padding: 0 10px;
+        outline: none;
 
         &:has(.ng-select-bottom) {
             border-bottom-right-radius: 0px;
@@ -505,6 +527,49 @@ ul {
     --review: var(--background);
 }
 
+textarea {
+    border: 1px solid var(--primary-400);
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+.modal {
+    .modal-dialog {
+        width: 400px;
+        max-width: calc(100vw - 32px);
+        margin: auto;
+    }
+
+    .modal-body {
+        border: none;
+        border-radius: 14px;
+        overflow: hidden;
+        padding: 0;
+    }
+}
+
+
+//         .modal-dialog {
+//             position: absolute !important;
+//             bottom: 60%;
+//             right: 45%;
+//         }
+//     }
+// }
+
+// ::ng-deep .modal-backdrop {
+//     position: absolute;
+// }
+
+
+ngb-modal-backdrop.modal-backdrop.fade.show {
+    opacity: 0.2 !important;
+    background-color: black !important;
+}
+
+ngb-modal-window {
+    z-index: 2000000000000;
+}
 
 .row {
     display: grid;

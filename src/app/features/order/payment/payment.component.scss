@@ -1,0 +1,19 @@
+.payment-wrapper {
+  border-top: 1px dashed var(--secondary-200);
+  // margin-top: 2rem;
+
+
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--secondary-100);
+    position: absolute;
+    padding: 0.5rem;
+    border-radius: 10px;
+    top: 160px;
+    font-size: 14px;
+    right: 20px;
+
+  }
+}

@@ -30,9 +30,9 @@ export const routes: Routes = [
           ).then((m) => m.ProductDetailsComponent),
       },
       {
-        path: 'cart',
+        path: 'order',
         loadComponent: () =>
-          import('./features/cart/cart.component').then((m) => m.CartComponent),
+          import('./features/order/order.component').then((m) => m.OrderComponent),
       },
       {
         path: 'categories',

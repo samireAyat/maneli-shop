@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CartComponent } from "../../cart/cart.component";
 import { ProductComponent } from '../product.component';
 import { SimplebarAngularModule } from "simplebar-angular";
 import { SHARED_IMPORTS } from '../../../shared/shared.imports';

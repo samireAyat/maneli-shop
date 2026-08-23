@@ -7,7 +7,7 @@ import { ProductsViewModel } from '../../../viewModels/products.viewModel';
 import { ProductVariantViewModel } from '../../../viewModels/ProductVariant.viewModel';
 import { ProductSizeViewModel } from '../../../viewModels/productSize.viewModel';
 import path from 'path';
-import { CartService } from '../../cart/services/cart.service';
+import { CartService } from '../../order/cart/services/cart.service';
 import { CartViewModel } from '../../../viewModels/cart.viewModel';
 import { CartItemViewModel } from '../../../viewModels/CartItem.viewModel';
 import { CartProductViewModel } from '../../../viewModels/cartProduct.viewModel';

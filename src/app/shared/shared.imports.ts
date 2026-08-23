@@ -11,6 +11,7 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap'
 
 
 
+
 export const SHARED_IMPORTS = [
   CommonModule,
   FormsModule,
@@ -18,5 +19,6 @@ export const SHARED_IMPORTS = [
   SolarIconComponent,
   PersianNumberPipe,
   NgSelectModule,
-  NgbTooltip
+  NgbTooltip,
+
 ] as const;

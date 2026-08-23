@@ -1,0 +1,52 @@
+<div class="order-wrapper">
+
+    <div class="order-inner">
+
+        <div class="step-container">
+            <span (click)="goToStep('cart')">
+                <img src="images/smile-cart_1.png" alt="">
+                <small style="white-space: nowrap;">سبد خرید</small>
+            
+            </span>
+            <div class="divider" [class.completed]="currentStep === 'shipping'"></div>
+            <span (click)="goToStep('shipping')">
+                <img *ngIf="isCartCompleted" src="images/shipping_1.png" alt="">
+                <img *ngIf="!isCartCompleted" src="images/shipping_disable.png" alt="">
+                 <small style="white-space: nowrap;">اطلاعات ارسال</small>
+            </span>
+            <div class="divider" [class.completed]="currentStep === 'payment'"></div>
+            <span (click)="goToStep('payment')">
+                <img *ngIf="currentStep === 'payment' && isShippingCompleted"  src="images/payment_1.png" alt="">
+                <img *ngIf="currentStep != 'payment'"  src="images/payment_disable.png" alt="">
+                 <small style="white-space: nowrap;">پرداخت </small>
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="order-content">
+
+        @switch (currentStep) {
+
+        @case ('cart') {
+        <app-cart (isConfirmed)="confirmCart($event)" />
+        }
+
+        @case ('shipping') {
+        <app-shipping  />
+        }
+
+        @case ('payment') {
+        <app-payment/>
+        }
+
+        @default {
+        <app-cart />
+        }
+
+        }
+
+    </div>
+
+</div>

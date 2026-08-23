@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { CartViewModel } from '../../../viewModels/cart.viewModel';
+import { CartViewModel } from '../../../../viewModels/cart.viewModel';
 import { Observable } from 'rxjs';
-import { CartItemViewModel } from '../../../viewModels/CartItem.viewModel';
-import { CartProductViewModel } from '../../../viewModels/cartProduct.viewModel';
-import { AddToCartRequestViewModel } from '../../../viewModels/AddToCartRequest.viewModel';
+import { CartItemViewModel } from '../../../../viewModels/CartItem.viewModel';
+import { CartProductViewModel } from '../../../../viewModels/cartProduct.viewModel';
+import { AddToCartRequestViewModel } from '../../../../viewModels/AddToCartRequest.viewModel';
 
 @Injectable({
   providedIn: 'root',
@@ -39,5 +39,22 @@ export class CartService {
       }
     );
 
+  }
+
+  deleteCartItem(
+    ProductID: string,
+    VariantID: string,
+    SizeID: string
+  ) {
+    return this.http.delete(
+      `${this.apiUrl}/items`,
+      {
+        body: {
+          ProductID,
+          VariantID,
+          SizeID
+        }
+      }
+    );
   }
 }

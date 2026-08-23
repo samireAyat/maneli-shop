@@ -1,0 +1,156 @@
+<div class="cart-wrapper">
+  <div class="label">
+    <app-solar-icon style="width: 20px; height: 20px" [name]="'bag-heart'" [size]="20"></app-solar-icon>
+    سبد خرید
+  </div>
+  <div class="cart-inner">
+    <div class="cart-items">
+      <div class="cart-card" *ngFor="let item of cartItems.Items; let i = index">
+
+        <!-- Product -->
+        <div class="cart-product">
+
+          <div class="product-image">
+
+            @if (item?.Variant?.Images?.[0]) {
+            <img [src]="'http://localhost:3000' + item.Variant.Images[0]" [alt]="item.Product?.Name" />
+            }
+
+          </div>
+
+
+          <div class="product-detail">
+
+            <div class="product-title">
+              {{ item.Product?.Name }}
+            </div>
+
+            <div class="product-meta">
+
+              <span>
+                سایز:
+                <strong>
+                  {{ item.Size?.Name }}
+                </strong>
+              </span>
+
+              <span class="product-color">
+
+                <span class="color-dot" [style.background]="getColorHex(item.Variant.Color)">
+                </span>
+
+                {{ item.Variant?.Color }}
+
+              </span>
+
+            </div>
+
+            <div class="unit-price">
+
+              {{ item.Product?.Price | persianNumber }}
+
+              <span>تومان</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Quantity -->
+        <div class="quantity">
+
+          <button type="button" (click)="increase(item, i)">
+
+            <app-solar-icon [name]="'add-circle'" [size]="20">
+            </app-solar-icon>
+
+          </button>
+
+
+          <span>
+            {{ item.Quantity | persianNumber }}
+          </span>
+
+
+          <button type="button" (click)="decrease(item, i)">
+
+            @if (item.Quantity > 1) {
+
+            <app-solar-icon [name]="'minus-circle'" [size]="20">
+            </app-solar-icon>
+
+            } @else {
+
+            <app-solar-icon [name]="'trash-bin-minimalistic'" [size]="19">
+            </app-solar-icon>
+
+            }
+
+          </button>
+
+        </div>
+
+
+        <!-- Total -->
+        <div class="cart-total">
+
+          <span class="total-label">
+            قیمت کل
+          </span>
+
+          <strong>
+            {{ itemProductTotal()[i] | persianNumber }}
+          </strong>
+
+          <span>
+            تومان
+          </span>
+
+        </div>
+
+      </div>
+
+
+    </div>
+    <div style="width: 100%; display: flex; justify-content: flex-end;">
+
+      <div class="confirm-box">
+        <div class="discount">
+          <span style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--secondary-500); display: flex; align-items: center; gap: 0.2rem;">
+              <app-solar-icon style="width: 20px; height: 20px;" [name]="'sale'" [size]="20"></app-solar-icon>
+              کد تخفیف دارید؟
+
+            </span>
+            <small> ثبت کد تخفیف
+            </small>
+          </span>
+          <span style="display: flex; align-items: center;">
+            <app-solar-icon style="width: 20px; height: 20px;" [name]="'alt-arrow-left'" [size]="20"></app-solar-icon>
+          </span>
+        </div>
+        <div>
+          <span>
+            قیمت کالاها ({{totalCount()}})
+          </span>
+          <span>{{Math.abs(allProductTotal()) | persianNumber}}</span>
+        </div>
+        <div>
+          <span>هزینه بسته‌بندی و ارسال</span>
+          <span>{{200000 | persianNumber}}</span>
+        </div>
+        <div>
+          <span>مبلغ قابل پرداخت:</span>
+          <span>{{ Math.abs(allProductTotal()) + 200000 | persianNumber}}</span>
+        </div>
+        <div class="confirm-btn">
+          <button (click)="confirm()" class="btn secondary">تایید و تکمیل سفارش</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

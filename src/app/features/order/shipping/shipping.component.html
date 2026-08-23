@@ -1,0 +1,130 @@
+<div class="shipping-wrapper" #shippingWrapper>
+    <div class="label">
+        <app-solar-icon style="width: 20px; height: 20px" [name]="'map-point'" [size]="20"></app-solar-icon>
+        انتخاب آدرس
+    </div>
+    <div class="shipping-inner">
+        <div class="address-wrapper">
+
+            @for (item of addressList; track $index; let i = $index) {
+
+            <label class="address-card" [class.selected]="selectedAddressId === item._id" [for]="'address-' + item._id">
+
+                <input type="radio" [id]="'address-' + item._id" name="address" [value]="item._id"
+                    [(ngModel)]="selectedAddressId" />
+
+                <div class="address-card-content">
+
+                    <div class="address-card-header">
+
+                        <div class="address-title">
+                            <span class="address-number">{{ i + 1 }}</span>
+
+                            <span class="address-label">
+                                {{ item.AddressLabel }}
+                            </span>
+                        </div>
+
+                        @if (item.IsDefault) {
+                        <span class="default-badge">
+                            آدرس پیش‌فرض
+                        </span>
+                        }
+
+                    </div>
+
+                    <div class="address-location">
+                        <span>{{ item.Province }}</span>
+                        <span class="separator">-</span>
+                        <span>{{ item.City }}</span>
+                    </div>
+
+                    <div class="address-text">
+                        {{ item.Address }}
+                    </div>
+                    <div class="reciever">
+                        {{item.FirstName + ' ' +  item.LastName}}
+                    </div>
+
+                </div>
+
+            </label>
+
+            }
+
+        </div>
+        <div class="no-address">
+            <span class="img-wrapper"><img src="images/no-address.png" alt=""></span>
+            <span style="font-size: 14px; font-weight: 600;">شما آدرسی ثبت نکرده‌اید</span>
+        </div>
+        <div class="add-address">
+            <button class="btn secondary" (click)="onNewAdrressModal(newAddressTemplate)">ثبت آدرس جدید</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #newAddressTemplate>
+    <div class="modal">
+        <div class="modal-header">
+            <span>افزودن آدرس</span>
+            <span></span>
+        </div>
+        <form #newAddressForm="ngForm" (ngSubmit)="onSubmitNewAddress()">
+            <div class="modal-body">
+                <h5 for="">اطلاعات شخص تحویل گیرنده</h5>
+                <div class="input-group">
+                    <input name="firstName" [(ngModel)]="newAddress.FirstName" type="text" placeholder="نام">
+                </div>
+                <div class="input-group">
+                    <input name="lastName" [(ngModel)]="newAddress.LastName" type="text" placeholder="نام خانوادگی">
+                </div>
+                <h5 for="">اطلاعات ارسال</h5>
+                <div class="input-group">
+                    <input name="mobileNumber" [(ngModel)]="newAddress.Mobile" type="text" placeholder="شماره همراه">
+                </div>
+                <div class="input-group">
+                    <input name="phoneNumber" [(ngModel)]="newAddress.Phone" type="text" placeholder="تلفن ثابت">
+                </div>
+                <div class="input-group">
+                    <label class="requierd"> استان </label>
+                    <ng-select required autocomplete="off" name="provinceList" (change)="onProvinceChange()"
+                        [(ngModel)]="newAddress.Province" [searchable]="true" [items]="provice" bindLabel="province"
+                        bindValue="province" placeholder="انتخاب استان">
+
+                    </ng-select>
+
+                </div>
+                <div class="input-group">
+                    <label class="requierd"> شهر </label>
+                    <ng-select required name="city" [(ngModel)]="newAddress.City" [searchable]="true" [items]="cities"
+                        bindLabel="cities" bindValue="cities" placeholder="انتخاب شهر">
+
+                    </ng-select>
+
+                </div>
+                <div class="input-group">
+                    <label class="requierd" for="">کدپستی</label>
+                    <input name="postalCode" [(ngModel)]="newAddress.PostalCode" required type="text"
+                        placeholder="کدپستی">
+                </div>
+                <div class="input-group">
+                    <label class="requierd" for="">عنوان آدرس</label>
+                    <input name="postalCode" [(ngModel)]="newAddress.AddressLabel" required type="text"
+                        placeholder="مثلا: خانه مامان">
+                </div>
+                <div class="input-group">
+                    <label class="requierd">آدرس</label>
+                    <textarea name="fullAddress" [(ngModel)]="newAddress.Address" required rows="5"
+                        placeholder="آدرس را به صورت کامل وارد کنید"></textarea>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <div class="submit-address">
+                    <button class="btn secondary">ثبت آدرس</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
