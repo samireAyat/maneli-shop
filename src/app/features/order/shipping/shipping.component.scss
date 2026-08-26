@@ -23,8 +23,8 @@
 
 .shipping-inner {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  // flex-direction: column;
+  // align-items: center;
   width: max-content;
   gap: 2rem;
   padding: 20px 24px;
@@ -38,7 +38,7 @@
   justify-content: center;
 
   .img-wrapper {
-    width: 250px;
+    width: 210px;
     display: block;
 
     img {
@@ -48,7 +48,7 @@
 }
 
 .add-address {
-  width: 100%;
+  
 
 
   button {
@@ -79,6 +79,26 @@
   justify-content: center;
   position: relative;
   border-bottom: 1px solid #eee;
+
+  .close-btn {
+    position: absolute;
+    left: 10px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  .back-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+  }
 
   h4 {
     margin: 0;
@@ -247,9 +267,11 @@
 .address-wrapper {
   display: flex;
   flex-direction: column;
+
   gap: 12px;
-  width: 100%;
-  max-width: 650px;
+  // width: 100%;
+  flex-wrap: wrap;
+  // max-width: 650px;
   padding: 20px 24px;
 }
 
@@ -258,8 +280,9 @@
   display: flex;
   align-items: flex-start;
   gap: 14px;
+  min-width: 250px;
 
-  width: 100%;
+
   padding: 16px;
 
   background: #fff;
@@ -276,30 +299,40 @@
   &.selected {
     border-color: var(--primary);
     background: rgba(213, 207, 124, 0.08);
-    input {
-      background-color: var(--primary-400);
-      border-color: var(--primary-600);
-      border-width: 2px;
+
+    .map-icon {
+      color: var(--secondary-500);
+
+      app-solar-icon {
+        size: 24;
+      }
+
+      // border-color: var(--primary-600);
+      // border-width: 2px;
     }
   }
 
-  input {
-    position: relative;
-    width: 18px;
-    height: 18px;
-    margin-top: 2px;
-    flex-shrink: 0;
-    accent-color: var(--primary);
-    cursor: pointer;
-    appearance: none;
-    border: 1px solid var(--primary);
-    border-radius: 50%;
-  }
+  // input {
+  //   position: relative;
+  //   width: 18px;
+  //   height: 18px;
+  //   margin-top: 2px;
+  //   flex-shrink: 0;
+  //   accent-color: var(--primary);
+  //   cursor: pointer;
+  //   appearance: none;
+  //   border: 1px solid var(--primary);
+  //   border-radius: 50%;
+  // }
 }
 
 .address-card-content {
-  flex: 1;
-  min-width: 0;
+  // flex: 1;
+  // min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
 }
 
 .address-card-header {
@@ -363,8 +396,27 @@
   color: var(--secondary-400);
 }
 
-.address-text, .reciever {
+.address-text,
+.reciever {
   font-size: 13px;
   line-height: 1.8;
   color: var(--secondary-800);
+}
+
+.buttons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-grow: 1;
+  gap: 0.5rem;
+
+  span {
+    width: 20px;
+    height: 20px;
+    transition: all 200ms linear;
+
+    &:hover {
+      color: var(--secondary-500);
+    }
+  }
 }

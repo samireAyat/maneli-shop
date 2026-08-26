@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { SHARED_IMPORTS } from '../../../shared/shared.imports';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { CartService } from './services/cart.service';
@@ -20,6 +20,7 @@ export class CartComponent {
   colors = PRODUCT_COLORS;
   Math = Math;
   @Output() isConfirmed = new EventEmitter<boolean>
+
 
   ngOnInit() {
     this.getCart()
@@ -47,6 +48,7 @@ export class CartComponent {
     this.cartService.getCart().subscribe({
       next: response => {
         this.cartItems = response
+  
         let sum = 0
         const eachProductTotal = this.cartItems.Items.map(product => product.Product.Price * product.Quantity);
         this.itemProductTotal.set(eachProductTotal)

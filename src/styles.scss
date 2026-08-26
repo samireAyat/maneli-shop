@@ -120,6 +120,15 @@ button {
         &:hover {
             background-color: var(--secondary);
         }
+
+        &.outline {
+            border: 1px solid var(--secondary-400);
+            background-color: unset;
+
+            &:hover {
+                background-color: var(--secondary-100);
+            }
+        }
     }
 }
 

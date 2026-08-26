@@ -10,6 +10,12 @@ interface AddressResponse {
 
 }
 
+interface ApiResponse<T> {
+    status: number;
+    message: string;
+    data: T;
+}
+
 @Injectable({
     providedIn: 'root',
 })
@@ -21,11 +27,22 @@ export class ShippingService {
     private apiUrl = 'http://localhost:3000/api/addresses';
     private http = inject(HttpClient);
 
-    getAddresses(): Observable<AddressResponse> {
-        return this.http.get<AddressResponse>(this.apiUrl)
+    getAddresses(): Observable<ApiResponse<AddressResponse>> {
+        return this.http.get<ApiResponse<AddressResponse>>(this.apiUrl)
     }
 
-    createAddress(record: AddressViewModel) {
-        return this.http.post<AddressViewModel>(this.apiUrl, record)
+    createAddress(record: AddressViewModel): Observable<ApiResponse<AddressViewModel>> {
+        return this.http.post<ApiResponse<AddressViewModel>>(this.apiUrl, record)
+    }
+
+    updateAddress(
+        addressId: string,
+        address: AddressViewModel
+    ): Observable<ApiResponse<AddressViewModel>> {
+
+        return this.http.put<ApiResponse<AddressViewModel>>(
+            `${this.apiUrl}/${addressId}`,
+            address
+        );
     }
 }
