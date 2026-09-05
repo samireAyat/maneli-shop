@@ -595,3 +595,41 @@ ngb-modal-window {
         }
     }
 }
+
+
+.empty-cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    .image-wrapper {
+        width: 500px;
+
+        img {
+            width: 100%;
+        }
+
+    }
+
+    .message {
+        font-weight: 700;
+        display: block;
+    }
+
+    .link {
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            border-radius: 10px;
+            &:hover {
+                svg {
+                    transition: all 200ms linear;
+                    transform: translateX(-5px);
+                }
+            }
+        }
+    }
+}

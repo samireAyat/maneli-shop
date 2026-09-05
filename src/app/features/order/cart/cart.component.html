@@ -3,7 +3,7 @@
     <app-solar-icon style="width: 20px; height: 20px" [name]="'bag-heart'" [size]="20"></app-solar-icon>
     سبد خرید
   </div>
-  <div class="cart-inner">
+  <div class="cart-inner" *ngIf="cartItems.Items. length else noData">
     <div class="cart-items">
       <div class="cart-card" *ngFor="let item of cartItems.Items; let i = index">
 
@@ -114,7 +114,7 @@
 
 
     </div>
-    <div style="width: 100%; display: flex; justify-content: flex-end;">
+    <div style="width: 100%; display: flex; justify-content: flex-end;" *ng>
 
       <div class="confirm-box">
         <div class="discount">
@@ -154,3 +154,20 @@
   </div>
 </div>
 
+
+<ng-template #noData>
+  <div class="empty-cart-container">
+    <div class="image-wrapper">
+      <img src="images/empty-cart.png" alt="">
+    </div>
+    <span class="message">
+      سبد خرید شما خالی است :(
+    </span>
+    <span class="link">
+      <button class="btn primary" routerLink="/home">
+        مشاهده محصولات
+        <app-solar-icon style="width: 20px;height: 20px;" [name]="'alt-arrow-left'" [size]="20"></app-solar-icon>
+      </button>
+    </span>
+  </div>
+</ng-template>

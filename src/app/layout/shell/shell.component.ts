@@ -38,7 +38,9 @@ export class ShellComponent {
 
   ) {
 
-
+    if (!this.authService.isLoggedIn) {
+      this.router.navigate(['/login'])
+    }
 
     // this.router.events
     //   .pipe(filter(event => event instanceof NavigationEnd))

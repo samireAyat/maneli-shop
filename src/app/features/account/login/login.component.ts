@@ -4,6 +4,7 @@ import { interval, take } from 'rxjs';
 import { UserViewModel } from '../../../viewModels/user.viewModel';
 import { AuthService } from '../../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from '../../order/cart/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,7 @@ export class LoginComponent {
       this.router.navigate(['/home'])
     }
   }
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private cartService: CartService) { }
   setInterval() {
     this.canResendCode = false;
     this.remainingSeconds = 120;
@@ -60,9 +61,15 @@ export class LoginComponent {
     this.authService.login(this.user).subscribe({
       next: res => {
         if (res.Message === 'success') {
+          this.cartService.mergeGuestCart().subscribe({
+            next: () => {
+              localStorage.removeItem('guest_cart');
+            }
+          })
           this.authService.setCurrentUser(res.User);
+
           if (res.User.Role === 'admin') {
-            
+
             this.router.navigate(['/admin'])
           } else {
             this.router.navigate(['/home'])

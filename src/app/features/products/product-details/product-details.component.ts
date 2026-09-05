@@ -217,7 +217,7 @@ export class ProductDetailsComponent {
       SizeID: this.selectedSize._id,
       Quantity: this.quantity,
     }
-    this.cartService.postCard(request).subscribe({
+    this.cartService.postCart(request).subscribe({
       next: res => {
         console.log(res);
         

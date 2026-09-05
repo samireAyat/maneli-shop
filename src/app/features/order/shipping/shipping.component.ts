@@ -10,6 +10,7 @@ import { CartComponent } from "../cart/cart.component";
 import { CartItemViewModel } from '../../../viewModels/CartItem.viewModel';
 import { CartService } from '../cart/services/cart.service';
 import { SimplebarAngularModule } from "simplebar-angular";
+import { CartVariantViewModel } from '../../../viewModels/cartVariant.viewModel';
 
 
 interface ApiResponse<T> {
@@ -186,7 +187,7 @@ export class ShippingComponent {
   getCart() {
     this.cartService.getCart().subscribe({
       next: res => {
-        this.productImages = res.Items.map(m => m.Variant.Images)
+        this.productImages = res.Items.map((m) => m.Variant.Images)
       }
     })
   }

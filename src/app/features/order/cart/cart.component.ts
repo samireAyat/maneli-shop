@@ -7,11 +7,12 @@ import { CartVariantViewModel } from '../../../viewModels/cartVariant.viewModel'
 import { CartItemViewModel } from '../../../viewModels/CartItem.viewModel';
 import { AddToCartRequestViewModel } from '../../../viewModels/AddToCartRequest.viewModel';
 import { PRODUCT_COLORS } from '../../../constants/product-colors';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [SHARED_IMPORTS, SimplebarAngularModule],
+  imports: [SHARED_IMPORTS, SimplebarAngularModule, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
@@ -119,12 +120,10 @@ export class CartComponent {
 
 
   decrease(item: CartItemViewModel, index: number) {
-    debugger
     if (item.Quantity <= 1) {
       this.cartService.deleteCartItem(item.ProductID, item.VariantID, item.SizeID).subscribe({
         next: res => {
           this.totalCount.update(counts => counts - 1);
-          // حذف آیتم از لیست
           this.itemProductTotal.update(totals => {
             const newTotals = [...totals];
             newTotals.splice(index, 1);
