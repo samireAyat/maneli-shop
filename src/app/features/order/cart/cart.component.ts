@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, computed, EventEmitter, Input, Output, signal } from '@angular/core';
 import { SHARED_IMPORTS } from '../../../shared/shared.imports';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { CartService } from './services/cart.service';
@@ -49,7 +49,7 @@ export class CartComponent {
     this.cartService.getCart().subscribe({
       next: response => {
         this.cartItems = response
-  
+
         let sum = 0
         const eachProductTotal = this.cartItems.Items.map(product => product.Product.Price * product.Quantity);
         this.itemProductTotal.set(eachProductTotal)
@@ -70,51 +70,54 @@ export class CartComponent {
     });
   }
 
-  increase(item: CartItemViewModel, index: number) {
+increase(item: CartItemViewModel, index: number) {
 
-    const newQuantity = item.Quantity + 1;
+  const newQuantity = item.Quantity + 1;
 
-    this.cartService
-      .updateCartItem(
-        item.ProductID,
-        item.VariantID,
-        item.SizeID,
-        newQuantity
-      )
-      .subscribe({
-        next: res => {
-          console.log(res);
-          this.totalCount.update(counts => counts + 1)
+  this.cartService
+    .updateCartItem(
+      item.ProductID,
+      item.VariantID,
+      item.SizeID,
+      newQuantity
+    )
+    .subscribe({
 
-          item.Quantity = newQuantity;
-          const newTotal = item.Product.Price * item.Quantity;
-          this.itemProductTotal.update(totals => {
-            const newTotals = [...totals];
-            newTotals[index] = newTotal;
-            return newTotals
-          })
+      next: () => {
 
-          let sum = 0
+        item.Quantity = newQuantity;
 
-          this.itemProductTotal().forEach((n: number) => {
-            sum += n
-          })
+        const newTotal =
+          item.Product.Price * item.Quantity;
 
-          this.allProductTotal.update(m => sum)
+        this.itemProductTotal.update(totals => {
 
+          const newTotals = [...totals];
 
+          newTotals[index] = newTotal;
 
-        },
+          return newTotals;
 
-        error: error => {
+        });
 
-          console.error(error);
+        let sum = 0;
 
-        }
+        this.itemProductTotal().forEach(
+          (n: number) => {
+            sum += n;
+          }
+        );
 
-      });
+        this.allProductTotal.set(sum);
 
-  }
+      },
+
+      error: error => {
+        console.error(error);
+      }
+
+    });
+}
 
 
 
@@ -136,6 +139,7 @@ export class CartComponent {
             )
           );
           this.getCart()
+          this.cartService.cartQuantity()
         }
       })
       return;

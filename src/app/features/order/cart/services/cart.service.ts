@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
 
 import { CartViewModel } from '../../../../viewModels/cart.viewModel';
@@ -18,6 +18,23 @@ import { GuestCartViewModel } from '../../../../viewModels/GuestCartViewModel ';
 export class CartService {
 
   private readonly CART_KEY = 'guest_cart';
+  cart = signal<CartViewModel | null>(null);
+
+
+  cartQuantity = computed(() => {
+
+    const items = this.cart()?.Items ?? [];
+
+    return items.reduce(
+      (total, item) => total + item.Quantity,
+      0
+    );
+
+  });
+
+  constructor() {
+    this.loadCart();
+  }
 
   private http = inject(HttpClient);
   private authService = inject(AuthService);
@@ -25,18 +42,40 @@ export class CartService {
   private apiUrl = 'http://localhost:3000/api/cart';
 
 
+  private loadCart(): void {
+
+    this.getCart().subscribe();
+
+  }
+
+
   getCart(): Observable<CartViewModel> {
 
     if (this.authService.isLoggedIn()) {
-      return this.http.get<CartViewModel>(this.apiUrl);
+
+      return this.http
+        .get<CartViewModel>(this.apiUrl)
+        .pipe(
+          tap(res => {
+            this.cart.set(res);
+          })
+        );
+
     }
 
     const guestCart = this.getGuestCart();
 
-    return this.http.post<CartViewModel>(
-      `${this.apiUrl}/guest`,
-      guestCart
-    );
+    return this.http
+      .post<CartViewModel>(
+        `${this.apiUrl}/guest`,
+        guestCart
+      )
+      .pipe(
+        tap(res => {
+          this.cart.set(res);
+        })
+      );
+
   }
 
 
@@ -108,21 +147,59 @@ export class CartService {
   }
 
 
-  updateCartItem(
-    productID: string,
-    variantID: string,
-    sizeID: string,
-    quantity: number
-  ) {
 
+  updateCartItem(
+    productId: string,
+    variantId: string,
+    sizeId: string,
+    newQuantity: number
+  ) {
     return this.http.patch(
       `${this.apiUrl}/items`,
       {
-        ProductID: productID,
-        VariantID: variantID,
-        SizeID: sizeID,
-        Quantity: quantity
+        ProductID: productId,
+        VariantID: variantId,
+        SizeID: sizeId,
+        Quantity: newQuantity
       }
+    ).pipe(
+
+      tap(() => {
+
+        this.cart.update(cart => {
+
+          if (!cart) {
+            return cart;
+          }
+
+          return {
+            ...cart,
+
+            Items: cart.Items.map(item => {
+
+              if (
+                item.ProductID === productId &&
+                item.VariantID === variantId &&
+                item.SizeID === sizeId
+              ) {
+
+                return {
+                  ...item,
+                  Quantity: newQuantity
+                };
+
+              }
+
+              return item;
+
+            })
+
+          };
+
+        });
+
+      })
+
     );
   }
 

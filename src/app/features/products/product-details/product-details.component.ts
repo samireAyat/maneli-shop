@@ -13,19 +13,26 @@ import { CartItemViewModel } from '../../../viewModels/CartItem.viewModel';
 import { CartProductViewModel } from '../../../viewModels/cartProduct.viewModel';
 import { CartSizeViewModel } from '../../../viewModels/cartSize.viewModel';
 import { AddToCartRequestViewModel } from '../../../viewModels/AddToCartRequest.viewModel';
+import { NgbCollapse } from "@ng-bootstrap/ng-bootstrap";
+import { favoriteService } from '../../account/my-account/favorits/favorite.service';
+import { AppSetting } from '../../../core/appSetting';
 
 
 @Component({
   selector: 'app-product-details',
-  imports: [SHARED_IMPORTS, RouterLink],
+  imports: [SHARED_IMPORTS, RouterLink, NgbCollapse],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })
 export class ProductDetailsComponent {
 
   id = '';
+  appSetting = new AppSetting
   product: ProductsViewModel = new ProductsViewModel()
-  constructor(private authService: AuthService, private route: ActivatedRoute, private productService: ProductService, private cartService: CartService) {
+  constructor(private authService: AuthService, private route: ActivatedRoute, private productService: ProductService, private cartService: CartService,
+    private favoriteService: favoriteService
+
+  ) {
     this.id = this.route.snapshot.params['id']
 
 
@@ -35,10 +42,11 @@ export class ProductDetailsComponent {
 
     this.getProduct()
 
-
+    this.getFavorite()
 
 
   }
+
 
   // images = [
   //   {
@@ -202,9 +210,9 @@ export class ProductDetailsComponent {
 
   // }
   quantity = 1
+  heartIsFilled = false
 
   addToCart() {
-    debugger
     if (!this.selectedVariant) {
       return
     }
@@ -220,7 +228,7 @@ export class ProductDetailsComponent {
     this.cartService.postCart(request).subscribe({
       next: res => {
         console.log(res);
-        
+
       }
     })
   }
@@ -233,4 +241,49 @@ export class ProductDetailsComponent {
   //     }
   //   })
   // }
+  favoriteResponse = false
+  addToFavorite(id: string) {
+    this.favoriteService.addToFavorite(id).subscribe({
+      next: res => {
+        if (res.status === 'success') {
+          this.favoriteResponse = res.IsFavorite
+          this.appSetting.swalToastStructure.fire({
+            text: res.message,
+            background: 'var(--primary)'
+          })
+        } else {
+          this.heartIsFilled = false
+          this.appSetting.swalToastStructure.fire({
+            text: res.message,
+          })
+        }
+      },
+      error: error => {
+        console.error(error);
+        this.heartIsFilled = false
+      }
+    });
+  }
+
+  favoriteList : any[] = []
+
+  getFavorite() {
+    this.favoriteService.getFavorite().subscribe({
+      next: res => {
+        debugger
+        this.favoriteList = res.Items
+
+      }
+    })
+  }
+
+deleteFavorite(id: string) {
+  this.favoriteService.deleteFavorite(id).subscribe({
+    next: res => {
+      console.log(res);
+      
+    }
+  })
+}
+
 }

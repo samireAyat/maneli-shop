@@ -12,6 +12,26 @@
     <div class="right-side">
       <div class="images-container">
         <div class="product-detail-image">
+          <div class="icon-container">
+            <div class="favorite">
+
+              @for (item of favoriteList; track $index) {
+              <div>
+                <span *ngIf="!item.IsFavorite" (click)="addToFavorite(product._id)">
+                  <app-solar-icon [name]="'heart'" [size]="24"></app-solar-icon>
+                </span>
+                <span (click)="deleteFavorite(product._id)" style="color: red;" *ngIf="item.IsFavorite">
+                  <app-solar-icon [name]="'heart-full'" [size]="26"></app-solar-icon>
+                </span>
+              </div>
+              }
+
+
+            </div>
+            <div class="share">
+              <app-solar-icon [name]="'share'" [size]="26"></app-solar-icon>
+            </div>
+          </div>
           @if (selectedVariant) {
           <img [src]="heroImage" alt="" />
           }

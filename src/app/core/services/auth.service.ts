@@ -1,8 +1,9 @@
 import { Injectable, signal } from '@angular/core';
-import { UserViewModel } from '../../viewModels/user.viewModel';
-import { Observable, tap } from 'rxjs';
-import { loginResponseViewModel } from '../../viewModels/loginResponse.viewModel';
 import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
+
+import { UserViewModel } from '../../viewModels/user.viewModel';
+import { loginResponseViewModel } from '../../viewModels/loginResponse.viewModel';
 
 @Injectable({
   providedIn: 'root',
@@ -11,51 +12,172 @@ export class AuthService {
 
   private baseUrl = 'http://localhost:3000/api';
 
-  isLoggedIn = signal(
-    !!localStorage.getItem('token')
+  // وضعیت لاگین کاربر
+  isLoggedIn = signal(this.checkToken());
+
+  // نام کاربر
+  currentUser = signal<string | null>(
+    localStorage.getItem('name')
   );
 
-  currentUser = signal(localStorage.getItem('name'))
-  // currentUserRole = signal(localStorage.getItem('role'))
 
-  currentUserRole(): string | null {
-    const user = localStorage.getItem('currentUser');
+  constructor(
+    private http: HttpClient
+  ) {}
 
-    if (!user) {
-      return null;
-    }
-    return JSON.parse(user).Role;
-  }
 
-  constructor(private http: HttpClient) { }
+  // =========================
+  // LOGIN
+  // =========================
 
   login(data: UserViewModel): Observable<loginResponseViewModel> {
+
     return this.http
       .post<loginResponseViewModel>(
         `${this.baseUrl}/auth/login`,
         data
       )
       .pipe(
+
         tap(res => {
+
           console.log('USER:', res.User);
-          localStorage.setItem('token', res.Token);
-          localStorage.setItem('name', res.User.Name)
-          localStorage.setItem('role', res.User.Role)
+          const expiresIn = 30 * 60 * 1000;
+          const expiresAt = Date.now() + expiresIn;
+
+          localStorage.setItem(
+            'token',
+            res.Token
+          );
+          localStorage.setItem(
+            'tokenExpiresAt',
+            expiresAt.toString()
+          );
+          localStorage.setItem(
+            'name',
+            res.User.Name
+          );
+          localStorage.setItem(
+            'role',
+            res.User.Role
+          );
           this.isLoggedIn.set(true);
+          this.currentUser.set(
+            res.User.Name
+          );
+          setTimeout(() => {
+            const currentToken =
+              localStorage.getItem('token');
+
+            const currentExpiresAt =
+              localStorage.getItem('tokenExpiresAt');
+            if (
+              currentToken &&
+              currentExpiresAt &&
+              Date.now() >= Number(currentExpiresAt)
+            ) {
+
+              this.logout();
+
+            }
+
+          }, expiresIn);
+
         })
+
       );
   }
 
-  setCurrentUser(user: any) {
-    localStorage.setItem('currentUser', JSON.stringify(user));
+  getToken(): string | null {
+    const token =
+      localStorage.getItem('token');
+    const expiresAt =
+      localStorage.getItem('tokenExpiresAt');
+
+    if (!token) {
+      return null;
+    }
+
+    if (!expiresAt) {
+
+      this.logout();
+
+      return null;
+    }
+
+    if (Date.now() >= Number(expiresAt)) {
+
+      this.logout();
+
+      return null;
+    }
+
+
+    return token;
+  }
+
+  private checkToken(): boolean {
+
+    const token =
+      localStorage.getItem('token');
+
+    const expiresAt =
+      localStorage.getItem('tokenExpiresAt');
+
+
+    if (!token || !expiresAt) {
+      return false;
+    }
+
+    if (Date.now() >= Number(expiresAt)) {
+
+      this.clearStorage();
+
+      return false;
+    }
+
+
+    return true;
   }
 
 
+  currentUserRole(): string | null {
+
+    return localStorage.getItem('role');
+
+  }
+
+  setCurrentUser(user: any): void {
+
+    localStorage.setItem(
+      'currentUser',
+      JSON.stringify(user)
+    );
+
+  }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('name');
-    localStorage.removeItem('role')
+
+    this.clearStorage();
+
     this.isLoggedIn.set(false);
+
+    this.currentUser.set(null);
+
   }
+
+  private clearStorage(): void {
+
+    localStorage.removeItem('token');
+
+    localStorage.removeItem('tokenExpiresAt');
+
+    localStorage.removeItem('name');
+
+    localStorage.removeItem('role');
+
+    localStorage.removeItem('currentUser');
+
+  }
+
 }
