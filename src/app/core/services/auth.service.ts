@@ -4,12 +4,14 @@ import { Observable, tap } from 'rxjs';
 
 import { UserViewModel } from '../../viewModels/user.viewModel';
 import { loginResponseViewModel } from '../../viewModels/loginResponse.viewModel';
+import { AppSetting } from '../appSetting';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
+  appSetting = new AppSetting()
   private baseUrl = 'http://localhost:3000/api';
 
   // وضعیت لاگین کاربر
@@ -23,7 +25,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient
-  ) {}
+  ) {
+  }
 
 
   // =========================
@@ -42,7 +45,7 @@ export class AuthService {
         tap(res => {
 
           console.log('USER:', res.User);
-          const expiresIn = 30 * 60 * 1000;
+          const expiresIn = 120 * 60 * 1000;
           const expiresAt = Date.now() + expiresIn;
 
           localStorage.setItem(
@@ -167,6 +170,10 @@ export class AuthService {
   }
 
   private clearStorage(): void {
+    this.appSetting.swalToastStructure.fire({
+      text: 'زمان استفاده شما از برنامه به پایان رسیده است لطفا دوباره وارد شوید :)',
+      timer: 5000
+    })
 
     localStorage.removeItem('token');
 
@@ -177,6 +184,7 @@ export class AuthService {
     localStorage.removeItem('role');
 
     localStorage.removeItem('currentUser');
+
 
   }
 

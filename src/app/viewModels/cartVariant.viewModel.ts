@@ -2,18 +2,18 @@ import { CartSizeViewModel } from "./cartSize.viewModel";
 
 export class CartVariantViewModel {
     Color: string;
-    Images: string[];
+    Image: string[];
     Sizes: CartSizeViewModel[];
     _id: string;
     constructor(
         color?: string,
-        images?: string[],
+        image?: string[],
         sizes?: CartSizeViewModel[],
         _id?: string,
     ) {
 
         this.Color = color || '';
-        this.Images = images || [];
+        this.Image = image || [];
         this.Sizes = sizes || []
         this._id = _id || ''
     }

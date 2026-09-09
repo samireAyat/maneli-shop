@@ -210,13 +210,21 @@ export class ProductDetailsComponent {
 
   // }
   quantity = 1
-  heartIsFilled = false
+
 
   addToCart() {
     if (!this.selectedVariant) {
+      this.appSetting.swalStructure.fire({
+        text: 'ابتدا رنگ و سایز را انتخاب کنید.',
+        icon: 'warning'
+      })
       return
     }
     if (!this.selectedSize) {
+      this.appSetting.swalStructure.fire({
+        text: 'ابتدا رنگ و سایز را انتخاب کنید.',
+        icon: 'warning'
+      })
       return
     }
     const request: AddToCartRequestViewModel = {
@@ -227,7 +235,11 @@ export class ProductDetailsComponent {
     }
     this.cartService.postCart(request).subscribe({
       next: res => {
-        console.log(res);
+        
+       this.appSetting.swalToastStructure.fire({
+        text: 'محصول با موفقیت به سبد خرید اضافه شد',
+        background: 'var(--primary)'
+       })
 
       }
     })
@@ -243,16 +255,23 @@ export class ProductDetailsComponent {
   // }
   favoriteResponse = false
   addToFavorite(id: string) {
+    if (!this.authService.isLoggedIn()) {
+      this.appSetting.swalStructure.fire({
+        text: 'لطفا ابتدا وارد شوید.',
+        icon: 'info'
+      })
+    }
     this.favoriteService.addToFavorite(id).subscribe({
       next: res => {
         if (res.status === 'success') {
-          this.favoriteResponse = res.IsFavorite
+          this.favoriteList.push({
+            ProductID: this.product
+          });
           this.appSetting.swalToastStructure.fire({
             text: res.message,
             background: 'var(--primary)'
           })
         } else {
-          this.heartIsFilled = false
           this.appSetting.swalToastStructure.fire({
             text: res.message,
           })
@@ -260,30 +279,49 @@ export class ProductDetailsComponent {
       },
       error: error => {
         console.error(error);
-        this.heartIsFilled = false
       }
     });
   }
 
-  favoriteList : any[] = []
+  favoriteList: any[] = []
 
   getFavorite() {
     this.favoriteService.getFavorite().subscribe({
       next: res => {
-        debugger
         this.favoriteList = res.Items
 
       }
     })
   }
 
-deleteFavorite(id: string) {
-  this.favoriteService.deleteFavorite(id).subscribe({
-    next: res => {
-      console.log(res);
-      
+  get heart(): boolean {
+    const founded = this.favoriteList.find(m => m.ProductID?._id === this.product._id)
+    if (founded) {
+      return true
+    } else {
+      return false
     }
-  })
-}
+  }
+
+  deleteFavorite(id: string) {
+    this.favoriteService.deleteFavorite(id).subscribe({
+      next: res => {
+        if (res.status === 'success') {
+          this.favoriteList = this.favoriteList.filter(
+            item => item.ProductID?._id !== id
+          );
+          this.appSetting.swalToastStructure.fire({
+            text: res.message,
+            background: 'var(--primary)'
+          })
+        } else {
+          this.appSetting.swalToastStructure.fire({
+            text: res.message,
+          })
+        }
+
+      }
+    })
+  }
 
 }

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { SolarIconComponent } from "../../../../shared/components/solar-icon/solar-icon.component";
 
 @Component({
   selector: 'app-account-info',
-  imports: [],
+  imports: [SolarIconComponent],
   templateUrl: './account-info.component.html',
   styleUrl: './account-info.component.scss',
 })

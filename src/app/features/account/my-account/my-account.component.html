@@ -136,7 +136,8 @@
                     </ul>
 
                 </div>
-                <div class="account-content" [class.mobile-full]="isChildRouteActive" [style.display]="!isChildRouteActive ? 'none' : ''">
+                <!-- [style.display]="!isChildRouteActive ? 'none' : ''" -->
+                <div class="account-content" [class.mobile-full]="isChildRouteActive" >
                     <div class="">
                         <router-outlet></router-outlet>
                     </div>

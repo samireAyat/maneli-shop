@@ -12,8 +12,8 @@
 
           <div class="product-image">
 
-            @if (item?.Variant?.Images?.[0]) {
-            <img [src]="'http://localhost:3000' + item.Variant.Images[0]" [alt]="item.Product?.Name" />
+            @if (item?.Variant) {
+            <img [src]="'http://localhost:3000' + item.Variant.Image" [alt]="item.Product?.Name" />
             }
 
           </div>

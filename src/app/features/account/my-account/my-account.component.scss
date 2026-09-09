@@ -36,6 +36,7 @@
 
             .content {
                 display: flex;
+                gap: 2rem;
 
                 .account-sidebar {
                     width: 100%;
@@ -122,6 +123,7 @@
 
                 .account-content {
                     margin-top: 6rem;
+                    width: 100%;
 
                     &.mobile-full {
                         width: 100%;
@@ -167,7 +169,7 @@
             }
 
             .content {
-
+                justify-content: center;
 
                 .account-sidebar {
                     width: unset;
@@ -216,9 +218,9 @@
 
                 .account-content {
                     margin-top: 6rem;
-
+                    max-width: 1000px;
                     &.mobile-full {
-                        width: unset;
+                        // width: unset;
                     }
                 }
 

@@ -70,60 +70,65 @@ export class CartComponent {
     });
   }
 
-increase(item: CartItemViewModel, index: number) {
+  increase(item: CartItemViewModel, index: number) {
 
-  const newQuantity = item.Quantity + 1;
+    const newQuantity = item.Quantity + 1;
 
-  this.cartService
-    .updateCartItem(
-      item.ProductID,
-      item.VariantID,
-      item.SizeID,
-      newQuantity
-    )
-    .subscribe({
+    this.cartService
+      .updateCartItem(
+        item.ProductID,
+        item.VariantID,
+        item.SizeID,
+        newQuantity
+      )
+      .subscribe({
 
-      next: () => {
+        next: () => {
 
-        item.Quantity = newQuantity;
+          item.Quantity = newQuantity;
 
-        const newTotal =
-          item.Product.Price * item.Quantity;
+          const newTotal =
+            item.Product.Price * item.Quantity;
 
-        this.itemProductTotal.update(totals => {
+          this.itemProductTotal.update(totals => {
 
-          const newTotals = [...totals];
+            const newTotals = [...totals];
 
-          newTotals[index] = newTotal;
+            newTotals[index] = newTotal;
 
-          return newTotals;
+            return newTotals;
 
-        });
+          });
 
-        let sum = 0;
+          let sum = 0;
 
-        this.itemProductTotal().forEach(
-          (n: number) => {
-            sum += n;
-          }
-        );
+          this.itemProductTotal().forEach(
+            (n: number) => {
+              sum += n;
+            }
+          );
 
-        this.allProductTotal.set(sum);
+          this.allProductTotal.set(sum);
 
-      },
+        },
 
-      error: error => {
-        console.error(error);
-      }
+        error: error => {
+          console.error(error);
+        }
 
-    });
-}
+      });
+  }
 
 
 
 
   decrease(item: CartItemViewModel, index: number) {
     if (item.Quantity <= 1) {
+      console.log({
+        ProductID: item.ProductID,
+        VariantID: item.VariantID,
+        SizeID: item.SizeID
+      });
       this.cartService.deleteCartItem(item.ProductID, item.VariantID, item.SizeID).subscribe({
         next: res => {
           this.totalCount.update(counts => counts - 1);

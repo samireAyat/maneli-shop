@@ -187,7 +187,8 @@ export class ShippingComponent {
   getCart() {
     this.cartService.getCart().subscribe({
       next: res => {
-        this.productImages = res.Items.map((m) => m.Variant.Images)
+        this.productImages = res.Items
+
       }
     })
   }

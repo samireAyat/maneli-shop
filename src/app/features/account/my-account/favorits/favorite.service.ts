@@ -42,7 +42,7 @@ export class favoriteService {
     }
 
         deleteFavorite( productId: string) : Observable<FavoriteResponseViewModel> {
-        return this.http.delete<FavoriteResponseViewModel>(`this.apiUrl/${productId}`)
+        return this.http.delete<FavoriteResponseViewModel>(`${this.apiUrl}/${productId}`)
     }
 
 

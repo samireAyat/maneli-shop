@@ -603,6 +603,7 @@ ngb-modal-window {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+
     .image-wrapper {
         width: 500px;
 
@@ -624,6 +625,7 @@ ngb-modal-window {
             justify-content: space-between;
             width: 100%;
             border-radius: 10px;
+
             &:hover {
                 svg {
                     transition: all 200ms linear;
@@ -632,4 +634,92 @@ ngb-modal-window {
             }
         }
     }
+}
+
+
+.custom-swal-popup {
+    border-radius: 24px;
+    padding: 32px;
+    font-family: inherit;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
+}
+
+
+.custom-swal-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+
+.custom-swal-text {
+    font-size: 15px;
+    color: #777;
+    line-height: 1.8;
+}
+
+
+.swal-confirm {
+    min-width: 120px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+
+.swal-cancel {
+    min-width: 120px;
+    height: 42px;
+    border-radius: 12px;
+    margin-right: 12px;
+}
+
+
+.custom-swal-icon {
+    margin-top: 10px;
+    color: var(--secondary-300) !important;
+    border-color: var(--secondary-300) !important;
+}
+
+.swal2-actions {
+    width: 100%;
+}
+
+.swal2-confirm {
+    width: 100%;
+    border-radius: 10px !important;
+}
+
+
+.custom-toast-popup {
+    border-radius: 10px !important;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .15);
+    min-height: 60px;
+}
+
+
+.custom-toast-title {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+.custom-toast-text {
+    margin: 0 !important;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray-800) !important;
+}
+
+.swal2-container {
+    width: 100% !important;
+
+    &.swal2-bottom-right {
+        width: max-content !important;
+    }
+}
+
+/* نوار زمان پایین Toast */
+.swal2-timer-progress-bar {
+    background: rgba(255, 255, 255, .5) !important;
 }
