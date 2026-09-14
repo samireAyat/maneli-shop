@@ -5,6 +5,7 @@ import { Observable, tap } from 'rxjs';
 import { UserViewModel } from '../../viewModels/user.viewModel';
 import { loginResponseViewModel } from '../../viewModels/loginResponse.viewModel';
 import { AppSetting } from '../appSetting';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,8 @@ export class AuthService {
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
   }
 
@@ -133,7 +135,7 @@ export class AuthService {
     }
 
     if (Date.now() >= Number(expiresAt)) {
-
+      debugger
       this.clearStorage();
 
       return false;
@@ -184,7 +186,7 @@ export class AuthService {
     localStorage.removeItem('role');
 
     localStorage.removeItem('currentUser');
-
+    this.router.navigate(['/login'])
 
   }
 

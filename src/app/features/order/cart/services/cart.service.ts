@@ -139,7 +139,8 @@ export class CartService {
       return {
         Items: [],
         UserID: '',
-
+        Status: '',
+        ErorCode: 0
       } as CartViewModel;
     }
 

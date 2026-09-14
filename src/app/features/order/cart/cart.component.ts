@@ -8,6 +8,7 @@ import { CartItemViewModel } from '../../../viewModels/CartItem.viewModel';
 import { AddToCartRequestViewModel } from '../../../viewModels/AddToCartRequest.viewModel';
 import { PRODUCT_COLORS } from '../../../constants/product-colors';
 import { RouterLink } from "@angular/router";
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +18,7 @@ import { RouterLink } from "@angular/router";
   styleUrl: './cart.component.scss',
 })
 export class CartComponent {
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private authService: AuthService) { }
   colors = PRODUCT_COLORS;
   Math = Math;
   @Output() isConfirmed = new EventEmitter<boolean>
@@ -49,7 +50,7 @@ export class CartComponent {
     this.cartService.getCart().subscribe({
       next: response => {
         this.cartItems = response
-
+        
         let sum = 0
         const eachProductTotal = this.cartItems.Items.map(product => product.Product.Price * product.Quantity);
         this.itemProductTotal.set(eachProductTotal)
@@ -71,7 +72,7 @@ export class CartComponent {
   }
 
   increase(item: CartItemViewModel, index: number) {
-
+    debugger
     const newQuantity = item.Quantity + 1;
 
     this.cartService

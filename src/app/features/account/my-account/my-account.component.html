@@ -34,111 +34,144 @@
                         </div>
                     </div>
                     <ul class="sidebar-wrapper">
-                        <li *ngIf="loggedIn">
-                            <a routerLink="/my-account/orders">
-                                <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
-                                    <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
-                                        [name]="'notes'"></app-solar-icon>
+                        <li *ngIf="loggedIn" (click)="slug = 'orders'">
+                            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'orders'">
+                                <a routerLink="/my-account/orders" [class.selected]="slug === 'orders'">
+                                    <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
+                                        <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
+                                            [name]="'notes'"></app-solar-icon>
 
-                                </span>
-                                سفارش‌های من
+                                    </span>
+                                    سفارش‌های من
 
-                            </a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
+                                </a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
                         </li>
 
-                        <li *ngIf="loggedIn">
-                            <a routerLink="/my-account/favorites">
-                                <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
-                                    <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
-                                        [name]="'heart'"></app-solar-icon>
+                        <li *ngIf="loggedIn" (click)="slug = 'favorites'">
+                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'favorites'">
+                                <a routerLink="/my-account/favorites">
+                                    <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
+                                        <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
+                                            [name]="'heart'"></app-solar-icon>
 
-                                </span>
-                                لیست علاقه‌مندی‌ها
+                                    </span>
+                                    لیست علاقه‌مندی‌ها
 
-                            </a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
+                                </a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
                         </li>
-                        <li *ngIf="loggedIn">
-                            <a routerLink="/my-account/address-list">
-                                <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
-                                    <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
-                                        [name]="'map-point'"></app-solar-icon>
+                        <li *ngIf="loggedIn" (click)="slug = 'addresses'">
+                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'addresses'">
+                                <a routerLink="/my-account/address-list">
+                                    <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
+                                        <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
+                                            [name]="'map-point'"></app-solar-icon>
 
-                                </span>
-                                لیست آدرس‌ها
+                                    </span>
+                                    لیست آدرس‌ها
 
-                            </a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
+                                </a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
                         </li>
-                        <li *ngIf="loggedIn">
-                            <a routerLink="/my-account/account-info" (click)="slug = 'account-info'">
-                                <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
-                                    <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
-                                        [name]="'user-check'"></app-solar-icon>
-                                </span>
-                                اطلاعات حساب کاربری
-                            </a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
-                        </li>
-
-                        <li *ngIf="loggedIn">
-                            <a href="">
-                                <span style="color: var(--error-500); display: flex; gap: 0.5rem;">
-                                    <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
-                                        [name]="'arrows-a-logout'"></app-solar-icon>
-
-                                </span>
-                                خروج
-
-                            </a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
-
+                        <li *ngIf="loggedIn" (click)="slug = 'account-info'">
+                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'account-info'">
+                                <a routerLink="/my-account/account-info" (click)="slug = 'account-info'">
+                                    <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
+                                        <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
+                                            [name]="'user-check'"></app-solar-icon>
+                                    </span>
+                                    اطلاعات حساب کاربری
+                                </a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
                         </li>
 
+                        <li *ngIf="loggedIn" (click)="slug = 'logout'">
+                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'logout'">
+                                <a (click)="authService.logout()">
+                                    <span style="color: var(--error-500); display: flex; gap: 0.5rem;">
+                                        <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
+                                            [name]="'arrows-a-logout'"></app-solar-icon>
 
-                        <li>
-                            <a href="">راهنمای خرید</a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
+                                    </span>
+                                    خروج
+
+                                </a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
+
                         </li>
-                        <li>
-                            <a href="">شرایط بازگشت</a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
+
+
+                        <li (click)="slug = 'user-guide'">
+                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'user-guide'">
+                                <a href="">راهنمای خرید</a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
                         </li>
-                        <li>
-                            <a href="">پرسش‌های متداول</a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        <li (click)="slug = 'return-policy'">
+                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'return-policy'">
+                                <a href="">شرایط بازگشت</a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
                         </li>
-                        <li>
-                            <a href="">قوانین و مقررات</a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        <li (click)="slug = 'faq'">
+                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'faq'">
+                                <a href="">پرسش‌های متداول</a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
                         </li>
-                        <li>
-                            <a href=""> درباره ما</a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        <li (click)="slug = 'terms-conditions'">
+                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'terms-conditions'">
+                                <a href="">قوانین و مقررات</a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
                         </li>
-                        <li>
-                            <a href="">تماس با ما</a>
-                            <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
-                                style="width: 20px; height: 20px;"></app-solar-icon>
+                        <li (click)="slug = 'about-us'">
+                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'about-us'">
+                                <a href=""> درباره ما</a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
+                        </li>
+                        <li (click)="slug = 'contact-us'">
+                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'contact-us'">
+                                <a href="">تماس با ما</a>
+                                <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
+                                    style="width: 20px; height: 20px;"></app-solar-icon>
+                            </div>
                         </li>
 
                     </ul>
 
                 </div>
                 <!-- [style.display]="!isChildRouteActive ? 'none' : ''" -->
-                <div class="account-content" [class.mobile-full]="isChildRouteActive" >
-                    <div class="">
+                <div class="account-content" [class.mobile-full]="isChildRouteActive">
+                    <div style="height: calc(100% - 3rem)">
                         <router-outlet></router-outlet>
                     </div>
                 </div>

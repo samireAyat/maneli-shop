@@ -1,1 +1,47 @@
-<p>edit-profile works!</p>
+<div class="edit-profile">
+    <div class="form-container">
+        <form #profileForm="ngForm" (ngSubmit)="submit(profileForm)">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <label class="requierd">نام</label>
+                        <input name="name" [(ngModel)]="userInfo.Name" required type="text">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group" >
+                        <label class="requierd">نام‌خانوادگی</label>
+                        <input name="lastName" [(ngModel)]="userInfo.LastName" required type="text">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <label class="requierd">کد ملی</label>
+                        <input name="NID" [(ngModel)]="userInfo.NationalCode" required type="text">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <label class="requierd">شماره همراه</label>
+                        <input name="phoneNumber" [(ngModel)]="userInfo.PhoneNumber" required type="text">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <label class="requierd">ایمیل</label>
+                        <input name="email" [(ngModel)]="userInfo.Email" required type="text">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <label class="requierd">تاریخ تولد</label>
+                        <input name="birthDate" [(ngModel)]="userInfo.BirthDate" required type="text">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <button type="submit" class="btn primary">ثبت اطلاعات کاربری</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -60,6 +60,11 @@ export const routes: Routes = [
         component: MyAccountComponent,
         children: [
           {
+            path: '',
+            redirectTo: 'account-info',
+            pathMatch: 'full'
+          },
+          {
             path: 'orders',
             component: OrdersComponent
           },
@@ -73,7 +78,7 @@ export const routes: Routes = [
           },
           {
             path: 'account-info',
-            component: AccountInfoComponent
+            component: AccountInfoComponent,
           },
           {
             path: 'edit-profile',

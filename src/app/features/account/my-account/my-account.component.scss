@@ -93,16 +93,18 @@
                         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                         padding: 0 0.7rem;
                         border-radius: 10px;
+                        background-color: white;
 
 
                         li {
                             width: 100%;
-                            padding: 1rem 0;
+                            padding: 0.5rem 0;
                             display: flex;
                             align-items: center;
                             justify-content: space-between;
                             color: var(--title);
                             border-bottom: 1px solid var(--gray-100);
+                            cursor: pointer;
 
                             a {
                                 text-decoration: none;
@@ -152,99 +154,105 @@
 
 
 @media screen and (min-width: 750px) {
-.account-wrapper {
+    .account-wrapper {
 
-    .account-inner {
-
-
-        .background {
-            display: none;
-        }
-
-        .sidebar-content-section {
-            margin: unset;
-            .login-btn {
-                button {
-                }
-            }
-
-            .content {
-                justify-content: center;
-
-                .account-sidebar {
-                    width: unset;
-
-                    .account-info {
-
-                        .user-info {
-
-                        }
-
-                        .edit-btn {
-
-                            span {
-                            }
-                        }
-
-                        .orders-info {
-                            display: none;
-
-                            >span {
-
-                            }
-                        }
-
-                    }
-
-                    .sidebar-wrapper {
+        .account-inner {
 
 
-
-                        li {
-
-
-                            a {
-
-                            }
-                        }
-
-                    }
-
-                    &.mobile-hidden {
-                        display: unset;
-                    }
-
-                }
-
-                .account-content {
-                    margin-top: 6rem;
-                    max-width: 1000px;
-                    &.mobile-full {
-                        // width: unset;
-                    }
-                }
-
-
-            }
-
-            .social {
+            .background {
                 display: none;
             }
 
-            &.not-login {
-                display: none;
+            .sidebar-content-section {
+                margin: unset;
+
+                .login-btn {
+                    button {}
+                }
+
+                .content {
+                    justify-content: center;
+
+                    .account-sidebar {
+                        width: unset;
+
+                        .account-info {
+
+                            .user-info {}
+
+                            .edit-btn {
+
+                                span {}
+                            }
+
+                            .orders-info {
+                                display: none;
+
+                                >span {}
+                            }
+
+                        }
+
+                        .sidebar-wrapper {
+
+
+
+                            li {
+
+
+                                a {}
+                            }
+
+                        }
+
+                        &.mobile-hidden {
+                            display: unset;
+                        }
+
+                    }
+
+                    .account-content {
+                        margin-top: 6rem;
+                        max-width: 1000px;
+
+                        &.mobile-full {
+                            // width: unset;
+                        }
+                    }
+
+
+                }
+
+                .social {
+                    display: none;
+                }
+
+                &.not-login {
+                    display: none;
+                }
+
+            }
+
+            .desktop-view {
+                &.not-login {
+                    display: block;
+                }
             }
 
         }
-
-        .desktop-view {
-            &.not-login {
-                display: block;
-            }
-        }
-
     }
 }
+
+
+.selected {
+color: var(--secondary-600);
+    background-color: var(--secondary-100);
+    // padding: 0.5rem;
+    border-radius: 10px;
+
+    a {
+        color: var(--secondary-600);
+    }
 }
 
 @media screen and (min-width: 500px) {}

@@ -25,8 +25,8 @@ export class MyAccountComponent {
   mobileView = false
   isChildRouteActive = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {
-
+  constructor(private route: ActivatedRoute, private router: Router, public authService: AuthService) {
+    
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -45,6 +45,8 @@ export class MyAccountComponent {
 
   ngOnInit() {
     this.loggedIn = this.authService.isLoggedIn()
+    this.slug = 'account-info'
+
   }
 
 

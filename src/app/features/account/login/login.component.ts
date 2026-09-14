@@ -57,7 +57,6 @@ export class LoginComponent {
   }
 
   login() {
-    debugger
     this.authService.login(this.user).subscribe({
       next: res => {
         if (res.Message === 'success') {

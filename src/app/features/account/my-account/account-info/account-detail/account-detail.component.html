@@ -1,0 +1,43 @@
+<div class="account-detail">
+    <div class="wrapper">
+        <div class="header">
+            <span class="title">
+                <span style="color: var(--gray-700); display: flex; align-items: center;">
+                    <app-solar-icon style="width: 24px; height: 24px;" name="user-id"></app-solar-icon>
+                </span>
+                اطلاعات کاربری
+            </span>
+            <button [routerLink]="['/my-account' , 'edit-profile']" class="edit-btn btn primary ">
+                <app-solar-icon style="width: 15px; height: 15px;" [name]="'pen'" [size]="15"></app-solar-icon>
+                ویرایش
+            </button>
+        </div>
+        <div class="content">
+            <div class="column-1">
+                <div class="info-item">
+                    <span>نام و نام خانوادگی:</span>
+                    <span class="info"> {{userInfo.Name}} {{userInfo.LastName}}</span>
+                </div>
+                <div class="info-item">
+                    <span>شماره تماس ضروری:</span>
+                    <span class="info"> {{userInfo.PhoneNumber}}</span>
+                </div>
+            </div>
+            <div class="column-2">
+                <div class="info-item">
+                    <span>ایمیل:</span>
+                    <span class="info"> {{userInfo.Email}}</span>
+                </div>
+                <div class="info-item">
+                    <span>تاریخ تولد:</span>
+                    <span class="info"> {{userInfo.BirthDate}}</span>
+                </div>
+                <div class="info-item">
+                    <span>کد ملی:</span>
+                    <span class="info"> {{userInfo.NationalCode}}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
