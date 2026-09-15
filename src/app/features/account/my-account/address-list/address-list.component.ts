@@ -1,4 +1,4 @@
-import { Component, ElementRef, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ShippingService } from '../../../order/shipping/shipping.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddressViewModel } from '../../../../viewModels/address.ViewModel';
@@ -6,6 +6,7 @@ import { provinces } from '../../../../shared/components/province-city-selector/
 import { AppSetting } from '../../../../core/appSetting';
 import { SHARED_IMPORTS } from '../../../../shared/shared.imports';
 import { SimplebarAngularModule } from 'simplebar-angular';
+import { ActivatedRoute } from '@angular/router';
 interface ApiResponse<T> {
   status: number;
   message: string;
@@ -21,15 +22,31 @@ export class AddressListComponent {
   provice = provinces
   @ViewChild('newAddressTemplate') modalTemplate !: TemplateRef<any>
   @ViewChild('shippingWrapper') shippingWrapper !: ElementRef<HTMLElement>
+  addressList: AddressViewModel[] = []
+  @Output() addressListChange =
+    new EventEmitter<AddressViewModel[]>();
+  isInAccountPage = false
   appSetting: AppSetting = new AppSetting
   cities: any[] = []
   selectedProvince: any = null;
   selectedCity: any = null;
   newAddress: AddressViewModel = new AddressViewModel()
-  addressList: AddressViewModel[] = []
-  selectedAddressId: string = ''
-  constructor(public modalService: NgbModal, private shippingService: ShippingService) {
 
+
+  selectedAddressId: string = ''
+  constructor(public modalService: NgbModal, private shippingService: ShippingService, private route: ActivatedRoute) {
+
+  }
+
+  ngOnInit() {
+    this.getAddress()
+    this.isInAccountPage = this.route.snapshot.data['isInAccountPage'] ?? false
+  }
+
+  get sortedAddressList() {
+    return [...this.addressList].sort(
+      (a, b) => Number(b.IsDefault) - Number(a.IsDefault)
+    );
   }
 
   onProvinceChange() {
@@ -42,6 +59,9 @@ export class AddressListComponent {
     if (!this.addressList) {
       this.addressesListShow = false
 
+    } else if (this.isInAccountPage) {
+      this.addressesListShow = false
+      this.addingNewAddress = true
     } else {
       this.addressesListShow = true
       this.addingNewAddress = false
@@ -74,10 +94,12 @@ export class AddressListComponent {
     return label
   }
   addressesListShow = false
+
   getAddress() {
     this.shippingService.getAddresses().subscribe({
       next: res => {
         this.addressList = res.data.Addresses
+        this.addressListChange.emit(this.addressList)
 
       }
     })
@@ -179,7 +201,9 @@ export class AddressListComponent {
           text: 'عملیات با موفقیت انجام شد.',
           background: 'var(--primary-300)'
         })
+        this.getAddress()
         this.modalService.dismissAll()
+
       }
     })
   }

@@ -135,7 +135,7 @@ export class AuthService {
     }
 
     if (Date.now() >= Number(expiresAt)) {
-      debugger
+      this.router.navigate(['/login'])
       this.clearStorage();
 
       return false;
@@ -186,7 +186,7 @@ export class AuthService {
     localStorage.removeItem('role');
 
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/login'])
+
 
   }
 

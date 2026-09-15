@@ -1,221 +1,129 @@
-<div class="shipping-wrapper" #shippingWrapper>
-    <div *ngIf="addressList.length">
-        @for (item of addressList; track $index; let i = $index) {
-
-        <label *ngIf="item.IsDefault" class="address-card" [class.selected]="selectedAddressId === item._id"
-            [for]="'address-' + item._id">
-            <!-- <span class="map-icon">
-                    <app-solar-icon style="width: 20px; height: 20px" [name]="'map-point'" [size]="20"></app-solar-icon>
-                </span> -->
-
-            <input style="display: none;" type="radio" [id]="'address-' + item._id" name="address" [value]="item._id"
-                [(ngModel)]="selectedAddressId" />
-
-            <div class="address-card-content">
-
+<div class="shipping-wrapper" #shippingWrapper [class.account-page]="isInAccountPage">
+    <!-- Address List -->
+    @if (addressList.length) {
+    <div class="address-list" >
+        @for (item of addressList; track item._id; let i = $index)
+        {
+        @if (isInAccountPage ||item.IsDefault)
+        { <label class="address-card" [class.selected]="selectedAddressId === item._id" [for]="'address-' + item._id">
+            <input type="radio" [id]="'address-' + item._id" name="address" [value]="item._id"
+                [(ngModel)]="selectedAddressId" hidden />
+            <div class="address-card-content"> <!-- Header -->
                 <div class="address-card-header">
-
                     <div class="address-title">
-                        <span class="address-number">{{ i + 1 }}</span>
-
-                        <span class="address-label">
-                            {{ item.AddressLabel }}
-                        </span>
-                    </div>
-
-                    @if (item.IsDefault) {
-                    <span class="default-badge">
-                        آدرس پیش‌فرض
-                    </span>
-                    }
-
-                </div>
-
-                <div class="address-location">
-                    <span>{{ item.Province }}</span>
-                    <span class="separator">-</span>
-                    <span>{{ item.City }}</span>
-                </div>
-
-                <div class="address-text">
-                    {{ item.Address }}
-                </div>
-                <div class="reciever">
-                    گیرنده:
-                    {{item.FirstName + ' ' + item.LastName}}
-                </div>
+                        <span class="address-number"> {{ i + 1 }} </span>
+                        <span class="address-label"> {{ item.AddressLabel }} </span>
+                    </div> @if (item.IsDefault) { <span class="default-badge"> آدرس پیش‌فرض </span> }
+                </div> <!-- Location -->
+                <div class="address-location"> <span> {{ item.Province }} </span> <span class="separator"> - </span>
+                    <span> {{ item.City }} </span>
+                </div> <!-- Address -->
+                <div class="address-text"> {{ item.Address }} </div> <!-- Receiver -->
+                <div class="reciever"> گیرنده: {{ item.FirstName }} {{ item.LastName }} </div> <!-- Actions -->
                 <div class="buttons">
-                    <span (click)="editAddress(item)">
-                        <app-solar-icon style="width: 18px; height: 18px" [name]="'pen-new-square'"
-                            [size]="18"></app-solar-icon>
-
+                    <span (click)="editAddress(item); $event.stopPropagation()">
+                        <app-solar-icon style="width: 18px; height: 18px" [name]="'pen-new-square'" [size]="18">
+                        </app-solar-icon>
                     </span>
-                    <span>
-                        <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
-                            [size]="20"></app-solar-icon>
+                    <span (click)="$event.stopPropagation()">
+                        <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'" [size]="20">
+                        </app-solar-icon>
                     </span>
                 </div>
-
             </div>
-
         </label>
-
-
-        }
-    </div>
-    <div *ngIf="!addressList.length" class="no-address">
-        <span class="img-wrapper"><img src="images/no-address.png" alt=""></span>
-        <span style="font-size: 14px; font-weight: 600;">شما آدرسی ثبت نکرده‌اید</span>
-    </div>
-    <div class="add-address" style="margin-top: 1rem;">
-        <button class="btn secondary outline" (click)="onNewAdrressModal(newAddressTemplate)">ثبت یا انتخاب
-            آدرس
-            جدید</button>
-    </div>
+        } }
+    </div> }
+    @else { <!-- Empty State -->
+    <div class="no-address"> <span class="img-wrapper"> <img src="images/no-address.png" alt="بدون آدرس"> </span> <span
+            style="font-size: 14px; font-weight: 600;"> شما آدرسی ثبت نکرده‌اید </span> </div> } <!-- Add Address -->
+    <div class="add-address" style="margin-top: 1rem;"> <button type="button" class="btn secondary outline"
+            (click)="onNewAdrressModal(newAddressTemplate)">
+            <span *ngIf="isInAccountPage">ثبت آدرس جدید</span>
+            <span *ngIf="!isInAccountPage">ثبت یا انتخاب آدرس جدید</span>
+        </button> </div>
 </div>
-
-
+<!-- ========================================================= --> <!-- Address Modal -->
+<!-- ========================================================= -->
 <ng-template #newAddressTemplate>
-    <div class="modal">
+    <div class="modal"> <!-- Modal Header -->
         <div class="modal-header">
-            <span class="back-icon" style="cursor: pointer;" *ngIf="addingNewAddress"
-                (click)="addressesListShow = true; addingNewAddress= false">
+            @if (addingNewAddress) {
+            <span *ngIf="!isInAccountPage" class="back-icon" style="cursor: pointer;"
+                (click)="addressesListShow = true; addingNewAddress = false">
                 <app-solar-icon style="width: 24px; height: 24px;" [name]="'alt-arrow-right'"></app-solar-icon>
-            </span>
-            <span>
-                {{label}}
-
-            </span>
-
+            </span> }
+            <span> {{label }} </span>
             <span class="close-btn" (click)="modalService.dismissAll(); isEdittingAddress = false">
-                <app-solar-icon style="width: 24px; height: 24px;" [name]="'close'" [size]="24"></app-solar-icon>
+                <app-solar-icon style="width: 24px; height: 24px;" [name]="'close'" [size]="24"> </app-solar-icon>
             </span>
         </div>
+        <!-- Modal Content -->
         <ngx-simplebar style="max-height: 500px;">
-            <div style="padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem;" *ngIf="addressesListShow">
-                @for (item of addressList; track $index; let i = $index) {
-                <label (click)="makeAddressDefult(item)" class="address-card"
-                    [class.selected]="selectedAddressId === item._id" [for]="'address-' + item._id">
-                    <!-- <span class="map-icon">
-                    <app-solar-icon style="width: 20px; height: 20px" [name]="'map-point'" [size]="20"></app-solar-icon>
-                </span> -->
-
-                    <input style="display: none;" type="radio" [id]="'address-' + item._id" name="address"
-                        [value]="item._id" [(ngModel)]="selectedAddressId" />
-
-                    <div class="address-card-content">
-
+            @if (addressesListShow) {
+            <div class="address-modal-list">
+                <!-- In My Account: Don't show the address list again. In Shipping: Show all addresses so user can select one. -->
+                @if (!isInAccountPage) {
+                @for ( item of sortedAddressList; track item._id; let i = $index ) {
+                <label class="address-card" [class.selected]="selectedAddressId === item._id"
+                    [for]="'modal-address-' + item._id" (click)="makeAddressDefult(item)">
+                    <input type="radio" [id]="'modal-address-' + item._id" name="modal-address" [value]="item._id"
+                        [(ngModel)]="selectedAddressId" hidden />
+                    <div class="address-card-content"> <!-- Header -->
                         <div class="address-card-header">
-
-                            <div class="address-title">
-                                <span class="address-number">{{ i + 1 }}</span>
-
-                                <span class="address-label">
-                                    {{ item.AddressLabel }}
-                                </span>
-                            </div>
-
-                            @if (item.IsDefault) {
-                            <span class="default-badge">
-                                آدرس پیش‌فرض
-                            </span>
-                            }
-
-                        </div>
-
-                        <div class="address-location">
-                            <span>{{ item.Province }}</span>
-                            <span class="separator">-</span>
-                            <span>{{ item.City }}</span>
-                        </div>
-
-                        <div class="address-text">
-                            {{ item.Address }}
-                        </div>
-                        <div class="reciever">
-                            گیرنده:
-                            {{item.FirstName + ' ' + item.LastName}}
-                        </div>
-                        <div class="buttons">
-                            <span (click)="editAddress(item)">
-                                <app-solar-icon style="width: 18px; height: 18px" [name]="'pen-new-square'"
-                                    [size]="18"></app-solar-icon>
-
-                            </span>
-                            <span>
-                                <app-solar-icon style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'"
-                                    [size]="20"></app-solar-icon>
-                            </span>
-                        </div>
-
+                            <div class="address-title"> <span class="address-number"> {{ i + 1 }} </span> <span
+                                    class="address-label"> {{ item.AddressLabel }} </span> </div> @if (item.IsDefault) {
+                            <span class="default-badge"> آدرس پیش‌فرض </span> }
+                        </div> <!-- Location -->
+                        <div class="address-location"> <span> {{ item.Province }} </span> <span class="separator"> -
+                            </span> <span> {{ item.City }} </span> </div> <!-- Address -->
+                        <div class="address-text"> {{ item.Address }} </div> <!-- Receiver -->
+                        <div class="reciever"> گیرنده: {{ item.FirstName }} {{ item.LastName }} </div> <!-- Actions -->
+                        <div class="buttons"> <span (click)="editAddress(item); $event.stopPropagation()">
+                                <app-solar-icon style="width: 18px; height: 18px" [name]="'pen-new-square'" [size]="18">
+                                </app-solar-icon> </span> <span (click)="$event.stopPropagation()"> <app-solar-icon
+                                    style="width: 20px; height: 20px" [name]="'trash-bin-minimalistic'" [size]="20">
+                                </app-solar-icon> </span> </div>
                     </div>
-
-                </label>
-                }
-                <div class="add-address" style="margin-top: 1rem;">
-                    <button class="btn secondary" (click)="addingNewAddress = true; addressesListShow = false">ثبت آدرس
-                        جدید</button>
-                </div>
-            </div>
-        </ngx-simplebar>
-        @if (addingNewAddress || isEdittingAddress) {
-        <form #newAddressForm="ngForm" (ngSubmit)="onSubmitNewAddress()">
-            <div class="modal-body">
-                <h5 for="">اطلاعات شخص تحویل گیرنده</h5>
-                <div class="input-group">
-                    <input name="firstName" [(ngModel)]="newAddress.FirstName" type="text" placeholder="نام">
-                </div>
-                <div class="input-group">
-                    <input name="lastName" [(ngModel)]="newAddress.LastName" type="text" placeholder="نام خانوادگی">
-                </div>
-                <h5 for="">اطلاعات ارسال</h5>
-                <div class="input-group">
-                    <input name="mobileNumber" [(ngModel)]="newAddress.Mobile" type="text" placeholder="شماره همراه">
-                </div>
-                <div class="input-group">
-                    <input name="phoneNumber" [(ngModel)]="newAddress.Phone" type="text" placeholder="تلفن ثابت">
-                </div>
-                <div class="input-group">
-                    <label class="requierd"> استان </label>
-                    <ng-select required autocomplete="off" name="provinceList" (change)="onProvinceChange()"
-                        [(ngModel)]="newAddress.Province" [searchable]="true" [items]="provice" bindLabel="province"
-                        bindValue="province" placeholder="انتخاب استان">
-
-                    </ng-select>
-
-                </div>
-                <div class="input-group">
-                    <label class="requierd"> شهر </label>
-                    <ng-select required name="city" [(ngModel)]="newAddress.City" [searchable]="true" [items]="cities"
-                        bindLabel="cities" bindValue="cities" placeholder="انتخاب شهر">
-
-                    </ng-select>
-
-                </div>
-                <div class="input-group">
-                    <label class="requierd" for="">کدپستی</label>
-                    <input name="postalCode" [(ngModel)]="newAddress.PostalCode" required type="text"
-                        placeholder="کدپستی">
-                </div>
-                <div class="input-group">
-                    <label class="requierd" for="">عنوان آدرس</label>
-                    <input name="addressLabel" [(ngModel)]="newAddress.AddressLabel" required type="text"
-                        placeholder="مثلا: خانه مامان">
-                </div>
-                <div class="input-group">
-                    <label class="requierd">آدرس</label>
-                    <textarea name="fullAddress" [(ngModel)]="newAddress.Address" required rows="5"
-                        placeholder="آدرس را به صورت کامل وارد کنید"></textarea>
-                </div>
-
-
-            </div>
+                </label> } <!-- Add New Address -->
+                <div class="add-address" style="margin-top: 1rem;"> <button type="button" class="btn secondary"
+                        (click)="addingNewAddress = true; addressesListShow = false"> ثبت آدرس جدید </button> </div> }
+            </div> }
+        </ngx-simplebar> <!-- ===================================================== -->
+        <!-- New / Edit Address Form --> <!-- ===================================================== -->
+        @if(addingNewAddress || isEdittingAddress)
+        { <form #newAddressForm="ngForm" (ngSubmit)="onSubmitNewAddress()">
+            <div class="modal-body"> <!-- Receiver Information -->
+                <h5> اطلاعات شخص تحویل گیرنده </h5>
+                <div class="input-group"> <input name="firstName" [(ngModel)]="newAddress.FirstName" type="text"
+                        placeholder="نام"> </div>
+                <div class="input-group"> <input name="lastName" [(ngModel)]="newAddress.LastName" type="text"
+                        placeholder="نام خانوادگی"> </div> <!-- Shipping Information -->
+                <h5> اطلاعات ارسال </h5>
+                <div class="input-group"> <input name="mobileNumber" [(ngModel)]="newAddress.Mobile" type="text"
+                        placeholder="شماره همراه"> </div>
+                <div class="input-group"> <input name="phoneNumber" [(ngModel)]="newAddress.Phone" type="text"
+                        placeholder="تلفن ثابت"> </div> <!-- Province -->
+                <div class="input-group"> <label class="requierd"> استان </label> <ng-select required autocomplete="off"
+                        name="provinceList" [(ngModel)]="newAddress.Province" [searchable]="true" [items]="provice"
+                        bindLabel="province" bindValue="province" placeholder="انتخاب استان"
+                        (change)="onProvinceChange()"> </ng-select> </div> <!-- City -->
+                <div class="input-group"> <label class="requierd"> شهر </label> <ng-select required name="city"
+                        [(ngModel)]="newAddress.City" [searchable]="true" [items]="cities" bindLabel="cities"
+                        bindValue="cities" placeholder="انتخاب شهر"> </ng-select> </div> <!-- Postal Code -->
+                <div class="input-group"> <label class="requierd"> کدپستی </label> <input name="postalCode"
+                        [(ngModel)]="newAddress.PostalCode" required type="text" placeholder="کدپستی"> </div>
+                <!-- Address Label -->
+                <div class="input-group"> <label class="requierd"> عنوان آدرس </label> <input name="addressLabel"
+                        [(ngModel)]="newAddress.AddressLabel" required type="text" placeholder="مثلا: خانه مامان">
+                </div> <!-- Full Address -->
+                <div class="input-group"> <label class="requierd"> آدرس </label> <textarea name="fullAddress"
+                        [(ngModel)]="newAddress.Address" required rows="5"
+                        placeholder="آدرس را به صورت کامل وارد کنید"> </textarea> </div>
+            </div> <!-- Form Footer -->
             <div class="modal-footer">
-                <div class="submit-address">
-                    <button class="btn secondary">ثبت آدرس</button>
-                </div>
+                <div class="submit-address"> <button type="submit" class="btn secondary"> ثبت آدرس </button> </div>
             </div>
-        </form>
-        }
+        </form> }
     </div>
 </ng-template>

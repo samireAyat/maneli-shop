@@ -26,16 +26,23 @@ import { AddressListComponent } from '../../account/my-account/address-list/addr
 export class ShippingComponent {
   @ViewChild('newAddressTemplate') modalTemplate !: TemplateRef<any>
   @ViewChild('shippingWrapper') shippingWrapper !: ElementRef<HTMLElement>
+  @ViewChild('addressList') addressList !: AddressListComponent
   appSetting: AppSetting = new AppSetting
 
   constructor(public modalService: NgbModal, private shippingService: ShippingService, private cartService: CartService) {
 
   }
   productImages: any[] = []
+  defaultAddress: any
   ngOnInit() {
     this.getCart()
   }
 
+  
+  onAddressListChange(addresses: AddressViewModel[]) {
+    this.defaultAddress = addresses.find((address: { IsDefault: any; }) => address.IsDefault) ?? '';
+
+  }
 
 
   getCart() {

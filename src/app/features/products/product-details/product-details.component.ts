@@ -271,6 +271,7 @@ export class ProductDetailsComponent {
             text: res.message,
             background: 'var(--primary)'
           })
+          this.getFavorite()
         } else {
           this.appSetting.swalToastStructure.fire({
             text: res.message,
@@ -314,6 +315,7 @@ export class ProductDetailsComponent {
             text: res.message,
             background: 'var(--primary)'
           })
+          this.getFavorite()
         } else {
           this.appSetting.swalToastStructure.fire({
             text: res.message,

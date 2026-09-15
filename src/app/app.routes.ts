@@ -74,7 +74,8 @@ export const routes: Routes = [
           },
           {
             path: 'address-list',
-            component: AddressListComponent
+            component: AddressListComponent,
+            data: {isInAccountPage: true}
           },
           {
             path: 'account-info',

@@ -35,7 +35,7 @@
                     </div>
                     <ul class="sidebar-wrapper">
                         <li *ngIf="loggedIn" (click)="slug = 'orders'">
-                            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                            <div class="inside-div" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
                                 [class.selected]="slug === 'orders'">
                                 <a routerLink="/my-account/orders" [class.selected]="slug === 'orders'">
                                     <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
@@ -52,7 +52,7 @@
                         </li>
 
                         <li *ngIf="loggedIn" (click)="slug = 'favorites'">
-                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                            <div class="inside-div" style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
                                 [class.selected]="slug === 'favorites'">
                                 <a routerLink="/my-account/favorites">
                                     <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
@@ -67,9 +67,9 @@
                                     style="width: 20px; height: 20px;"></app-solar-icon>
                             </div>
                         </li>
-                        <li *ngIf="loggedIn" (click)="slug = 'addresses'">
-                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
-                                [class.selected]="slug === 'addresses'">
+                        <li *ngIf="loggedIn" (click)="slug = 'address-list'">
+                            <div class="inside-div" style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                                [class.selected]="slug === 'address-list'">
                                 <a routerLink="/my-account/address-list">
                                     <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
                                         <app-solar-icon style="width: 20px; height: 20px;" [size]="20"
@@ -84,7 +84,7 @@
                             </div>
                         </li>
                         <li *ngIf="loggedIn" (click)="slug = 'account-info'">
-                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                            <div class="inside-div" style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
                                 [class.selected]="slug === 'account-info'">
                                 <a routerLink="/my-account/account-info" (click)="slug = 'account-info'">
                                     <span style="color: var(--secondary-500); display: flex; gap: 0.5rem;">
@@ -99,7 +99,7 @@
                         </li>
 
                         <li *ngIf="loggedIn" (click)="slug = 'logout'">
-                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                            <div class="inside-div" style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
                                 [class.selected]="slug === 'logout'">
                                 <a (click)="authService.logout()">
                                     <span style="color: var(--error-500); display: flex; gap: 0.5rem;">
@@ -118,7 +118,7 @@
 
 
                         <li (click)="slug = 'user-guide'">
-                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                            <div class="inside-div" style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
                                 [class.selected]="slug === 'user-guide'">
                                 <a href="">راهنمای خرید</a>
                                 <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
@@ -126,7 +126,7 @@
                             </div>
                         </li>
                         <li (click)="slug = 'return-policy'">
-                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                            <div class="inside-div" style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
                                 [class.selected]="slug === 'return-policy'">
                                 <a href="">شرایط بازگشت</a>
                                 <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
@@ -134,7 +134,7 @@
                             </div>
                         </li>
                         <li (click)="slug = 'faq'">
-                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                            <div class="inside-div" style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
                                 [class.selected]="slug === 'faq'">
                                 <a href="">پرسش‌های متداول</a>
                                 <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
@@ -142,7 +142,7 @@
                             </div>
                         </li>
                         <li (click)="slug = 'terms-conditions'">
-                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                            <div class="inside-div" style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
                                 [class.selected]="slug === 'terms-conditions'">
                                 <a href="">قوانین و مقررات</a>
                                 <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
@@ -150,7 +150,7 @@
                             </div>
                         </li>
                         <li (click)="slug = 'about-us'">
-                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                            <div class="inside-div" style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
                                 [class.selected]="slug === 'about-us'">
                                 <a href=""> درباره ما</a>
                                 <app-solar-icon [name]="'alt-arrow-left'" [size]="20"
@@ -158,7 +158,7 @@
                             </div>
                         </li>
                         <li (click)="slug = 'contact-us'">
-                            <div style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
+                            <div class="inside-div" style=" display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0.7rem;"
                                 [class.selected]="slug === 'contact-us'">
                                 <a href="">تماس با ما</a>
                                 <app-solar-icon [name]="'alt-arrow-left'" [size]="20"

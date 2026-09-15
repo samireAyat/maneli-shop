@@ -26,28 +26,49 @@ export class MyAccountComponent {
   isChildRouteActive = false;
 
   constructor(private route: ActivatedRoute, private router: Router, public authService: AuthService) {
-    
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
 
-        const url = this.router.url;
-
-        this.isChildRouteActive =
-          url.startsWith('/my-account/orders') ||
-          url.startsWith('/my-account/favorites') ||
-          url.startsWith('/my-account/address-list') ||
-          url.startsWith('/my-account/account-info') ||
-          url.startsWith('/my-account/edit-profile');
-
-      });
   }
-
   ngOnInit() {
     this.loggedIn = this.authService.isLoggedIn()
-    this.slug = 'account-info'
+
+    // وضعیت فعلی
+    this.checkChildRoute(this.router.url);
+
+    // navigation های بعدی
+    this.router.events
+      .pipe(
+        filter(
+          (event): event is NavigationEnd =>
+            event instanceof NavigationEnd
+        )
+      )
+      .subscribe(event => {
+
+        console.log('NavigationEnd:', event);
+
+        this.checkChildRoute(event.urlAfterRedirects);
+
+      });
 
   }
+
+  private checkChildRoute(url: string): void {
+
+    this.isChildRouteActive =
+      url.startsWith('/my-account/orders') ||
+      url.startsWith('/my-account/favorites') ||
+      url.startsWith('/my-account/address-list') ||
+      url.startsWith('/my-account/account-info') ||
+      url.startsWith('/my-account/edit-profile');
+
+    if (this.isChildRouteActive) {
+      this.slug = url.split('/')[2];
+    } else {
+      this.slug = 'account-info';
+    }
+  }
+
+
 
 
 

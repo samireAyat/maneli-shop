@@ -6,26 +6,46 @@
     <div class="shipping-inner">
         <div class="address-wrapper">
 
-            <app-address-list></app-address-list>
+            <app-address-list #addressList (addressListChange)="onAddressListChange($event)"></app-address-list>
 
         </div>
         <div class="shopping-summary">
             <h5 style="margin-bottom: 1rem;">خلاصه سبد خرید</h5>
-            <div class="wrapper">
-            @for (item of productImages; track $index) {
+            <div style="display: flex; gap: 1rem; flex-direction: column;">
+                <div class="wrapper">
+                    @for (item of productImages; track $index) {
 
-            <div class="image-wrapper">
-                <img [src]="'http://localhost:3000' + item.Variant.Image" alt="">
+                    <div class="item">
+                        <div class="image-wrapper">
+                            <img [src]="'http://localhost:3000' + item.Variant.Image" alt="">
+                        </div>
+                        <span class="quantity" *ngIf="item.Quantity > 1">{{item.Quantity}}</span>
+                    </div>
+
+                    }
+                </div>
+                <div style="padding: 1rem; background-color: var(--primary-50); border-radius: 10px;">
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                        <span style="color: var(--secondary-500); width: 20px; height: 20px;">
+                            <app-solar-icon style="width: 20px; height: 20px;" [name]="'map-point'"
+                                [size]="20"></app-solar-icon>
+                        </span>
+                        <span style="font-weight: 700;"> ارسال به :</span>
+                        <span> {{defaultAddress.AddressLabel}}</span>
+                    </div>
+                    <span style="display: flex; flex-direction: column; margin-top: 0.5rem; font-size: 14px;">
+                        <span>{{defaultAddress.Address}}</span>
+                    </span>
+
+                </div>
             </div>
-            <span *ngIf="item.Quantity > 1">{{item.Quantity}}</span>
+            <div class="confirm">
+                <button class=" btn secondary">تایید و ادامه</button>
+            </div>
+        </div>
 
-            }
-        </div>
-        <div>
-            <button class="btn primary">تایید و ادامه</button>
-        </div>
     </div>
-
+    <div class="shipping-image">
+        <img src="images/shipping1 (1).png" alt="">
+    </div>
 </div>
-</div>
-

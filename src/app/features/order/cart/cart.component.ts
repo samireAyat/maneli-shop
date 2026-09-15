@@ -72,7 +72,6 @@ export class CartComponent {
   }
 
   increase(item: CartItemViewModel, index: number) {
-    debugger
     const newQuantity = item.Quantity + 1;
 
     this.cartService

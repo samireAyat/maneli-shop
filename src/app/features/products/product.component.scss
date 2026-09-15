@@ -71,3 +71,13 @@
           pointer-events: none; // در حالت مخفی قابل کلیک نیست
       }
   }
+
+  .account-page {
+      width: max-content !important;
+
+      .product-detail {
+
+          justify-content: center !important;
+          flex-direction: column !important;
+      }
+  }

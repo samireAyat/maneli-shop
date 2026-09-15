@@ -1,1 +1,10 @@
-<p>favorits works!</p>
+<div >
+    <ngx-simplebar style="max-height: 580px">
+        <div class="products-wrapper">
+            <ng-container *ngFor="let product of productList">
+                <app-product [isInAccountPage]="true" [product]="product"></app-product>
+            </ng-container>
+        </div>
+
+    </ngx-simplebar>
+</div>

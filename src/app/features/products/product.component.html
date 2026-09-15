@@ -1,4 +1,4 @@
-<div class="product-inner">
+<div class="product-inner" [class.account-page]="isInAccountPage">
     <div *ngIf="product.Variants.length > 0" class="product-image">
         <img [src]="productImageAddress(product.Variants[0].Images[0])" alt="">
     </div>

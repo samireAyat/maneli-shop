@@ -29,6 +29,7 @@ import { Route, Router } from '@angular/router';
 export class ProductComponent {
   constructor(private router: Router) { }
   @Input() product = new ProductsViewModel()
+  @Input() isInAccountPage = false
 
   productImageAddress(images: any) {
     return 'http://localhost:3000' + images
