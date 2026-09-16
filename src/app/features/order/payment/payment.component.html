@@ -3,4 +3,75 @@
         <app-solar-icon style="width: 20px; height: 20px" [name]="'wallet-money'" [size]="20"></app-solar-icon>
         پرداخت
     </div>
+    <div class="container">
+        <div class="right-side">
+            <div class="payment-label">انتخاب روش پرداخت</div>
+            <div class="payment-methodes">
+                <div class="item">
+                    <input type="radio" name="radioBtn" value="digipay">
+                    <span class="icon">
+                        <app-solar-icon [name]="'card2'" [size]="30"></app-solar-icon>
+                    </span>
+                    <span class="title">
+                        پرداخت اینترنتی
+                    </span>
+                </div>
+                <div class="item">
+                    <input type="radio" name="radioBtn" value="internet">
+                    <span class="icon">
+                        <img src="images/digipay.png" alt="">
+                    </span>
+                    <span class="title">
+                        درگاه دیجی‌پی
+                    </span>
+                </div>
+                <div class="item">
+                    <input type="radio" name="radioBtn" value="snappay">
+                    <span class="icon">
+                        <img src="images/snapppay-logo (1).png" alt="">
+                    </span>
+                    <span class="title">
+                        درگاه اسنپ‌پی
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="left-side">
+            <div class="confirm-box">
+                <div class="item">
+                    <span>مجموع سبد خرید شما</span>
+                    <span>{{productTotal | persianNumber}}</span>
+                </div>
+                <div class="item">
+                    <span>هزینه بسته‌بندی و ارسال</span>
+                    <span>{{0 | persianNumber}}</span>
+                </div>
+                <div class="item">
+                    <span>مبلغ قابل پرداخت:</span>
+                    <span>{{productTotal | persianNumber}}</span>
+                </div>
+                <div class="item btn">
+                    <button class="secondary">پرداخت</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shop-summary">
+        <div class="summary">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span>
+                    <app-solar-icon [name]="'notebook'"></app-solar-icon>
+                </span>
+                <span>خلاصه سفارش</span>
+            </div>
+            <span>
+                این سفارش در تعداد <strong>{{totalCount}} </strong>محصول به <strong>{{selectedAddress?.FirstName}}
+                    {{selectedAddress?.LastName}}</strong>
+                به
+                آدرس <strong>{{selectedAddress?.Address}}</strong> ارسال می گردد.
+            </span>
+
+        </div>
+
+    </div>
 </div>

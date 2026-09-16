@@ -5,9 +5,11 @@
 .order-inner {
     padding: 1rem;
 }
+
 .order-content {
-    height: 100%;
+    height: calc(100% - 200px);
 }
+
 .step-container {
     display: flex;
     align-items: center;

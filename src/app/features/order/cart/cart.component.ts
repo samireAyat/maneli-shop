@@ -22,10 +22,13 @@ export class CartComponent {
   colors = PRODUCT_COLORS;
   Math = Math;
   @Output() isConfirmed = new EventEmitter<boolean>
+  @Output() productTotal = new EventEmitter<number>
+  @Output() totalQuantity = new EventEmitter<number>
 
 
   ngOnInit() {
     this.getCart()
+
   }
   cartItems: CartViewModel = new CartViewModel()
   cartVariant: CartVariantViewModel = new CartVariantViewModel();
@@ -50,7 +53,7 @@ export class CartComponent {
     this.cartService.getCart().subscribe({
       next: response => {
         this.cartItems = response
-        
+
         let sum = 0
         const eachProductTotal = this.cartItems.Items.map(product => product.Product.Price * product.Quantity);
         this.itemProductTotal.set(eachProductTotal)
@@ -59,11 +62,13 @@ export class CartComponent {
           count += product.Quantity
         })
         this.totalCount.set(count)
+        this.passTotalQuantity()
         console.log('itemProductTotal', this.itemProductTotal());
         this.itemProductTotal().forEach(n => {
           sum += n
         })
         this.allProductTotal.set(sum)
+        this.passProductTotal();
       },
       error: (error: any) => {
         console.error(error);
@@ -95,7 +100,7 @@ export class CartComponent {
             const newTotals = [...totals];
 
             newTotals[index] = newTotal;
-
+            this.passTotalQuantity()
             return newTotals;
 
           });
@@ -109,6 +114,7 @@ export class CartComponent {
           );
 
           this.allProductTotal.set(sum);
+          this.passProductTotal();
 
         },
 
@@ -145,6 +151,7 @@ export class CartComponent {
           );
           this.getCart()
           this.cartService.cartQuantity()
+          this.passTotalQuantity()
         }
       })
       return;
@@ -187,6 +194,16 @@ export class CartComponent {
 
   confirm() {
     this.isConfirmed.emit(true)
+    this.passProductTotal()
+
+  }
+
+  passProductTotal() {
+    this.productTotal.emit(this.allProductTotal())
+  }
+
+  passTotalQuantity() {
+    this.totalQuantity.emit(this.totalCount())
   }
 
 }

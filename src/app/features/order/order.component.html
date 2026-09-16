@@ -30,15 +30,15 @@
         @switch (currentStep) {
 
         @case ('cart') {
-        <app-cart (isConfirmed)="confirmCart($event)" />
+        <app-cart  (isConfirmed)="confirmCart($event)" (productTotal)="getProductTotal($event)" (totalQuantity)="getTotalQuantity($event)" />
         }
 
         @case ('shipping') {
-        <app-shipping  />
+        <app-shipping   (isConfirmed)="confirmShipping($event)" (selectedAddress)="getAddress($event)"/>
         }
 
         @case ('payment') {
-        <app-payment/>
+        <app-payment [productTotal]="productTotal" [selectedAddress]="selectedAddress" [totalCount]="totalCount"/>
         }
 
         @default {

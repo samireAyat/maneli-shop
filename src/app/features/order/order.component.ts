@@ -4,6 +4,7 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AddressViewModel } from '../../viewModels/address.ViewModel';
 
 @Component({
   selector: 'app-order',
@@ -50,10 +51,39 @@ export class OrderComponent {
 
   }
 
+
+
   confirmCart(event: any) {
     if (event) {
       this.isCartCompleted = true
       this.goToStep('shipping')
+    }
+
   }
-}
+
+  productTotal = 0
+  selectedAddress : AddressViewModel = new AddressViewModel()
+
+  getProductTotal(event: any) {
+    this.productTotal = event
+  }
+
+  getAddress(event: any) {
+    this.selectedAddress = event
+  }
+
+  confirmShipping(event: any) {
+    if (event) {
+      this.isShippingCompleted = true
+      this.goToStep('payment')
+
+    }
+  }
+
+  totalCount = 0
+
+  getTotalQuantity(event: any) {
+    this.totalCount = event
+  }
+
 }
