@@ -38,6 +38,7 @@ submit(form : NgForm) {
   if (form.invalid) {
     return
   }
+  this.userInfo.Role = 'user'
   this.profileService.updateProfile(this.userInfo).subscribe({
     next: res => {
       if (res.Status === 'success') {

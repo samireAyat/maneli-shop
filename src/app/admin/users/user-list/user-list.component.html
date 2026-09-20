@@ -1,1 +1,41 @@
-<p>user-list works!</p>
+<div class="page-header">
+
+    <div class="page-title">
+        <h1>کاربران</h1>
+    </div>
+
+    <button type="button" class="create-product-btn">
+        <span>+</span>
+        ایجاد کاربر جدید
+    </button>
+
+
+</div>
+<div class="product-list">
+    <table>
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th> نام</th>
+                <th>نام خانوادگی</th>
+                <th>آدرس ایمیل</th>
+                <th> کدملی</th>
+                <th>نقش</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of usersResult; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{user.Name}}</td>
+                <td>{{user.LastName}}</td>
+                <td>{{user.Email}}</td>
+                <td>{{user.NationalCode}}</td>
+                <td>{{user.Role}}</td>
+                <td>
+                    <button (click)="editProduct(user._id)">ویرایش</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

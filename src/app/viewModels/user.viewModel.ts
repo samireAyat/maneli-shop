@@ -1,5 +1,5 @@
 export class UserViewModel {
-    // _id: string;
+    _id: string;
     Name: string;
     LastName: string;
     NationalCode: string;
@@ -9,7 +9,7 @@ export class UserViewModel {
     Password: string;
     Role: string;
     constructor(
-        // _id?: string,
+        _id?: string,
         name?: string,
         lastName?: string,
         nationalCode?: string,
@@ -20,7 +20,7 @@ export class UserViewModel {
         role?: string,
 
     ) {
-        // this._id = _id || ''
+        this._id = _id || ''
         this.Name = name || ''
         this.Email = email || ''
         this.Password = password || ''

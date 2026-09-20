@@ -1,11 +1,12 @@
 .payment-wrapper {
+  padding: 2rem;
   border-top: 1px dashed var(--secondary-200);
-  padding: 3rem;
 
-  // margin-top: 2rem;
   .container {
     display: flex;
     justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
   .label {
@@ -27,9 +28,10 @@
   border: 1px solid var(--primary-400);
   padding: 1rem;
   border-radius: 10px;
-  max-width: max-content;
+  // max-width: max-content;
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   .payment-label {
     font-weight: 700;
@@ -45,7 +47,7 @@
   display: flex;
   gap: 1rem;
   flex-grow: 1;
-  // flex-direction: column;
+  flex-direction: column;
 
 
   .item {
@@ -55,7 +57,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    width: max-content;
+    // width: max-content;
     min-width: 175px;
 
     .title {
@@ -93,17 +95,21 @@ input[type='radio'] {
   }
 }
 
+.left-side {
+  width: 100%;
+}
+
 
 .confirm-box {
   padding: 1.5rem;
   border-radius: 10px;
   background-color: var(--primary-100);
   border: 1px dashed var(--primary-400);
-  width: max-content;
+  // width: max-content;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  min-width: 400px;
+  // min-width: 400px;
 
   .item {
     display: flex;
@@ -128,7 +134,71 @@ input[type='radio'] {
   border: 1px dashed var(--primary-400);
   margin-top: 1rem;
   border-radius: 10px;
+
   .summary {
     padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 761px) {
+  .payment-wrapper {
+    .container {
+      justify-content: space-around;
+    }
+
+    .label {}
+  }
+
+  .right-side {
+    width: unset;
+
+    .payment-label {}
+  }
+
+  .payment-methodes {
+    flex-direction: row;
+
+
+    .item {
+
+      .title {}
+
+      .icon {
+
+
+        img {}
+      }
+    }
+  }
+
+  input[type='radio'] {
+
+
+    &:checked {}
+  }
+
+  .left-side {
+    min-width: 400px;
+    width: unset;
+  }
+
+
+  .confirm-box {
+
+
+    .item {
+
+
+      &.btn {
+
+        button {}
+      }
+    }
+  }
+
+
+  .shop-summary {
+
+    .summary {}
   }
 }
