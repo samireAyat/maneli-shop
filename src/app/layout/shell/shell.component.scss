@@ -3,15 +3,18 @@
 .shell-wrapper {
     display: flex;
     flex-direction: column;
-    height: 100%;
+     min-height: 100vh;
 
 }
 
 .content {
     // height: calc(100% - 190px);
     // margin-bottom: 1rem;
-    flex: 1 0 auto;
-    overflow: scroll;
+    flex: 1;
+    // overflow: scroll;
+    min-height: 0;
+ 
+    padding-bottom: 80px;
 
 
 }

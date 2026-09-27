@@ -34,17 +34,18 @@
       }
 
       .category-product {
-        background-color: white;
+        
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
-        width: 100%;
+        width: calc(100% - 2rem);
         // border: 1px solid var(--secondary-100);
         border-right: none;
         height: 98%;
         gap: 1rem 0.5rem;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
         padding: 1rem;
+
       }
     }
 

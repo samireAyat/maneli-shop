@@ -4,11 +4,12 @@ import { UserViewModel } from '../../../../viewModels/user.viewModel';
 import { SHARED_IMPORTS } from '../../../../shared/shared.imports';
 import { NgForm } from '@angular/forms';
 import { AppSetting } from '../../../../core/appSetting';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-edit-profile',
-  imports: [SHARED_IMPORTS],
+  imports: [SHARED_IMPORTS, RouterLink],
   templateUrl: './edit-profile.component.html',
   styleUrl: './edit-profile.component.scss',
 })

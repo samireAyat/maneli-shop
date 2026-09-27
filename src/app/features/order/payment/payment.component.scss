@@ -2,7 +2,7 @@
   padding: 2rem;
   border-top: 1px dashed var(--secondary-200);
 
-  .container {
+  .payment-container{
     display: flex;
     justify-content: space-between;
     gap: 0.5rem;
@@ -17,7 +17,7 @@
     position: absolute;
     padding: 0.5rem;
     border-radius: 10px;
-    top: 180px;
+    top: 192px;
     font-size: 14px;
     right: 20px;
 
@@ -142,8 +142,8 @@ input[type='radio'] {
 
 @media screen and (min-width: 761px) {
   .payment-wrapper {
-    .container {
-      justify-content: space-around;
+    .payment-container {
+      // justify-content: space-around;
     }
 
     .label {}
@@ -180,6 +180,70 @@ input[type='radio'] {
   .left-side {
     min-width: 400px;
     width: unset;
+  }
+
+
+  .confirm-box {
+
+
+    .item {
+
+
+      &.btn {
+
+        button {}
+      }
+    }
+  }
+
+
+  .shop-summary {
+
+    .summary {}
+  }
+}
+
+@media screen and (min-width: 1090px) {
+  .payment-wrapper {
+    .payment-container {
+      // justify-content: space-around;
+    }
+
+    .label {
+      top: 210px;
+    }
+  }
+
+  .right-side {
+
+
+    .payment-label {}
+  }
+
+  .payment-methodes {
+  
+
+
+    .item {
+
+      .title {}
+
+      .icon {
+
+
+        img {}
+      }
+    }
+  }
+
+  input[type='radio'] {
+
+
+    &:checked {}
+  }
+
+  .left-side {
+
   }
 
 

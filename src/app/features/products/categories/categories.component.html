@@ -8,12 +8,14 @@
         </div>
 
         <app-categories-nav (selectedCatrgory)="onSelected($event)"></app-categories-nav>
-        <div class="category-product">
-          @if (product) {
-          @for (product of product; track $index) {
-          <app-product [product]="product"></app-product>
-          }
-          }
+        <div style="background-color: white; width: calc(100% - 2rem);">
+          <div class="category-product">
+            @if (product) {
+            @for (product of product; track $index) {
+            <app-product [product]="product"></app-product>
+            }
+            }
+          </div>
         </div>
       </div>
     </div>

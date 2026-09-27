@@ -12,26 +12,40 @@
                 ویرایش
             </button>
         </div>
-        <div class="content">
-            <div class="column-1">
+        <div class="content row g-4">
+            <div class="col-sm-12 col-lg-6">
                 <div class="info-item">
-                    <span>نام و نام خانوادگی:</span>
-                    <span class="info"> {{userInfo.Name}} {{userInfo.LastName}}</span>
+                    <span> نام:</span>
+                    <span class="info"> {{userInfo.Name}}</span>
                 </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <div class="info-item">
+                    <span> نام خانوادگی:</span>
+                    <span class="info"> {{userInfo.LastName}}</span>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
                 <div class="info-item">
                     <span>شماره تماس ضروری:</span>
                     <span class="info"> {{userInfo.PhoneNumber}}</span>
                 </div>
             </div>
-            <div class="column-2">
+
+            <div class="col-sm-12 col-lg-6">
                 <div class="info-item">
                     <span>ایمیل:</span>
                     <span class="info"> {{userInfo.Email}}</span>
                 </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
                 <div class="info-item">
                     <span>تاریخ تولد:</span>
                     <span class="info"> {{userInfo.BirthDate}}</span>
                 </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
                 <div class="info-item">
                     <span>کد ملی:</span>
                     <span class="info"> {{userInfo.NationalCode}}</span>

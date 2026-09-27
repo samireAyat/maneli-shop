@@ -61,7 +61,7 @@ export const routes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: 'account-info',
+            redirectTo: '',
             pathMatch: 'full'
           },
           {

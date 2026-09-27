@@ -137,6 +137,9 @@
                         display: none;
                     }
 
+
+
+
                 }
 
                 .account-content {
@@ -146,6 +149,28 @@
                     &.mobile-full {
                         width: 100%;
                     }
+
+                    .wrapper {
+                        height: calc(100% - 3rem);
+                        border: 1px solid var(--secondary-100);
+                        padding: 1rem;
+                        border-radius: 10px;
+
+                        label {
+                            border-bottom: 1px solid var(--secondary-100);
+                            display: flex;
+                            padding-bottom: 0.5rem;
+                            align-items: center;
+                            gap: 1rem;
+                            font-weight: 700;
+
+                        }
+                    }
+                }
+
+
+                &.width-100 {
+                    display: unset;
                 }
 
 
@@ -153,6 +178,7 @@
 
             .social {
                 margin-bottom: 3rem;
+                margin-top: 1rem;
             }
 
 
@@ -234,6 +260,10 @@
                         &.mobile-full {
                             // width: unset;
                         }
+                    }
+
+                    &.width-100 {
+                        display: flex;
                     }
 
 

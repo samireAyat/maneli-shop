@@ -9,6 +9,9 @@
 
 }
 
+
+@import "bootstrap/scss/bootstrap-grid";
+
 .main-padding {
     padding: 2rem;
 }
@@ -581,10 +584,10 @@ ngb-modal-window {
 }
 
 .row {
-    display: grid;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    grid-template-columns: 1fr 1fr;
+    // display: grid;
+    // gap: 1.2rem;
+    // flex-wrap: wrap;
+    // grid-template-columns: 1fr 1fr;
 
     .col-lg-6 {
 

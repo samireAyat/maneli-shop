@@ -24,6 +24,7 @@ export class MyAccountComponent {
   componentToLoad!: Type<any>;
   mobileView = false
   isChildRouteActive = false;
+  label = ''
 
   constructor(private route: ActivatedRoute, private router: Router, public authService: AuthService) {
 
@@ -63,8 +64,19 @@ export class MyAccountComponent {
 
     if (this.isChildRouteActive) {
       this.slug = url.split('/')[2];
+      if (this.slug === 'orders') {
+        this.label = 'سفارش‌ها'
+      } else if (this.slug === 'favorites') {
+        this.label = 'علاقه‌مندی‌ها'
+      } else if (this.slug === 'address-list') {
+        this.label = 'آدرس‌ها'
+      } else if (this.slug === 'account-info') {
+        this.label = 'اطلاعات کاربری'
+      } else if (this.slug === 'edit-profile') {
+        this.label = 'ویرایش اطلاعات کاربری'
+      }
     } else {
-      this.slug = 'account-info';
+      this.slug = '';
     }
   }
 
