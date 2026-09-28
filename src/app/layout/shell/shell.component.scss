@@ -1,23 +1,29 @@
-::host {}
+::host {
+    display: block;
+    min-height: 100vh;
+}
 
 .shell-wrapper {
-    display: flex;
-    flex-direction: column;
-     min-height: 100vh;
+    // display: flex;
+    // flex-direction: column;
+    // min-height: 100vh;
+    height: 100%;
 
 }
 
 .content {
-    // height: calc(100% - 190px);
-    // margin-bottom: 1rem;
-    flex: 1;
-    // overflow: scroll;
+    flex: 1 1 auto;
     min-height: 0;
- 
     padding-bottom: 80px;
+    // height: calc(100% - 170px);
+    display: flex;
+    flex-direction: column;
 
 
 }
+
+
+
 
 .mobile-menu {
     display: block;

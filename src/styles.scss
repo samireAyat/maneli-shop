@@ -110,7 +110,7 @@ button {
     &.secondary {
         background-color: var(--secondary-300);
         padding: 0.5rem 0.8rem;
-        border-radius:10px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         transition: all 300ms ease;
@@ -572,6 +572,14 @@ textarea {
 // ::ng-deep .modal-backdrop {
 //     position: absolute;
 // }
+
+
+.content > *:not(router-outlet)  {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+}
+
 
 
 ngb-modal-backdrop.modal-backdrop.fade.show {

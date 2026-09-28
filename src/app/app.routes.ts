@@ -75,7 +75,7 @@ export const routes: Routes = [
           {
             path: 'address-list',
             component: AddressListComponent,
-            data: {isInAccountPage: true}
+            data: { isInAccountPage: true }
           },
           {
             path: 'account-info',
@@ -89,13 +89,7 @@ export const routes: Routes = [
       },
 
 
-      {
-        path: 'login',
-        loadComponent: () =>
-          import('./features/account/login/login.component').then(
-            (m) => m.LoginComponent
-          ),
-      },
+
 
     ],
 
@@ -107,6 +101,13 @@ export const routes: Routes = [
         (m) => m.AdminLayoutComponent
       ), canActivate: [adminGuard],
     children: ADMIN_ROUTES
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/account/login/login.component').then(
+        (m) => m.LoginComponent
+      ),
   },
   { path: '**', redirectTo: '' }
 ];
