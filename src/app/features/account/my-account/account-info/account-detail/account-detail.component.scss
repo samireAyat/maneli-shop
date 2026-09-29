@@ -3,14 +3,14 @@
 }
 
 .wrapper {
-    padding: 1rem;
+    // padding: 1rem;
     background-color: white;
     border-radius: 10px;
 
 
     .header {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
         padding: 1rem;
         border-bottom: 1px solid var(--gray-200);

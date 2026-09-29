@@ -68,7 +68,7 @@ export class AddressListComponent {
     }
     this.newAddress = new AddressViewModel()
     this.modalService.open(this.modalTemplate, {
-      size: 'sm',
+      size: 'md',
       centered: true,
       backdrop: true,
       keyboard: true,

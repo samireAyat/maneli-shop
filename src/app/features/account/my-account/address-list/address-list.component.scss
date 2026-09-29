@@ -394,18 +394,27 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    .address-card {
+        width: unset;
+    }
+
 }
 
 .account-page {
+    max-height: 560px;
+
     .address-list {
         display: flex;
         align-items: center;
         flex-grow: 1;
         gap: 0.5rem;
         flex-wrap: wrap;
+        overflow-y: scroll;
+        padding:1rem;
 
         .address-card {
             flex-grow: 1;
+            width: 100%;
 
         }
     }

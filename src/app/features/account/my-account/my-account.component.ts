@@ -9,6 +9,8 @@ import { AccountInfoComponent } from './account-info/account-info.component';
 import { FavoritsComponent } from './favorits/favorits.component';
 import { filter } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
+import { ProfileService } from './edit-profile/services/profile.service';
+import { UserViewModel } from '../../../viewModels/user.viewModel';
 
 @Component({
   selector: 'app-my-account',
@@ -26,10 +28,11 @@ export class MyAccountComponent {
   isChildRouteActive = false;
   label = ''
 
-  constructor(private route: ActivatedRoute, private router: Router, public authService: AuthService) {
+  constructor(private route: ActivatedRoute, private router: Router, public authService: AuthService, private profileService: ProfileService) {
 
   }
   ngOnInit() {
+    this.getUserInfo()
     this.loggedIn = this.authService.isLoggedIn()
 
     // وضعیت فعلی
@@ -80,8 +83,15 @@ export class MyAccountComponent {
     }
   }
 
+  userInfo : UserViewModel = new UserViewModel();
 
-
+getUserInfo() {
+  this.profileService.getProfile().subscribe({
+    next: res => {
+      this.userInfo = res.User
+    }
+  })
+}
 
 
 

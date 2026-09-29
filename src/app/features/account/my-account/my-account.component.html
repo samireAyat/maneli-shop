@@ -12,10 +12,10 @@
                 <div class="account-sidebar" [class.mobile-hidden]="isChildRouteActive" >
                     <div class="account-info" *ngIf="loggedIn">
                         <div class="user-info">
-                            <span style="color: var(--secondary-500);">سمیرا اکبری آیت</span>
-                            <span>09338785101</span>
+                            <span style="color: var(--secondary-500);">{{userInfo.Name}}  {{userInfo.LastName}}</span>
+                            <span>{{userInfo.PhoneNumber}}</span>
                         </div>
-                        <div class="edit-btn">
+                        <div class="edit-btn" [routerLink]="['/my-account/edit-profile']">
                             <span>
                                 <app-solar-icon style="width: 15px; height: 15px; display: block;" [name]="'pen'"
                                     [size]="15"></app-solar-icon>
@@ -186,14 +186,14 @@
                     <div  *ngIf="isChildRouteActive" class="wrapper" style="height: calc(100% - 3rem)">
 
                         <label>
-                            <a routerLink="/my-account">
+                            <a  [routerLink]="slug === 'edit-profile' ? '/my-account/account-info' : '/my-account'">
                                 <app-solar-icon [size]="18" [name]="'alt-arrow-right'"></app-solar-icon>
 
                             </a>
                             {{label}}
 
                         </label>
-                        <div style="margin-top: 1rem;">
+                        <div>
                             <router-outlet></router-outlet>
                         </div>
 
