@@ -1,176 +1,180 @@
-<div class="product-detail-wrapper">
+<div style="border-top: 1px dashed var(--secondary-200); padding-top: 2rem; margin-top: 2rem;">
+  <div class="product-detail-wrapper">
 
-  <!-- عنوان -->
-  <div class="main-label">
+    <!-- عنوان -->
+    <div class="main-label">
 
-    <app-solar-icon style="width: 20px; height: 20px" [name]="'bill'" [size]="20"></app-solar-icon>
-    جزییات محصول
-  </div>
+      <app-solar-icon style="width: 20px; height: 20px" [name]="'bill'" [size]="20"></app-solar-icon>
+      جزییات محصول
+    </div>
 
 
-  <div class="product-detail-inner">
-    <div class="right-side">
-      <div class="images-container">
-        <div class="product-detail-image">
-          <div class="icon-container">
-            <div class="favorite">
+    <div class="product-detail-inner">
+      <div class="right-side">
+        <div class="images-container">
+          <div class="product-detail-image">
+            <div class="icon-container">
+              <div class="favorite">
                 <span *ngIf="!heart" (click)="addToFavorite(product._id)">
                   <app-solar-icon [name]="'heart'" [size]="24"></app-solar-icon>
                 </span>
                 <span (click)="deleteFavorite(product._id)" style="color: red;" *ngIf="heart">
                   <app-solar-icon [name]="'heart-full'" [size]="26"></app-solar-icon>
                 </span>
+              </div>
+              <div class="share">
+                <app-solar-icon [name]="'share'" [size]="26"></app-solar-icon>
+              </div>
             </div>
-            <div class="share">
-              <app-solar-icon [name]="'share'" [size]="26"></app-solar-icon>
+            @if (selectedVariant) {
+            <img [src]="heroImage" alt="" />
+            }
+          </div>
+          <div class="product-detail-images">
+            @if (selectedVariant) {
+            <ng-container *ngFor="let image of selectedVariant.Images; let i = index">
+              <span [class.selected]="selectedImage === image" class="images-item"
+                (click)="selectedPhoto(image, i, selectedVariant)">
+                <img class="product-image" [src]="ImagePath + image" alt="" />
+
+              </span>
+
+
+            </ng-container>
+
+            }
+
+          </div>
+        </div>
+
+      </div>
+      <div class="center-side">
+        <span>
+          دسته‌بندی:
+          <a [routerLink]="['/categories',product.Category ]"
+            style="color: var(--secondary-500); cursor: pointer;">{{product.Category}}</a>
+
+        </span>
+        <span class="product-name">
+          <h2>
+            {{ product.Name }}
+          </h2>
+        </span>
+        <div class="product-description">
+
+          @if (product.Description) {
+
+          <p>
+            {{ product.Description }}
+          </p>
+
+          }
+
+        </div>
+
+        <div class="product-colors">
+
+          <div class="label">
+
+            <div class="icon">
+
+              <app-solar-icon [name]="'pallete'" style="width: 24px; height: 24px"></app-solar-icon>
+
             </div>
-          </div>
-          @if (selectedVariant) {
-          <img [src]="heroImage" alt="" />
-          }
-        </div>
-        <div class="product-detail-images">
-          @if (selectedVariant) {
-          <ng-container *ngFor="let image of selectedVariant.Images; let i = index">
-            <span [class.selected]="selectedImage === image" class="images-item"
-              (click)="selectedPhoto(image, i, selectedVariant)">
-              <img class="product-image" [src]="ImagePath + image" alt="" />
 
-            </span>
-
-
-          </ng-container>
-
-          }
-
-        </div>
-      </div>
-
-    </div>
-    <div class="center-side">
-      <span>
-        دسته‌بندی:
-        <a [routerLink]="['/categories',product.Category ]"
-          style="color: var(--secondary-500); cursor: pointer;">{{product.Category}}</a>
-
-      </span>
-      <span class="product-name">
-        <h2>
-          {{ product.Name }}
-        </h2>
-      </span>
-      <div class="product-description">
-
-        @if (product.Description) {
-
-        <p>
-          {{ product.Description }}
-        </p>
-
-        }
-
-      </div>
-      <div class="product-size">
-
-        <div class="label">
-
-          <div class="icon">
-
-            <app-solar-icon [name]="'ruler'" style="width: 24px; height: 24px"></app-solar-icon>
+            <h4>
+              رنگ:
+              <span style="color: var(--secondary-500);">{{selectedColor}}</span>
+            </h4>
 
           </div>
 
-          <h4>
-            سایز:
-            <span style="color: var(--secondary-500);">{{selectedSize?.Name}}</span>
-          </h4>
 
-        </div>
-
-
-        <div class="size-input">
-
-          <ng-container *ngIf="selectedVariant">
-
-            <button type="button" class="size" *ngFor="let size of selectedVariant.Sizes"
-              [class.selected]="selectedSize === size" (click)="selectedSize = size">
-              {{ size.Name }}
-            </button>
-
-          </ng-container>
-
-
-        </div>
-
-      </div>
-      <div class="product-colors">
-
-        <div class="label">
-
-          <div class="icon">
-
-            <app-solar-icon [name]="'pallete'" style="width: 24px; height: 24px"></app-solar-icon>
-
-          </div>
-
-          <h4>
-            رنگ:
-            <span style="color: var(--secondary-500);">{{selectedColor}}</span>
-          </h4>
-
-        </div>
-
-
-        <div class="color-input">
-          <ng-container *ngFor="let variant of product.Variants">
-            <button type="button" class="color" [style.backgroundImage]=" variant.Images?.length ? 'url(http://localhost:3000' + variant.Images[0] + ')' : ''
+          <div class="color-input">
+            <ng-container *ngFor="let variant of product.Variants">
+              <button type="button" class="color" [style.backgroundImage]=" variant.Images?.length ? 'url(http://localhost:3000' + variant.Images[0] + ')' : ''
       " [class.selected]="selectedVariant?._id === variant._id" (click)="selectVariant(variant)">
-            </button>
-          </ng-container>
+              </button>
+            </ng-container>
+
+          </div>
 
         </div>
 
+        <div class="product-size">
+
+          <div class="label">
+
+            <div class="icon">
+
+              <app-solar-icon [name]="'ruler'" style="width: 24px; height: 24px"></app-solar-icon>
+
+            </div>
+
+            <h4>
+              سایز:
+              <span style="color: var(--secondary-500);">{{selectedSize?.Name}}</span>
+            </h4>
+
+          </div>
+
+
+          <div class="size-input">
+
+            <ng-container *ngIf="selectedVariant">
+
+              <button type="button" class="size" *ngFor="let size of selectedVariant.Sizes"
+                [class.selected]="selectedSize === size" (click)="selectedSize = size">
+                {{ size.Name }}
+              </button>
+
+            </ng-container>
+
+
+          </div>
+
+        </div>
+
+
       </div>
 
+      <div class="left-side">
 
-    </div>
-
-    <div class="left-side">
-
-      <div class="product-detail">
-        <div class="product-price">
+        <div class="product-detail">
+          <div class="product-price">
 
 
 
-          <h3 id="price">
-            {{ product.Price | persianNumber }}
-          </h3>
+            <h3 id="price">
+              {{ product.Price | persianNumber }}
+            </h3>
 
 
-          <span>
-            تومان
-          </span>
-          <!-- <span class="icon">
+            <span>
+              تومان
+            </span>
+            <!-- <span class="icon">
 
             <app-solar-icon [name]="'tag-price'" style="width: 24px; height: 24px"></app-solar-icon>
 
           </span> -->
 
+          </div>
+
+          <div class="add-to-cart">
+
+            <button (click)="addToCart()" class="secondary" type="button">
+              افزودن به سبد خرید
+            </button>
+
+          </div>
+
+
         </div>
-
-        <div class="add-to-cart">
-
-          <button (click)="addToCart()" class="secondary" type="button">
-            افزودن به سبد خرید
-          </button>
-
-        </div>
-
 
       </div>
 
     </div>
 
   </div>
-
 </div>

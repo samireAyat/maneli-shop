@@ -42,9 +42,10 @@
   display: flex;
   // grid-template-columns: minmax(240px, 1fr) auto 160px;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   flex-wrap: wrap;
   padding: 16px;
+  cursor: pointer;
 
   border: 1px solid #eeeeee;
   border-radius: 14px;
@@ -65,6 +66,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  cursor: pointer;
 }
 
 .product-image {

@@ -13,7 +13,7 @@ import { ProductsViewModel } from '../../../../viewModels/products.viewModel';
 })
 export class CategoriesNavComponent {
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
-  slug = ''
+  slug = 'all'
   @Output() selectedCatrgory = new EventEmitter<ProductsViewModel[]>()
   product: ProductsViewModel[] = []
 
@@ -31,10 +31,12 @@ export class CategoriesNavComponent {
 
         if (this.slug === 'all') {
           this.product = res
-        } else if (this.slug === 'shirt') {
-          this.product = res.filter(item => item.Category === 'shirt')
-        } else {
+        } else if (this.slug === 'dress') {
+          this.product = res.filter(item => item.Category === 'dress')
+        } else if (this.slug === 'blouse') {
           this.product = res.filter(item => item.Category === 'blouse')
+        } else {
+          this.product = res.filter(item => item.Category === 'T-shirt')
         }
 
         this.selectedCatrgory.emit(this.product)

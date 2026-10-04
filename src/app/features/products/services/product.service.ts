@@ -32,4 +32,15 @@ export class ProductService {
       formData
     );
   }
+
+  searchProducts(query: string): Observable<ProductsViewModel[]> {
+  return this.http.get<ProductsViewModel[]>(
+    `${this.apiUrl}/search`,
+    {
+      params: {
+        q: query
+      }
+    }
+  );
+}
 }

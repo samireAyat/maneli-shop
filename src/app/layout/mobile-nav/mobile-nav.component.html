@@ -27,7 +27,7 @@
                     <div class="menu-title">
 
 
-                        <a href="/categories">
+                        <a href="/categories/all">
                             <app-solar-icon [name]="'widget5'" [size]="20"
                                 style="width: 20px; height: 20px;"></app-solar-icon>
                             دسته‌بندی‌ها
@@ -66,16 +66,18 @@
                         <a href="/my-account">
                             <app-solar-icon [name]="'user'" [size]="20"
                                 style="width: 20px; height: 20px; display: block;"></app-solar-icon>
-                            پروفایل</a>
+                            {{authService.isLoggedIn() ? 'سلام' + ' ' + currentUser : 'پروفایل'}}
+                        </a>
                     </div>
                 </li>
-                <li class="menu-item cart" #cartIcon>
+                <li class="menu-item cart" style="position: relative;" #cartIcon>
                     <div class="menu-title">
 
                         <a href="/order">
                             <app-solar-icon [name]="'bag3'" [size]="20"
                                 style="width: 20px; height: 20px; display: block;"></app-solar-icon>
                             سبد خرید</a>
+                        <span class="cart-count">{{ cartService.cartQuantity() | persianNumber}}</span>
                     </div>
 
                 </li>

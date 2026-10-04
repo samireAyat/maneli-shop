@@ -5,6 +5,7 @@ import { UserViewModel } from '../../../viewModels/user.viewModel';
 import { AuthService } from '../../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../../order/cart/services/cart.service';
+import { AppSetting } from '../../../core/appSetting';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent {
   otpCode = '';
   user: UserViewModel = new UserViewModel()
   @ViewChild('step2') step2: HTMLElement | any;
+  setting: AppSetting = new AppSetting()
 
   ngOnInit() {
     this.setInterval();
@@ -42,6 +44,8 @@ export class LoginComponent {
       });
   }
 
+
+
   get formettedTime(): string {
     const minutes = Math.floor(this.remainingSeconds / 60);
     const seconds = this.remainingSeconds % 60;
@@ -60,23 +64,39 @@ export class LoginComponent {
     this.authService.login(this.user).subscribe({
       next: res => {
         if (res.Message === 'success') {
+          this.setting.swalToastStructure.fire({
+            text: 'با موفقیت وارد شدید :)'
+          })
           this.cartService.mergeGuestCart().subscribe({
             next: () => {
               localStorage.removeItem('guest_cart');
             }
-          })
+          });
+
           this.authService.setCurrentUser(res.User);
 
           if (res.User.Role === 'admin') {
-
-            this.router.navigate(['/admin'])
+            this.router.navigate(['/admin']);
           } else {
-            this.router.navigate(['/home'])
+            this.router.navigate(['/home']);
           }
+
+        } else {
+
+          this.setting.swalToastStructure.fire({
+            text: res.Message,
+            background: 'var(--secondary-400)'
+          });
+
         }
+      },
 
+      error: err => {
+        this.setting.swalToastStructure.fire({
+          text: err.error?.Message || 'خطایی در ورود رخ داد',
+          background: 'var(--secondary-400)'
+        });
       }
-    })
-
+    });
   }
 }

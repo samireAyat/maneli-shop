@@ -38,8 +38,8 @@
                         <input name="birthDate" [(ngModel)]="userInfo.BirthDate" required type="text">
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-6">
-                    <button type="submit" class="btn primary outline" [routerLink]="['/my-account/account-info']">ثبت اطلاعات کاربری</button>
+                <div class="col-sm-12 col-lg-6" >
+                    <button (click)="submit(profileForm)" type="submit" class="btn primary outline" [routerLink]="['/my-account/account-info']">ثبت اطلاعات کاربری</button>
                 </div>
             </div>
         </form>

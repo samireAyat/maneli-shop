@@ -5,10 +5,12 @@ import { UserViewModel } from '../../../viewModels/user.viewModel';
 import { Router } from '@angular/router';
 import { CartService } from '../../../features/order/cart/services/cart.service';
 import { map } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { HeaderComponent } from '../../../layout/header/header.component';
 
 @Component({
   selector: 'app-desktop-nav',
-  imports: [SHARED_IMPORTS],
+  imports: [SHARED_IMPORTS, HeaderComponent],
   templateUrl: './desktop-nav.component.html',
   styleUrl: './desktop-nav.component.scss',
 })
@@ -26,6 +28,23 @@ export class DesktopNavComponent {
   logout() {
     this.authService.logout()
     this.router.navigate(['/login'])
+  }
+
+   searchControl = new FormControl('');
+
+    search() {
+      debugger
+    const query = this.searchControl.value?.trim();
+
+    if (!query) {
+      return;
+    }
+
+    this.router.navigate(['/search'], {
+      queryParams: {
+        q: query
+      }
+    });
   }
 
 }

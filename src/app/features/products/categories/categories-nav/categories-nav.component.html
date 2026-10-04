@@ -1,26 +1,44 @@
 <nav class="category-nav">
-    <a (click)="onCategorySelected('all')" class="category-item" [class.selected]="slug === 'all'" [routerLink]="['/categories', 'all']"
-        aria-current="page">
-        <span class="icon">
-            <img src="images/svg/all-2.svg" alt="" />
-        </span>
+    <a (click)="onCategorySelected('all')" class="category-item" 
+        [routerLink]="['/categories', 'all']" aria-current="page">
+        <div class="link-wrapper" [class.selected]="slug === 'all'">
+            <span class="icon">
+                <img src="images/svg/all-2.svg" alt="" />
+            </span>
 
-        <span class="title">همه</span>
+            <span class="title">همه</span>
+        </div>
     </a>
 
-    <a (click)="onCategorySelected('blouse')" class="category-item" [class.selected]="slug === 'blouse'" [routerLink]="['/categories', 'blouse']">
-        <span class="icon">
-            <img src="images/svg/blouse.svg" alt="" />
-        </span>
+    <a (click)="onCategorySelected('blouse')" class="category-item" 
+        [routerLink]="['/categories', 'blouse']">
+        <div class="link-wrapper" [class.selected]="slug === 'blouse'">
+            <span class="icon">
+                <img src="images/svg/blouse.svg" alt="" />
+            </span>
 
-        <span class="title">شومیز</span>
+            <span class="title">شومیز</span>
+        </div>
     </a>
 
-    <a (click)="onCategorySelected('shirt')"  class="category-item" [class.selected]="slug === 'shirt'" [routerLink]="['/categories', 'shirt']">
-        <span class="icon">
-            <img src="images/svg/t-shirt.svg" alt="" />
-        </span>
+    <a (click)="onCategorySelected('T-shirt')" class="category-item" 
+        [routerLink]="['/categories', 'T-shirt']">
+        <div class="link-wrapper" [class.selected]="slug === 'T-shirt'">
+            <span class="icon">
+                <img src="images/svg/t-shirt.svg" alt="" />
+            </span>
 
-        <span class="title">تی‌شرت</span>
+            <span class="title">تی‌شرت</span>
+        </div>
+    </a>
+    <a (click)="onCategorySelected('dress')" class="category-item" 
+        [routerLink]="['/categories', 'dress']">
+        <div class="link-wrapper" [class.selected]="slug === 'dress'">
+            <span class="icon">
+                <img src="images/svg/dress-icon.svg" alt="" />
+            </span>
+
+            <span class="title">پیراهن</span>
+        </div>
     </a>
 </nav>

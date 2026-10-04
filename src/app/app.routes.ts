@@ -8,6 +8,7 @@ import { AccountInfoComponent } from './features/account/my-account/account-info
 import { EditProfileComponent } from './features/account/my-account/edit-profile/edit-profile.component';
 import { ADMIN_ROUTES } from './admin/admin.route';
 import { adminGuard } from './core/guards/admin-guard';
+import { SearchResultsComponent } from './layout/header/search-results/search-results.component';
 
 export const routes: Routes = [
   {
@@ -85,8 +86,14 @@ export const routes: Routes = [
             path: 'edit-profile',
             component: EditProfileComponent
           }
-        ]
+        ],
+
       },
+
+      {
+        path: 'search',
+        component: SearchResultsComponent
+      }
 
 
 

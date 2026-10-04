@@ -43,7 +43,11 @@ export class ProductFormComponent implements OnInit {
     },
     {
       FaTitle: 'تی‌شرت',
-      EnTitle: 'shirt'
+      EnTitle: 'T-shirt'
+    },
+        {
+      FaTitle: 'پیراهن',
+      EnTitle: 'dress'
     }
   ]
   

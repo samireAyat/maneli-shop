@@ -38,7 +38,7 @@
     .content {
       border-top: 1px dashed var(--secondary-200);
       width: 100%;
-      padding: 0 0.5rem;
+      // padding: 0 0.5rem;
       margin-bottom: 2.5rem;
 
       .content-inner {
@@ -47,7 +47,7 @@
         display: flex;
         margin-top: 3rem;
         height: 100%;
-        border: 1px solid var(--secondary-200);
+        // border: 1px solid var(--secondary-200);
         /* padding: 0 0.2rem; */
         /* margin-bottom: 3rem; */
         border-radius: 10px;
@@ -88,6 +88,7 @@
       padding: 0.5rem;
       border-radius: 10px;
       top: 100px;
+
       font-size: 14px;
       right: 20px;
     }
@@ -143,11 +144,12 @@
 
       //   padding-top: 1rem;
       .label {
-        right: unset;
+        // right: unset;
       }
 
       .category-product {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+        background-color: white;
 
       }
 

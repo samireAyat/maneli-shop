@@ -7,7 +7,7 @@ import { CartVariantViewModel } from '../../../viewModels/cartVariant.viewModel'
 import { CartItemViewModel } from '../../../viewModels/CartItem.viewModel';
 import { AddToCartRequestViewModel } from '../../../viewModels/AddToCartRequest.viewModel';
 import { PRODUCT_COLORS } from '../../../constants/product-colors';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
@@ -18,7 +18,7 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent {
-  constructor(private cartService: CartService, private authService: AuthService) { }
+  constructor(private cartService: CartService, private authService: AuthService, private router: Router) { }
   colors = PRODUCT_COLORS;
   Math = Math;
   @Output() isConfirmed = new EventEmitter<boolean>
@@ -204,6 +204,11 @@ export class CartComponent {
 
   passTotalQuantity() {
     this.totalQuantity.emit(this.totalCount())
+  }
+
+
+  getProduct(id: string) {
+    this.router.navigate(['/products', id])
   }
 
 }

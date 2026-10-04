@@ -122,6 +122,7 @@ export class AddressListComponent {
             });
 
             this.modalService.dismissAll();
+            this.getAddress()
           }
 
         },

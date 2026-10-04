@@ -36,17 +36,13 @@ export class AuthService {
   // =========================
 
   login(data: UserViewModel): Observable<loginResponseViewModel> {
-
     return this.http
       .post<loginResponseViewModel>(
         `${this.baseUrl}/auth/login`,
         data
       )
       .pipe(
-
         tap(res => {
-
-          console.log('USER:', res.User);
           const expiresIn = 120 * 60 * 1000;
           const expiresAt = Date.now() + expiresIn;
 
@@ -81,6 +77,11 @@ export class AuthService {
               currentExpiresAt &&
               Date.now() >= Number(currentExpiresAt)
             ) {
+
+              this.appSetting.swalToastStructure.fire({
+                text: 'زمان استفاده شما از برنامه به پایان رسیده است لطفا دوباره وارد شوید :)',
+                timer: 5000
+              });
 
               this.logout();
 
@@ -162,32 +163,38 @@ export class AuthService {
   }
 
   logout(): void {
-
     this.clearStorage();
 
     this.isLoggedIn.set(false);
-
     this.currentUser.set(null);
-
+    this.router.navigate(['/login']);
   }
 
+  // private clearStorage(): void {
+  //   this.appSetting.swalToastStructure.fire({
+  //     text: 'زمان استفاده شما از برنامه به پایان رسیده است لطفا دوباره وارد شوید :)',
+  //     timer: 5000
+  //   })
+
+  //   localStorage.removeItem('token');
+
+  //   localStorage.removeItem('tokenExpiresAt');
+
+  //   localStorage.removeItem('name');
+
+  //   localStorage.removeItem('role');
+
+  //   localStorage.removeItem('currentUser');
+
+
+  // }
+
   private clearStorage(): void {
-    this.appSetting.swalToastStructure.fire({
-      text: 'زمان استفاده شما از برنامه به پایان رسیده است لطفا دوباره وارد شوید :)',
-      timer: 5000
-    })
-
     localStorage.removeItem('token');
-
     localStorage.removeItem('tokenExpiresAt');
-
     localStorage.removeItem('name');
-
     localStorage.removeItem('role');
-
     localStorage.removeItem('currentUser');
-
-
   }
 
 }

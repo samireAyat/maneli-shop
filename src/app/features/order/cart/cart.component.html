@@ -5,10 +5,10 @@
   </div>
   <div class="cart-inner" *ngIf="cartItems.Items.length else noData">
     <div class="cart-items">
-      <div class="cart-card" *ngFor="let item of cartItems.Items; let i = index">
+      <div class="cart-card" *ngFor="let item of cartItems.Items; let i = index" (click)="getProduct(item.ProductID)">
 
         <!-- Product -->
-        <div class="cart-product">
+        <div class="cart-product" >
 
           <div class="product-image">
 
@@ -61,7 +61,7 @@
         <!-- Quantity -->
         <div class="quantity">
 
-          <button type="button" (click)="increase(item, i)">
+          <button type="button"  (click)="increase(item, i); $event.stopPropagation()">
 
             <app-solar-icon [name]="'add-circle'" [size]="20">
             </app-solar-icon>
@@ -74,7 +74,7 @@
           </span>
 
 
-          <button type="button" (click)="decrease(item, i)">
+          <button type="button" (click)="decrease(item, i); $event.stopPropagation()">
 
             @if (item.Quantity > 1) {
 

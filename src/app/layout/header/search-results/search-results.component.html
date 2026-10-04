@@ -1,0 +1,16 @@
+<div class="search-wrapper">
+  <div class="search-inner">
+    <div class="search-term">
+        <a routerLink="/home" role="button" (click)="back()">
+            <app-solar-icon  [name]="'alt-arrow-right'" [size]="20"></app-solar-icon>
+        </a>
+        نتایج جستجو برای : "{{query}}"</div>
+      <div class="products-wrapper">
+        <ng-container *ngFor="let product of searchResults">
+          <app-product [product]="product"></app-product>
+        </ng-container>
+      </div>
+
+
+  </div>
+</div>

@@ -31,6 +31,7 @@ export const PRODUCT_COLORS = [
     { name: 'یاسی', value: '#C8A2C8' },
 
     { name: 'قرمز', value: '#C0392B' },
-    { name: 'زرشکی', value: '#800020' }
+    { name: 'زرشکی', value: '#800020' },
+    { name: 'نارنجی', value: '#F06925' }
 
 ] as const;

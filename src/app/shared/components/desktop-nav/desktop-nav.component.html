@@ -27,7 +27,7 @@
                     <div class="menu-title">
 
 
-                        <a href="/categories">
+                        <a href="/categories/all">
                             <app-solar-icon [name]="'widget5'" [size]="20"
                                 style="width: 20px; height: 20px;"></app-solar-icon>
                             دسته‌بندی‌ها
@@ -63,7 +63,8 @@
                     </li> -->
                 <li class="menu-item account">
                     <div class="menu-title">
-                        <a href="/my-account">
+
+                        <a [href]="[authService.isLoggedIn() ? '/my-account' : '/login']">
                             <app-solar-icon [name]="'user'" [size]="20"
                                 style="width: 20px; height: 20px; display: block;"></app-solar-icon>
                             @if(authService.isLoggedIn()) {
@@ -101,16 +102,17 @@
         </nav>
 
         <!-- search -->
-        <div class="search-box">
-            <form>
+        <!-- <div class="search-box">
+            <form (ngSubmit)="search()">
                 <label for="site-search">
                     <app-solar-icon [name]="'magnifer'" [size]="20" style="width: 20px; height: 20px;"></app-solar-icon>
                     <span *ngIf="charCount === 0">جستجو</span>
                 </label>
-                <input #searchInput (input)="charCount = searchInput.value.length" id="site-search" name="search"
-                    type="search">
+                <input #searchInput [formControl]="searchControl" (input)="charCount = searchInput.value.length" id="site-search" name="search"
+                    type="text">
             </form>
-        </div>
+        </div> -->
+        <app-header></app-header>
 
 
         <!-- <div class="left-side">
