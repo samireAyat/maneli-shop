@@ -134,6 +134,62 @@
           </div>
 
         </div>
+        <div class="size-guide">
+          <div class="label">
+
+            <div class="icon"  *ngIf="selectedSize">
+
+              <app-solar-icon [name]="'info-circle'" style="width: 24px; height: 24px"></app-solar-icon>
+
+            </div>
+
+            <h4  *ngIf="selectedSize">
+              راهنمای انتخاب سایز:
+            </h4>
+
+          </div>
+
+
+          <div class="size-input" style="flex-direction: column;">
+
+            <ng-container *ngIf="selectedSize">
+              <div style="color: var(--secondary-500); font-weight: 700;">سایز {{selectedSize.Name}}:</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>عرض سینه</th>
+                    <th> قد لباس</th>
+                    <th> قد آستین</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{selectedSize?.ChestWidth}}</td>
+                    <td>{{selectedSize?.DressLength}}</td>
+                    <td>{{selectedSize?.SleeveLength}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <div style="display: flex; flex-direction: column; gap: 0.5rem; border: 1px solid var(--primary-300); padding: 0.5rem 0; width: max-content;">
+                <div style="display: flex; gap: 0.5rem; border-bottom: 1px solid var(--primary-300); padding: 0.5rem;">
+                  <label for="">عرض سینه</label>
+                  <span>{{selectedSize?.ChestWidth}}</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; border-bottom: 1px solid var(--primary-300); padding:0  0.5rem">
+                  <label style="border-left:1px solid var(--primary-500) ; padding-left: 0.5rem; height: 100%;" for="">قد لباس</label>
+                  <span>{{selectedSize?.DressLength}}</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; padding: 0.5rem;">
+                  <label for="">قد آستین</label>
+                  <span>{{selectedSize?.SleeveLength}}</span>
+
+                </div>
+              </div> -->
+            </ng-container>
+
+
+          </div>
+        </div>
 
 
       </div>

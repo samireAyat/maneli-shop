@@ -475,7 +475,10 @@ formData.append(
       Sizes: variant.Sizes.map(size => ({
         ID: size._id,
         Name: size.Name,
-        Stock: size.Stock
+        Stock: size.Stock,
+        ChestWidth: size.ChestWidth,
+        DressLength: size.DressLength,
+        SleeveLength: size.SleeveLength
       }))
     }))
   )

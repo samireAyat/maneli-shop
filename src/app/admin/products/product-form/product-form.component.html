@@ -42,8 +42,8 @@
                     دسته‌بندی
                 </label>
 
-                <ng-select name="productCategory" [items]="categories" bindLabel="FaTitle" bindValue="EnTitle" [(ngModel)]="product.Category"
-                    placeholder="انتخاب دسته‌بندی" [clearable]="true">
+                <ng-select name="productCategory" [items]="categories" bindLabel="FaTitle" bindValue="EnTitle"
+                    [(ngModel)]="product.Category" placeholder="انتخاب دسته‌بندی" [clearable]="true">
                 </ng-select>
 
             </div>
@@ -111,7 +111,8 @@
                         <div class="input-group">
 
                             <ng-select [name]="'variantColor_' + variantIndex" [items]="colors"
-                                [(ngModel)]="variant.Color" bindLabel="name" bindValue="name" required placeholder="انتخاب رنگ" [clearable]="true">
+                                [(ngModel)]="variant.Color" bindLabel="name" bindValue="name" required
+                                placeholder="انتخاب رنگ" [clearable]="true">
                             </ng-select>
                         </div>
 
@@ -229,11 +230,11 @@
 
                             <div class="image-preview-wrapper">
                                 @for (
-                                    image of variantImagePreviews[variantIndex];
-                                    track $index;
-                                    let imageIndex = $index
+                                image of variantImagePreviews[variantIndex];
+                                track $index;
+                                let imageIndex = $index
                                 ) {
-                                        <div class="image-preview">
+                                <div class="image-preview">
                                     <img [src]="image" alt="پیش‌نمایش تصویر">
 
 
@@ -249,7 +250,7 @@
 
 
                                 </div>
-                                    }
+                                }
 
 
 
@@ -314,7 +315,21 @@
                                 </ng-select>
 
                             </div>
-
+                            <div class="input-group">
+                                <label for="chestWidth-{{sizeIndex}}">عرض سینه</label>
+                                <input name="chestWidth-{{sizeIndex}}" id="chestWidth-{{sizeIndex}}" type="text"
+                                    [(ngModel)]="size.ChestWidth">
+                            </div>
+                            <div class="input-group">
+                                <label for="dressLength-{{sizeIndex}}"> قد لباس</label>
+                                <input name="dressLength-{{sizeIndex}}" id="dressLength-{{sizeIndex}}" type="text"
+                                    [(ngModel)]="size.DressLength">
+                            </div>
+                            <div class="input-group">
+                                <label for="sleeveLength-{{sizeIndex}}"> قد آستین</label>
+                                <input name="sleeveLength-{{sizeIndex}}" id="sleeveLength-{{sizeIndex}}" type="text"
+                                    [(ngModel)]="size.SleeveLength">
+                            </div>
 
                             <!-- موجودی -->
 

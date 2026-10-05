@@ -1,5 +1,3 @@
-
-
 @keyframes underline {
   0% {
     width: 0;
@@ -316,6 +314,8 @@ button {
     border: 1px solid var(--primary-200);
 
     form {
+      height: 45px;
+
       label {
         font-size: 0.8rem;
         position: absolute;
@@ -325,11 +325,12 @@ button {
         display: flex;
         align-items: center;
         gap: 0.2rem;
+
       }
 
       input {
-        padding: 0.3rem 1.9rem 0.3rem 0.7rem;
-        height: 40px;
+        padding: 0 1.9rem 0 0.7rem;
+        height: 97%;
         border-radius: 20px;
         border: 1px solid transparent;
 
@@ -501,16 +502,14 @@ button {
       width: 420px;
 
       form {
-        label {
-        }
+        label {}
 
         input {
           // min-width: 300px;
         }
       }
 
-      &:focus-within {
-      }
+      &:focus-within {}
     }
   }
 

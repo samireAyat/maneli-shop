@@ -838,7 +838,7 @@
     // SIZE
     // ==================================================
 
-    .product-size,
+    .product-size, .size-guide,
     .product-colors {
       display: flex;
       flex-direction: column;
@@ -1292,7 +1292,7 @@
         }
       }
 
-      .product-size,
+      .product-size, .size-guide ,
       .product-colors {
         .label {
           .icon {
