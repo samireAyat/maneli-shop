@@ -5,6 +5,8 @@ import { CreateOrderViewModel } from '../../../viewModels/CreateOrder.viewModel'
 import { CartService } from '../cart/services/cart.service';
 import { CartItemViewModel } from '../../../viewModels/CartItem.viewModel';
 import { OrderService } from '../services/order.service';
+import { AppSetting } from '../../../core/appSetting';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -17,7 +19,8 @@ export class PaymentComponent {
   @Input() selectedAddress = new AddressViewModel()
   @Input() totalCount = 0
   cartItems: CartItemViewModel[] = []
-  constructor(private cartService: CartService, private orderService: OrderService) { }
+  setting: AppSetting = new AppSetting()
+  constructor(private cartService: CartService, private orderService: OrderService, private router: Router) { }
 
   ngOnInit() {
     this.getCart()
@@ -43,6 +46,7 @@ export class PaymentComponent {
       Quantity: item.Quantity,
       Price: item.Product.Price,
       Image: item.Variant.Image?.[0] || ''
+
     }));
 
     orderData.TotalAmount = this.productTotal;
@@ -51,10 +55,21 @@ export class PaymentComponent {
 
     this.orderService.createOrder(orderData).subscribe({
       next: response => {
-        console.log('Order created:', response);
+        this.setting.swalStructure.fire({
+          title: 'سفارش با موفقیت ثبت شد',
+          text: 'از اعتماد شما به مانلی سپاسگزاریم.',
+          icon:'success',
+          confirmButtonText: 'مشاهده سفارش'
+        }).then((result)=>{
+          if(result.isConfirmed) {
+            this.router.navigate(['/my-account/orders']);
+          }
+        })
+
         this.cartService.clearCart().subscribe({
           next: () => {
             console.log('Cart cleared');
+
           },
           error: error => {
             console.error('Clear cart error:', error);

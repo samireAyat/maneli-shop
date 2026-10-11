@@ -1,3 +1,102 @@
-<div style="padding: 1rem;">
-    <p>orders works!</p>
+
+<div class="orders-wrapper">
+  <div class="orders-inner">
+
+    <ngx-simplebar style="max-height: 550px;">
+          <div class="orders">
+
+      <ng-container *ngFor="let order of orders">
+
+        <div class="order-item">
+
+          <!-- Header -->
+          <div class="order-header">
+
+            <div class="order-number">
+              <span class="label">شماره سفارش</span>
+              <span class="value">
+                {{ order.OrderNumber }}
+              </span>
+            </div>
+
+            <div class="order-status">
+              {{ order.Status }}
+            </div>
+
+          </div>
+
+
+          <!-- Information -->
+          <div class="order-info-grid">
+
+            <div class="order-info">
+              <span class="label">تاریخ سفارش</span>
+              <span class="value">
+                {{ formatDate(order.createdAt) }}
+              </span>
+            </div>
+
+            <div class="order-info">
+              <span class="label">نام گیرنده</span>
+              <span class="value">
+                {{ order.ShippingAddress.FirstName }}
+                {{ order.ShippingAddress.LastName }}
+              </span>
+            </div>
+
+            <div class="order-info">
+              <span class="label">تعداد کالا</span>
+              <span class="value">
+                {{ order.TotalCount | persianNumber }}
+              </span>
+            </div>
+
+            <div class="order-info address">
+              <span class="label">آدرس</span>
+              <span class="value">
+                {{ order.ShippingAddress.Province }}
+                -
+                {{ order.ShippingAddress.City }}
+                -
+                {{ order.ShippingAddress.Address }}
+              </span>
+            </div>
+
+          </div>
+
+
+          <!-- Footer -->
+          <div class="order-footer">
+
+            <div class="total-price">
+              <span class="label">مبلغ کل</span>
+
+              <span class="price">
+                {{ order.TotalAmount | persianNumber }}
+                <small>تومان</small>
+              </span>
+            </div>
+
+            <button
+              type="button"
+              class="detail-btn"
+              (click)="openOrderDetail(order.OrderNumber)"
+            >
+              مشاهده جزئیات
+              <span>←</span>
+            </button>
+
+          </div>
+
+        </div>
+
+      </ng-container>
+
+    </div>
+    </ngx-simplebar>
+
+  </div>
 </div>
+
+
+

@@ -1,47 +1,182 @@
+
 <div class="edit-profile">
-    <div class="form-container">
-        <form #profileForm="ngForm" (ngSubmit)="submit(profileForm)">
-            <div class="row g-4">
-                <div class="col-sm-12 col-lg-6">
-                    <div class="input-group">
-                        <label class="requierd">نام</label>
-                        <input name="name" [(ngModel)]="userInfo.Name" required type="text">
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="input-group" >
-                        <label class="requierd">نام‌خانوادگی</label>
-                        <input name="lastName" [(ngModel)]="userInfo.LastName" required type="text">
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="input-group">
-                        <label class="requierd">کد ملی</label>
-                        <input name="NID" [(ngModel)]="userInfo.NationalCode" required type="text">
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="input-group">
-                        <label class="requierd">شماره همراه</label>
-                        <input name="phoneNumber" [(ngModel)]="userInfo.PhoneNumber" required type="text">
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="input-group">
-                        <label class="requierd">ایمیل</label>
-                        <input name="email" [(ngModel)]="userInfo.Email" required type="text">
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="input-group">
-                        <label class="requierd">تاریخ تولد</label>
-                        <input name="birthDate" [(ngModel)]="userInfo.BirthDate" required type="text">
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6" >
-                    <button (click)="submit(profileForm)" type="submit" class="btn primary outline" [routerLink]="['/my-account/account-info']">ثبت اطلاعات کاربری</button>
-                </div>
-            </div>
-        </form>
+
+  <div class="form-container">
+
+    <!-- Header -->
+    <div class="form-header">
+
+      <div class="title">
+        <span class="title-icon">
+          <app-solar-icon
+            name="user-id"
+            [size]="18">
+          </app-solar-icon>
+        </span>
+
+        <div>
+          <h3>ویرایش اطلاعات</h3>
+          <span>اطلاعات حساب کاربری خود را ویرایش کنید</span>
+        </div>
+      </div>
+
     </div>
+
+
+    <form
+      #profileForm="ngForm"
+      (ngSubmit)="submit(profileForm)"
+    >
+
+      <div class="form-content">
+
+        <!-- Name -->
+        <div class="input-group">
+
+          <label for="name">
+            نام
+            <span>*</span>
+          </label>
+
+          <input
+            id="name"
+            name="name"
+            [(ngModel)]="userInfo.Name"
+            required
+            type="text"
+            autocomplete="given-name"
+          />
+
+        </div>
+
+
+        <!-- Last Name -->
+        <div class="input-group">
+
+          <label for="lastName">
+            نام خانوادگی
+            <span>*</span>
+          </label>
+
+          <input
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="userInfo.LastName"
+            required
+            type="text"
+            autocomplete="family-name"
+          />
+
+        </div>
+
+
+        <!-- National Code -->
+        <div class="input-group">
+
+          <label for="nationalCode">
+            کد ملی
+            <span>*</span>
+          </label>
+
+          <input
+            id="nationalCode"
+            name="NID"
+            [(ngModel)]="userInfo.NationalCode"
+            required
+            type="text"
+            inputmode="numeric"
+          />
+
+        </div>
+
+
+        <!-- Phone -->
+        <div class="input-group">
+
+          <label for="phoneNumber">
+            شماره همراه
+            <span>*</span>
+          </label>
+
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
+            [(ngModel)]="userInfo.PhoneNumber"
+            required
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+          />
+
+        </div>
+
+
+        <!-- Email -->
+        <div class="input-group">
+
+          <label for="email">
+            ایمیل
+            <span>*</span>
+          </label>
+
+          <input
+            id="email"
+            name="email"
+            [(ngModel)]="userInfo.Email"
+            required
+            type="email"
+            autocomplete="email"
+          />
+
+        </div>
+
+
+        <!-- Birth Date -->
+        <div class="input-group">
+
+          <label for="birthDate">
+            تاریخ تولد
+            <span>*</span>
+          </label>
+
+          <input
+            id="birthDate"
+            name="birthDate"
+            [(ngModel)]="userInfo.BirthDate"
+            required
+            type="text"
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- Footer -->
+      <div class="form-footer">
+
+        <button
+          type="button"
+          class="cancel-btn"
+          [routerLink]="['/my-account/account-info']"
+        >
+          انصراف
+        </button>
+
+        <button
+          type="submit"
+          class="save-btn"
+          [disabled]="profileForm.invalid"
+        >
+
+          ثبت اطلاعات
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
 </div>
+

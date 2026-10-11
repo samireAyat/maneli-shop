@@ -91,7 +91,8 @@
             </div> }
         </ngx-simplebar> <!-- ===================================================== -->
         <!-- New / Edit Address Form --> <!-- ===================================================== -->
-        @if(addingNewAddress || isEdittingAddress)
+        <ngx-simplebar style="max-height: 500px;">
+                    @if(addingNewAddress || isEdittingAddress)
         { <form #newAddressForm="ngForm" (ngSubmit)="onSubmitNewAddress()">
             <div class="modal-body"> <!-- Receiver Information -->
                 <h5> اطلاعات شخص تحویل گیرنده </h5>
@@ -125,5 +126,6 @@
                 <div class="submit-address"> <button type="submit" class="btn secondary"> ثبت آدرس </button> </div>
             </div>
         </form> }
+        </ngx-simplebar>
     </div>
 </ng-template>

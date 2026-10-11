@@ -1,0 +1,77 @@
+<div class="order-detail-wrapper">
+
+    <div class="order-detail-card">
+
+        <!-- Header -->
+        <div class="order-detail-header">
+
+            <div class="title">
+                <span>جزئیات سفارش</span>
+
+                <strong>
+                    {{ odrerNumber }}
+                </strong>
+            </div>
+
+            <div class="date">
+                {{ formatDate(orders[index].createdAt) }}
+            </div>
+
+        </div>
+
+
+        <!-- Table -->
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ردیف</th>
+                        <th>نام محصول</th>
+                        <th>رنگ</th>
+                        <th>سایز</th>
+                        <th>تعداد</th>
+                        <th>قیمت</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let item of orderItems; let i = index">
+
+                        <td class="row-number">
+                            {{ i + 1 }}
+                        </td>
+
+                        <td class="product-name" (click)="getProduct(item.ProductID)">
+                            {{ item.ProductName }}
+                        </td>
+
+                        <td>
+                            {{ item.Color }}
+                        </td>
+
+                        <td>
+                            {{ item.Size }}
+                        </td>
+
+                        <td>
+                            {{ item.Quantity | persianNumber }}
+                        </td>
+
+                        <td class="price">
+                            {{ item.Price | persianNumber }}
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

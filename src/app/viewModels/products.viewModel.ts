@@ -7,7 +7,9 @@ export class ProductsViewModel {
     Description: string;
     Category: string;
     Variants: ProductVariantViewModel[];
-    
+    createdAt: string;
+    updatedAt: string;
+
 
     constructor(
         _id?: string,
@@ -16,6 +18,8 @@ export class ProductsViewModel {
         Description?: string,
         Category?: string,
         Variants?: ProductVariantViewModel[],
+        createdAt?: string,
+        updatedAt?: string,
 
     ) {
         this._id = _id || '';
@@ -24,6 +28,9 @@ export class ProductsViewModel {
         this.Description = Description || '';
         this.Category = Category || '';
         this.Variants = Variants || [];
+        this.createdAt  = createdAt || '';
+        this.updatedAt = updatedAt || ''
         
+
     }
 }

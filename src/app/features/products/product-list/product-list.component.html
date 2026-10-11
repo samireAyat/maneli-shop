@@ -1,27 +1,87 @@
-<div class="product-list-wrapper">
+<div class="product-list-wrapper" #productListWrapper>
+
   <div class="product-list-inner">
+<!-- 
     <div class="label">
-      <div style="color: var(--title)">
-        <app-solar-icon style="width: 20px; height: 20px" [name]="'widget4'" [size]="20"></app-solar-icon>
-        <h4>همه محصولات</h4>
+
+      <div class="label-title">
+        <app-solar-icon [name]="'widget4'" [size]="20">
+        </app-solar-icon>
+
+        <div class="title-content">
+          <h4>همه محصولات</h4>
+
+          <span class="product-count">
+            {{ filteredProductsList.length }} محصول
+          </span>
+        </div>
       </div>
-      <div style="
-          display: flex;
-          align-items: center;
-          color: var(--secondary-500);
-          gap: 0.5rem;
-        ">
-        مشاهده همه
-        <app-solar-icon style="width: 16px; height: 16px" [name]="'alt-arrow-left'" [size]="16"></app-solar-icon>
+
+      <div class="product-actions">
+
+        <button type="button" class="filter-button" (click)="openFilters()">
+
+          <app-solar-icon [name]="'filter'" [size]="18">
+          </app-solar-icon>
+
+          <span>فیلتر</span>
+
+        </button>
+
+        <button type="button" class="sort-button" (click)="openSort()">
+
+          <span>مرتب‌سازی</span>
+
+          <app-solar-icon [name]="'alt-arrow-down'" [size]="16">
+          </app-solar-icon>
+
+        </button>
+
       </div>
+
+    </div> -->
+
+
+
+    <app-filter (filteredProductsListOutPut)="applyFilter($event)"></app-filter>
+
+    <div class="products-wrapper">
+
+      @if (productsList.length > 0) {
+
+      @for (product of productsList; track product._id) {
+      <app-product [product]="product"></app-product>
+      }
+
+      } @else {
+
+      <div class="empty-products">
+
+        <div class="empty-products-icon">
+          <app-solar-icon [name]="'sad-circle'" [size]="36">
+          </app-solar-icon>
+        </div>
+
+        <h5>محصولی پیدا نشد</h5>
+
+        <p>
+          با فیلترهای انتخاب‌شده محصولی برای نمایش وجود ندارد.
+        </p>
+
+        <button type="button" class="clear-empty-filter" (click)="clearFilters()">
+
+          پاک کردن فیلترها
+
+        </button>
+
+      </div>
+
+      }
+
     </div>
 
-      <div class="products-wrapper">
-        <ng-container *ngFor="let product of productsList">
-          <app-product [product]="product"></app-product>
-        </ng-container>
-      </div>
-
-
   </div>
+
 </div>
+
+

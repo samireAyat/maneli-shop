@@ -1,0 +1,223 @@
+.order-detail-wrapper {
+
+    padding: 1rem;
+}
+
+.order-detail-card {
+  
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    background: #fff;
+
+    border: 1px solid #eeeeee;
+    border-radius: 16px;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.order-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1.25rem 1.5rem;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+
+    gap: 0.65rem;
+
+    color: #333;
+
+    font-size: 0.85rem;
+
+    strong {
+        color: #222;
+
+        font-size: 0.9rem;
+        font-weight: 600;
+
+        direction: ltr;
+    }
+}
+
+.date {
+    color: #999;
+
+    font-size: 0.75rem;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper {
+padding: 1rem;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+
+    min-width: 650px;
+
+    border-collapse: collapse;
+
+    direction: rtl;
+}
+
+
+/* Header */
+
+thead {
+    background: #fcfcfa;
+}
+
+th {
+    height: 48px;
+
+    padding: 0 1rem;
+
+
+
+    font-size: 0.7rem;
+    font-weight: 500;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+/* Body */
+
+td {
+    height: 60px;
+
+    padding: 0 1rem;
+
+    color: #444;
+
+    font-size: 0.78rem;
+
+    border-bottom: 1px solid #f3f3f3;
+
+    white-space: nowrap;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+tbody tr {
+    transition: background 0.2s ease;
+
+    &:hover {
+        background: rgba(213, 207, 124, 0.06);
+    }
+
+    &:last-child td {
+        border-bottom: none;
+    }
+}
+
+
+/* =========================
+   ROW NUMBER
+========================= */
+
+.row-number {
+    color: #aaa;
+
+    font-size: 0.7rem;
+
+    width: 60px;
+}
+
+
+/* =========================
+   PRODUCT
+========================= */
+
+.product-name {
+    color: #333;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: #ff8731;
+    }
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+.price {
+    color: #222;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .order-detail-wrapper {
+        padding: 0.75rem;
+    }
+
+    .order-detail-card {
+        border-radius: 12px;
+    }
+
+    .order-detail-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 0.65rem;
+
+        padding: 1rem;
+    }
+
+    .title {
+        flex-wrap: wrap;
+
+        font-size: 0.8rem;
+    }
+
+    .date {
+        font-size: 0.7rem;
+    }
+
+    th,
+    td {
+        padding: 0 0.8rem;
+    }
+}

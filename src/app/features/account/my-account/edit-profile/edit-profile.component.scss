@@ -1,18 +1,325 @@
 .edit-profile {
-    padding: 2rem;
-    background-color: white;
-    border-radius: 10px;
-    height: 100%;
+    
+    padding: 1rem;
 }
 
-label {
-    color: var(--gray-700);
+.form-container {
+    width: 100%;
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    background: #fff;
+
+    border: 1px solid #eeeeee;
+    border-radius: 16px;
+
+    overflow: hidden;
 }
-input {
-    font-size: 1rem;
+
+
+/* =========================
+   HEADER
+========================= */
+
+.form-header {
+    display: flex;
+    align-items: center;
+
+    min-height: 76px;
+
+    padding: 0 1.5rem;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+
+    gap: 0.75rem;
+
+    .title-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 34px;
+        height: 34px;
+
+        border-radius: 9px;
+
+        background: rgba(213, 207, 124, 0.14);
+
+        color: #77702b;
+    }
+
+    h3 {
+        margin: 0 0 0.2rem;
+
+        color: #333;
+
+        font-size: 0.88rem;
+        font-weight: 600;
+    }
+
+    span:not(.title-icon) {
+        color: #aaa;
+
+        font-size: 0.68rem;
+    }
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+form {
+    width: 100%;
+}
+
+.form-content {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 1.4rem 2rem;
+
+    padding: 1.5rem;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+
+    label {
+        color: #555;
+
+        font-size: 0.72rem;
+        font-weight: 500;
+
+        span {
+            margin-right: 0.2rem;
+
+            color: #ff8731;
+        }
+    }
+
+    input {
+
+        height: 44px;
+
+        padding: 0 0.9rem;
+
+        border: 1px solid #e5e5e5;
+        border-radius: 9px;
+
+        outline: none;
+
+        background: #fff;
+
+        color: #333;
+
+        font-family: inherit;
+        font-size: 0.78rem;
+
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background 0.2s ease;
+
+        &:hover {
+            border-color: #d5d5d5;
+        }
+
+        &:focus {
+            border-color: #d5cf7c;
+
+            box-shadow:
+                0 0 0 3px rgba(213, 207, 124, 0.12);
+        }
+
+        &::placeholder {
+            color: #bbb;
+        }
+    }
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 0.75rem;
+
+    padding: 1rem 1.5rem;
+
+    background: #fcfcfa;
+
+    border-top: 1px solid #eeeeee;
+}
+
+
+/* =========================
+   CANCEL
+========================= */
+
+.cancel-btn {
+    height: 38px;
+
+    padding: 0 1rem;
+
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #777;
+
+    font-family: inherit;
+    font-size: 0.72rem;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+    &:hover {
+        background: #f5f5f5;
+
+        color: #444;
+    }
+}
+
+
+/* =========================
+   SAVE
+========================= */
+
+.save-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.45rem;
+
+    min-width: 125px;
+    height: 38px;
+
+    padding: 0 1rem;
+
+    border: 1px solid #ff8731;
+    border-radius: 8px;
+
+    background: #ff8731;
+
+    color: #fff;
+
+    font-family: inherit;
+    font-size: 0.72rem;
     font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+
+    &:hover:not(:disabled) {
+        background: #f27d28;
+
+        box-shadow:
+            0 5px 14px rgba(255, 135, 49, 0.18);
+    }
+
+    &:disabled {
+        opacity: 0.45;
+
+        cursor: not-allowed;
+
+        box-shadow: none;
+    }
 }
 
-button {
-    border-radius: 10px;
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .edit-profile {
+        padding: 0.75rem;
+    }
+
+    .form-container {
+        border-radius: 12px;
+    }
+
+    .form-header {
+        min-height: 68px;
+
+        padding: 0 1rem;
+    }
+
+    .title {
+
+        .title-icon {
+            width: 31px;
+            height: 31px;
+        }
+
+        h3 {
+            font-size: 0.8rem;
+        }
+
+        span:not(.title-icon) {
+            font-size: 0.62rem;
+        }
+    }
+
+    .form-content {
+        grid-template-columns: 1fr;
+
+        gap: 1.1rem;
+
+        padding: 1rem;
+    }
+
+    .input-group {
+
+        label {
+            font-size: 0.68rem;
+        }
+
+        input {
+            height: 42px;
+
+            font-size: 0.75rem;
+        }
+    }
+
+    .form-footer {
+        padding: 0.9rem 1rem;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        flex: 1;
+
+        height: 36px;
+    }
 }

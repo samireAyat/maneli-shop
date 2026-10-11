@@ -1,0 +1,398 @@
+<div class="filter-wrapper" #filterWrapper>
+    <div class="label">
+
+        <div class="label-title">
+            <app-solar-icon [name]="'widget4'" [size]="20">
+            </app-solar-icon>
+
+            <div class="title-content">
+                <h4>همه محصولات</h4>
+
+                <span class="product-count">
+                    {{ filteredProductsList.length }} محصول
+                </span>
+            </div>
+        </div>
+
+        <div class="product-actions">
+
+            <button type="button" class="filter-button" (click)="openFilters()">
+
+                <app-solar-icon [name]="'filter'" [size]="18">
+                </app-solar-icon>
+
+                <span>فیلتر</span>
+
+            </button>
+
+            <button type="button" class="sort-button" (click)="openSort()">
+
+                <span>مرتب‌سازی</span>
+
+                <app-solar-icon [name]="'alt-arrow-down'" [size]="16">
+                </app-solar-icon>
+
+            </button>
+
+        </div>
+
+    </div>
+    @if (hasActiveFilters()) {
+
+    <div class="active-filters">
+
+        <span class="active-filters-title">
+            فیلترهای فعال:
+        </span>
+
+
+        @if (filter.Category) {
+
+        <button type="button" class="active-filter" (click)="clearFilters()">
+
+            {{ filter.Category }}
+
+            <app-solar-icon [name]="'close-circle'" [size]="14">
+            </app-solar-icon>
+
+        </button>
+
+        }
+
+
+        @for (size of filter.Sizes; track size) {
+
+        <button type="button" class="active-filter" (click)="removeSizeFilter(size)">
+
+            {{ size }}
+
+            <app-solar-icon [name]="'close-circle'" [size]="14">
+            </app-solar-icon>
+
+        </button>
+
+        }
+
+
+        @for (color of filter.Colors; track color) {
+
+        <button type="button" class="active-filter" (click)="removeColorFilter(color)">
+
+            {{ color }}
+
+            <app-solar-icon [name]="'close-circle'" [size]="14">
+            </app-solar-icon>
+
+        </button>
+
+        }
+
+
+        @if (filter.InStock) {
+
+        <button type="button" class="active-filter" (click)="filter.InStock = false; applyProductFilters()">
+
+            فقط موجود
+
+            <app-solar-icon [name]="'close-circle'" [size]="14">
+            </app-solar-icon>
+
+        </button>
+
+        }
+
+    </div>
+
+    }
+</div>
+
+<ng-template #filterTemplate>
+
+    <div class="filter-modal">
+
+        <!-- Header -->
+        <div class="filter-header">
+
+            <div class="filter-title">
+                <app-solar-icon [name]="'filter'" [size]="20">
+                </app-solar-icon>
+
+                <span>فیلتر محصولات</span>
+            </div>
+
+            <button type="button" class="close-filter" (click)="filterModal.close()">
+
+                <app-solar-icon [name]="'close'" [size]="20">
+                </app-solar-icon>
+
+            </button>
+
+        </div>
+
+
+        <!-- Body -->
+        <div class="filter-body">
+
+            <!-- Category -->
+            <section class="filter-section">
+
+                <div class="section-title">
+                    <span>دسته‌بندی</span>
+                </div>
+
+                <div class="category-options">
+
+                    <button *ngIf="!selectedCategory" type="button" class="category-option"
+                        [class.selected]="!filter.Category" (click)="filter.Category = ''">
+
+                        همه
+                    </button>
+
+                    @if (selectedCategory) {
+
+                    <button type="button selected" class="category-option" (click)="filter.Category = selectedCategory">
+
+                        {{ selectedCategory }}
+
+                    </button>
+                    }
+                    @else {
+                    @for (category of categories; track category) {
+
+                    <button type="button" class="category-option" [class.selected]="filter.Category === category"
+                        (click)="filter.Category = category">
+
+                        {{ category }}
+
+                    </button>
+
+                    }
+                    }
+
+                </div>
+
+            </section>
+
+
+            <!-- Size -->
+            <section class="filter-section">
+
+                <div class="section-title">
+                    <span>سایز</span>
+                </div>
+
+                <div class="size-options">
+
+                    @for (size of sizes; track size) {
+
+                    <button type="button" class="size-option" [class.selected]="filter.Sizes.includes(size)"
+                        (click)="toggleSize(size)">
+
+                        {{ size }}
+
+                    </button>
+
+                    }
+
+                </div>
+
+            </section>
+
+
+            <!-- Colors -->
+            <section class="filter-section">
+
+                <div class="section-title">
+                    <span>رنگ</span>
+                </div>
+                <div class="color-options">
+
+                    @for (color of colors; track color) {
+
+                    <button type="button" class="color-option" [class.selected]="filter.Colors.includes(color)"
+                        (click)="toggleColor(color)">
+
+                        <span class="color-swatch" [style.background-color]="getColorValue(color)">
+                        </span>
+
+                        <span class="color-name">
+                            {{ color }}
+                        </span>
+
+                        @if (filter.Colors.includes(color)) {
+                        <app-solar-icon class="color-selected-icon" [name]="'check-read'" [size]="14">
+                        </app-solar-icon>
+                        }
+
+                    </button>
+
+                    }
+
+                </div>
+
+            </section>
+
+
+            <!-- Price -->
+            <section class="filter-section">
+
+                <div class="section-title">
+                    <span>محدوده قیمت</span>
+                </div>
+
+                <div class="price-inputs">
+
+                    <div class="price-input">
+
+                        <span>از</span>
+
+                        <input type="number" [(ngModel)]="filter.MinPrice" placeholder="حداقل">
+
+                        <span>تومان</span>
+
+                    </div>
+
+
+                    <div class="price-line"></div>
+
+
+                    <div class="price-input">
+
+                        <span>تا</span>
+
+                        <input type="number" [(ngModel)]="filter.MaxPrice" placeholder="حداکثر">
+
+                        <span>تومان</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="filter-section">
+
+                <div class="section-title">
+                    <span>وضعیت موجودی</span>
+                </div>
+
+                <button type="button" class="stock-option" [class.selected]="filter.InStock"
+                    (click)="filter.InStock = !filter.InStock">
+
+                    <span class="stock-check">
+
+                        @if (filter.InStock) {
+                        <app-solar-icon [name]="'check-read'" [size]="14">
+                        </app-solar-icon>
+                        }
+
+                    </span>
+
+                    <span>فقط محصولات موجود</span>
+
+                </button>
+
+            </section>
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="filter-footer">
+
+            <button type="button" class="clear-filter" (click)="clearFilters()">
+
+                پاک کردن فیلترها
+
+            </button>
+
+            <button type="button" class="apply-filter" (click)="applyFilters()">
+
+                نمایش محصولات
+
+            </button>
+
+        </div>
+
+    </div>
+
+</ng-template>
+
+<ng-template #sortTemplate>
+
+    <div class="sort-modal">
+
+        <div class="sort-header">
+            <div class="sort-title">
+                <app-solar-icon [name]="'sort'" [size]="20">
+                </app-solar-icon>
+
+                <span>مرتب‌سازی محصولات</span>
+            </div>
+
+            <button type="button" class="close-sort" (click)="sortModal.close()">
+
+                <app-solar-icon [name]="'close'" [size]="20">
+                </app-solar-icon>
+
+            </button>
+        </div>
+
+
+        <div class="sort-body">
+            <button type="button" class="sort-option" [class.selected]="sort.Sort === 'newest'"
+                (click)="sort.Sort = 'newest'">
+
+                <span class="radio">
+                    @if (sort.Sort === 'newest') {
+                    <span></span>
+                    }
+                </span>
+
+                <span>جدیدترین</span>
+
+            </button>
+
+            <button type="button" class="sort-option" [class.selected]="sort.Sort === 'price-low'"
+                (click)="sort.Sort = 'price-low'">
+
+                <span class="radio">
+                    @if (sort.Sort === 'price-low') {
+                    <span></span>
+                    }
+                </span>
+
+                <span>ارزان‌ترین</span>
+
+            </button>
+
+
+            <button type="button" class="sort-option" [class.selected]="sort.Sort === 'price-high'"
+                (click)="sort.Sort = 'price-high'">
+
+                <span class="radio">
+                    @if (sort.Sort === 'price-high') {
+                    <span></span>
+                    }
+                </span>
+
+                <span>گران‌ترین</span>
+
+            </button>
+
+        </div>
+
+
+        <div class="sort-footer">
+
+            <button type="button" class="apply-sort" (click)="applySort()">
+
+                نمایش محصولات
+
+            </button>
+
+        </div>
+
+    </div>
+
+</ng-template>

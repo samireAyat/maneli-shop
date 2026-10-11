@@ -30,82 +30,635 @@
 }
 
 .modal {
-    width: 100%;
+    width: min(92vw, 680px);
+    margin: 0 auto;
+
     background: #fff;
-    direction: rtl;
-    border-radius: 10px;
-}
+    border-radius: 1.75rem;
+    overflow: hidden;
 
+    box-shadow:
+        0 2rem 5rem rgba(0, 0, 0, 0.12),
+        0 0.5rem 1.5rem rgba(0, 0, 0, 0.04);
 
-/* Header */
+    // ------------------------------
+    // Header
+    // ------------------------------
 
-.modal-header {
-    height: 58px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    border-bottom: 1px solid #eee;
+    .modal-header {
+        position: relative;
 
-    .close-btn {
-        position: absolute;
-        left: 10px;
-        cursor: pointer;
-        width: 24px;
-        height: 24px;
         display: flex;
         align-items: center;
+        justify-content: center;
+
+        height: 4.75rem;
+        padding: 0 1.5rem;
+
+        border-bottom: 1px solid #eeeeeb;
+
+        background: #fff;
+
+        >span:not(.back-icon):not(.close-btn) {
+            color: #292929;
+
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .back-icon,
+        .close-btn {
+            position: absolute;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 2.25rem;
+            height: 2.25rem;
+
+            border-radius: 50%;
+
+            color: #555;
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+
+            &:hover {
+                background: #f7f6ef;
+                color: #222;
+            }
+        }
+
+        .back-icon {
+            right: 1rem;
+        }
+
+        .close-btn {
+            left: 1rem;
+
+            &:hover {
+                transform: rotate(90deg);
+            }
+        }
     }
 
-    .back-icon {
-        position: absolute;
-        right: 10px;
+    // ------------------------------
+    // Scroll area
+    // ------------------------------
+
+    ngx-simplebar {
+        display: block;
+        max-height: 500px;
+    }
+
+    // ------------------------------
+    // Address list
+    // ------------------------------
+
+    .address-modal-list {
+        padding: 1.5rem;
+    }
+
+    .address-card {
+        position: relative;
+
+        display: block;
+
+        margin-bottom: 0.85rem;
+        padding: 1.25rem 1.25rem 1.15rem;
+
+        border: 1px solid #e8e8e3;
+        border-radius: 1.15rem;
+
+        background: #fff;
+
         cursor: pointer;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
+
+        transition:
+            border-color 0.25s ease,
+            background 0.25s ease,
+            box-shadow 0.25s ease;
+
+        &:hover {
+            border-color: #d9d6ad;
+            box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.05);
+        }
+
+        &.selected {
+            border-color: #d5cf7c;
+            background: #fcfcf7;
+
+            box-shadow:
+                0 0.5rem 1.5rem rgba(213, 207, 124, 0.12);
+
+            &::before {
+                content: '';
+
+                position: absolute;
+                top: 1rem;
+                bottom: 1rem;
+                right: 0;
+
+                width: 3px;
+
+                border-radius: 3px 0 0 3px;
+
+                background: #d5cf7c;
+            }
+        }
+
+        // ------------------------------
+        // Card header
+        // ------------------------------
+
+        .address-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 1rem;
+
+            margin-bottom: 0.9rem;
+        }
+
+        .address-title {
+            display: flex;
+            align-items: center;
+
+            gap: 0.7rem;
+
+            .address-number {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: 1.8rem;
+                height: 1.8rem;
+
+                border-radius: 50%;
+
+                background: #f3f1df;
+                color: #77713a;
+
+                font-size: 0.7rem;
+                font-weight: 700;
+            }
+
+            .address-label {
+                color: #252525;
+
+                font-size: 0.9rem;
+                font-weight: 700;
+            }
+        }
+
+        .default-badge {
+            padding: 0.3rem 0.7rem;
+
+            border-radius: 100px;
+
+            background: #f5f3e5;
+            color: #89834a;
+
+            font-size: 0.65rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        // ------------------------------
+        // Location
+        // ------------------------------
+
+        .address-location {
+            display: flex;
+            align-items: center;
+
+            margin-bottom: 0.5rem;
+
+            color: #999;
+
+            font-size: 0.72rem;
+
+            .separator {
+                margin: 0 0.3rem;
+                color: #d2d2d2;
+            }
+        }
+
+        // ------------------------------
+        // Address
+        // ------------------------------
+
+        .address-text {
+            max-width: 90%;
+
+            margin-bottom: 0.7rem;
+
+            color: #555;
+
+            font-size: 0.78rem;
+            line-height: 1.9;
+        }
+
+        .reciever {
+            color: #999;
+
+            font-size: 0.7rem;
+        }
+
+        // ------------------------------
+        // Actions
+        // ------------------------------
+
+        .buttons {
+            display: flex;
+            align-items: center;
+
+            gap: 0.25rem;
+
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+
+            span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: 2rem;
+                height: 2rem;
+
+                border-radius: 50%;
+
+                color: #aaa;
+
+                cursor: pointer;
+
+                transition: all 0.2s ease;
+
+                &:hover {
+                    background: #f5f4ec;
+                    color: #77713a;
+                }
+
+                &:last-child:hover {
+                    background: #fff1eb;
+                    color: #ff8731;
+                }
+            }
+        }
     }
 
-    h4 {
-        margin: 0;
-        font-size: 15px;
-        font-weight: 600;
+    // ------------------------------
+    // Add new address
+    // ------------------------------
+
+    .add-address {
+        margin: 1.25rem 0 0 !important;
+
+        .btn {
+            width: 100%;
+            height: 3.1rem;
+
+            border: 1px dashed #d5cf7c;
+            border-radius: 0.9rem;
+
+            background: transparent;
+            color: #77713a;
+
+            font-size: 0.78rem;
+            font-weight: 600;
+
+            transition: all 0.25s ease;
+
+            &:hover {
+                background: #faf9ef;
+                border-style: solid;
+            }
+        }
     }
 
-    // textarea {
-    //   height: unset !important;
-    //   &::placeholder {
-    //     font-family: 'peyda';
-    //   }
-    // }
-    .close-button {
-        position: absolute;
-        left: 16px;
+    // ==================================================
+    // FORM
+    // ==================================================
 
-        border: none;
-        background: transparent;
+    form {
+        .modal-body {
+            padding: 1.75rem 1.75rem 1.25rem;
+        }
 
-        font-size: 24px;
-        line-height: 1;
+        // Section titles
+        h5 {
+            position: relative;
 
-        cursor: pointer;
-        color: #555;
+            display: flex;
+            align-items: center;
+
+            margin: 1.25rem 0 1rem;
+
+            color: #292929;
+
+            font-size: 0.82rem;
+            font-weight: 700;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &::after {
+                content: '';
+
+                flex: 1;
+
+                height: 1px;
+
+                margin-right: 0.9rem;
+
+                background: #eeeeeb;
+            }
+        }
+
+        // Inputs
+        .input-group {
+            display: flex;
+            flex-direction: column;
+
+            gap: 0.4rem;
+
+            margin-bottom: 0.85rem;
+
+            .requierd {
+                margin: 0;
+
+                color: #555;
+
+                font-size: 0.7rem;
+                font-weight: 600;
+
+                &::after {
+                    content: ' *';
+
+                    color: #ff8731;
+                }
+            }
+
+            input,
+            textarea {
+                // width: 100%;
+
+                border: 1px solid #e6e6e2;
+                border-radius: 0.8rem;
+
+                background: #fafafa;
+
+                color: #292929;
+
+                font-family: inherit;
+                font-size: 0.78rem;
+
+                outline: none;
+
+                transition:
+                    border-color 0.2s ease,
+                    background 0.2s ease,
+                    box-shadow 0.2s ease;
+
+                &:focus {
+                    border-color: #d5cf7c;
+                    background: #fff;
+
+                    box-shadow: 0 0 0 3px rgba(213, 207, 124, 0.1);
+                }
+
+                &::placeholder {
+                    color: #aaa;
+                }
+            }
+
+            input {
+                height: 3rem;
+                padding: 0 1rem;
+            }
+
+            textarea {
+                min-height: 7rem;
+                padding: 0.9rem 1rem;
+
+                resize: vertical;
+
+                line-height: 1.9;
+            }
+
+            // ------------------------------
+            // ng-select
+            // ------------------------------
+
+            ng-select {
+                ::ng-deep {
+                    .ng-select {
+                        padding: unset !important;
+                        border: unset !important;
+                    }
+                    .ng-select-container {
+                        min-height: 3rem;
+
+                        border: 1px solid #e6e6e2;
+                        border-radius: 0.8rem;
+
+                        background: #fafafa;
+
+                        box-shadow: none;
+
+                        transition: all 0.2s ease;
+
+                        .ng-value-container {
+                            padding-right: 1rem;
+
+                            .ng-placeholder {
+                                color: #aaa;
+                                font-size: 0.78rem;
+                            }
+
+                            .ng-value {
+                                color: #292929;
+                                font-size: 0.78rem;
+                            }
+                        }
+                    }
+
+                    &.ng-select-focused {
+                        .ng-select-container {
+                            border-color: #d5cf7c;
+                            background: #fff;
+
+                            box-shadow: 0 0 0 3px rgba(213, 207, 124, 0.1);
+                        }
+                    }
+
+                    .ng-dropdown-panel {
+                        overflow: hidden;
+
+                        margin-top: 0.25rem;
+
+                        border: 1px solid #e6e6e2;
+                        border-radius: 0.8rem;
+
+                        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.08);
+
+                        .ng-option {
+                            padding: 0.75rem 1rem;
+
+                            color: #555;
+
+                            font-size: 0.78rem;
+
+                            &.ng-option-marked {
+                                background: #faf9ef;
+                            }
+
+                            &.ng-option-selected {
+                                background: #f3f1df;
+                                color: #77713a;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // ------------------------------
+        // Footer
+        // ------------------------------
+
+        .modal-footer {
+            padding: 1rem 1.75rem 1.5rem;
+
+            border-top: 1px solid #eeeeeb;
+
+            .submit-address {
+                width: 100%;
+
+                .btn {
+                    width: 100%;
+                    height: 3.2rem;
+
+                    border: 0;
+                    border-radius: 0.9rem;
+
+                    background: #ff8731;
+                    color: #fff;
+
+                    font-size: 0.8rem;
+                    font-weight: 700;
+
+                    box-shadow: 0 0.5rem 1.25rem rgba(255, 135, 49, 0.16);
+
+                    transition: all 0.25s ease;
+
+                    &:hover {
+                        background: #f47c27;
+                        transform: translateY(-1px);
+
+                        box-shadow: 0 0.75rem 1.5rem rgba(255, 135, 49, 0.22);
+                    }
+
+                    &:active {
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
     }
 }
 
+// ==================================================
+// MOBILE
+// ==================================================
 
-/* Body */
+@media (max-width: 576px) {
+    .modal {
+        // width: 100%;
+        border-radius: 1.5rem 1.5rem 0 0;
 
-.modal-body {
-    max-height: 520px;
-    overflow-y: auto;
-    padding: 14px 16px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
+        .modal-header {
+            height: 4.25rem;
+        }
+
+        .address-modal-list {
+            padding: 1rem;
+        }
+
+        .address-card {
+            padding: 1rem;
+
+            .address-text {
+                max-width: 100%;
+            }
+
+            .buttons {
+                position: static;
+
+                justify-content: flex-end;
+
+                margin-top: 0.5rem;
+            }
+        }
+
+        form {
+            .modal-body {
+                padding: 1.25rem 1rem 0.75rem;
+            }
+
+            .modal-footer {
+                padding: 0.75rem 1rem 1rem;
+            }
+        }
+    }
 }
 
+// --------------------------------
+// Mobile
+// --------------------------------
+
+@media (max-width: 576px) {
+    .modal {
+        // width: 100%;
+        border-radius: 1.25rem 1.25rem 0 0;
+
+        .modal-header {
+            min-height: 4rem;
+            padding: 0.875rem 1rem;
+        }
+
+        .address-modal-list {
+            padding: 0.875rem;
+        }
+
+        .address-card {
+            padding: 0.9rem;
+
+            .address-card-header {
+                align-items: flex-start;
+            }
+
+            .default-badge {
+                font-size: 0.62rem;
+            }
+        }
+
+        form {
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .modal-footer {
+                padding: 0.875rem 1rem 1rem;
+            }
+        }
+    }
+}
 
 
 // .address-form {
@@ -394,6 +947,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+
     .address-card {
         width: unset;
     }
@@ -410,7 +964,7 @@
         gap: 0.5rem;
         flex-wrap: wrap;
         overflow-y: scroll;
-        padding:1rem;
+        padding: 1rem;
 
         .address-card {
             flex-grow: 1;

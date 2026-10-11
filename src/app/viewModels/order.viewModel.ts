@@ -7,7 +7,20 @@ export class OrderViewModel {
     Items: OrderItemViewModel[] = [];
     TotalAmount: number = 0;
     TotalCount: number = 0;
-    ShippingAddress: any = null;
+    ShippingAddress: {
+        Address: string;
+        City: string;
+        Province: string;
+        FirstName: string;
+        LastName: string;
+
+    } = {
+            Address: '',
+            City: '',
+            Province: '',
+            FirstName: '',
+            LastName: ''
+        };
     Payment: {
         Status: string;
         TransactionID: string;

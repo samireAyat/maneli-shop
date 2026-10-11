@@ -181,7 +181,7 @@ export class AddressListComponent {
     this.isEdittingAddress = true
     this.newAddress = address
     this.modalService.open(this.modalTemplate, {
-      size: 'sm',
+      size: 'xl',
       centered: true,
       backdrop: true,
       keyboard: true,

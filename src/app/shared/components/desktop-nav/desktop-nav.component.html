@@ -64,7 +64,7 @@
                 <li class="menu-item account">
                     <div class="menu-title">
 
-                        <a [href]="[authService.isLoggedIn() ? '/my-account' : '/login']">
+                        <a [href]="[authService.isLoggedIn() ? '/my-account/account-info' : '/login']">
                             <app-solar-icon [name]="'user'" [size]="20"
                                 style="width: 20px; height: 20px; display: block;"></app-solar-icon>
                             @if(authService.isLoggedIn()) {
@@ -89,7 +89,15 @@
                             <app-solar-icon [name]="'bag3'" [size]="20"
                                 style="width: 20px; height: 20px; display: block;"></app-solar-icon>
                             سبد خرید</a>
-                            <span class="cart-count">{{   cartService.cartQuantity()  | persianNumber}}</span>
+                        <span class="cart-count">{{ cartService.cartQuantity() | persianNumber}}</span>
+                    </div>
+
+                </li>
+                <li class="menu-item" *ngIf="authService.currentUserRole() === 'admin'">
+                    <div class="menu-title">
+                        <button class="secondary" routerLink="/admin">
+
+                            پنل ادمین</button>
                     </div>
 
                 </li>

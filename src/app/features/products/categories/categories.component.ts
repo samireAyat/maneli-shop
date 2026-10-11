@@ -5,10 +5,12 @@ import { SHARED_IMPORTS } from '../../../shared/shared.imports';
 import { ProductService } from '../services/product.service';
 import { ProductsViewModel } from '../../../viewModels/products.viewModel';
 import { ProductComponent } from "../product.component";
+import { ProductListComponent } from '../product-list/product-list.component';
+import { FilterComponent } from '../../../shared/components/filter/filter.component';
 
 @Component({
   selector: 'app-categories',
-  imports: [RouterLink, CategoriesNavComponent, SHARED_IMPORTS, ProductComponent],
+  imports: [RouterLink, CategoriesNavComponent, SHARED_IMPORTS, ProductComponent, ProductListComponent, FilterComponent],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',
 })
@@ -37,9 +39,30 @@ export class CategoriesComponent {
 
   }
 
+  selectedCategory = ''
+
 
   onSelected(products: ProductsViewModel[]) {
-    this.product = products
+    this.selectedCategory = ''
+    this.product = products;
+    
+    const allSameCategory = products.every(
+      product => product.Category === products[0].Category
+    )
+
+    if (allSameCategory) {
+      this.selectedCategory = products[0].Category
+    }
 
   }
+
+  applyFilter(filteredProductsList: ProductsViewModel[]) {
+    this.product = [...filteredProductsList];
+  }
+
+  applySort(sortedProductList: ProductsViewModel[]) {
+    this.product = [...sortedProductList]
+  }
+
+
 }

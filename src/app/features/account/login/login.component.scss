@@ -17,7 +17,7 @@
         justify-content: center;
         height: 100%;
 
-        .content {
+        .login {
             height: 70%;
             display: flex;
             align-items: center;
@@ -31,7 +31,7 @@
             border-radius: 20px;
 
             .image-wrapper {
-                width: 270px;
+                // width: 270px;
                 height: auto;
                 object-fit: contain;
 
@@ -207,11 +207,11 @@
         .login-inner {
             // padding: 0.5rem;
 
-            .content {
+            .login {
                 padding: 1rem;
 
                 .image-wrapper {
-                    width: 300px;
+                    max-width: 400px;
 
                     img {}
                 }

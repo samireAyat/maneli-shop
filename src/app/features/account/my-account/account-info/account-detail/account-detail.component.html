@@ -1,57 +1,122 @@
+
 <div class="account-detail">
-    <div class="wrapper">
-        <div class="header">
-            <!-- <span class="title">
-                <span style="color: var(--gray-700); display: flex; align-items: center;">
-                    <app-solar-icon style="width: 24px; height: 24px;" name="user-id"></app-solar-icon>
-                </span>
-                اطلاعات کاربری
-            </span> -->
-            <button [routerLink]="['/my-account' , 'edit-profile']" class="edit-btn btn primary ">
-                <app-solar-icon style="width: 15px; height: 15px;" [name]="'pen'" [size]="15"></app-solar-icon>
-                ویرایش
-            </button>
-        </div>
-        <div class="content row g-4">
-            <div class="col-sm-12 col-lg-6">
-                <div class="info-item">
-                    <span> نام:</span>
-                    <span class="info"> {{userInfo.Name}}</span>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6">
-                <div class="info-item">
-                    <span> نام خانوادگی:</span>
-                    <span class="info"> {{userInfo.LastName}}</span>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6">
-                <div class="info-item">
-                    <span>شماره تماس ضروری:</span>
-                    <span class="info"> {{userInfo.PhoneNumber}}</span>
-                </div>
-            </div>
 
-            <div class="col-sm-12 col-lg-6">
-                <div class="info-item">
-                    <span>ایمیل:</span>
-                    <span class="info"> {{userInfo.Email}}</span>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6">
-                <div class="info-item">
-                    <span>تاریخ تولد:</span>
-                    <span class="info"> {{userInfo.BirthDate}}</span>
-                </div>
-            </div>
+  <div class="wrapper">
 
-            <div class="col-sm-12 col-lg-6">
-                <div class="info-item">
-                    <span>کد ملی:</span>
-                    <span class="info"> {{userInfo.NationalCode}}</span>
-                </div>
-            </div>
+    <!-- Header -->
+    <div class="header">
 
-        </div>
+      <div class="title">
+        <span class="title-icon">
+          <app-solar-icon
+            name="user-id"
+            [size]="18">
+          </app-solar-icon>
+        </span>
+
+        <span>اطلاعات حساب کاربری</span>
+      </div>
+
+      <button
+        type="button"
+        [routerLink]="['/my-account', 'edit-profile']"
+        class="edit-btn">
+
+        <app-solar-icon
+          name="pen"
+          [size]="14">
+        </app-solar-icon>
+
+        <span>ویرایش</span>
+
+      </button>
+
     </div>
+
+
+    <!-- Content -->
+    <div class="content">
+
+      <div class="info-item">
+
+        <span class="label">
+          نام
+        </span>
+
+        <span class="info">
+          {{ userInfo.Name }}
+        </span>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <span class="label">
+          نام خانوادگی
+        </span>
+
+        <span class="info">
+          {{ userInfo.LastName }}
+        </span>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <span class="label">
+          شماره تماس
+        </span>
+
+        <span class="info ltr">
+          {{ userInfo.PhoneNumber }}
+        </span>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <span class="label">
+          ایمیل
+        </span>
+
+        <span class="info ltr">
+          {{ userInfo.Email }}
+        </span>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <span class="label">
+          تاریخ تولد
+        </span>
+
+        <span class="info">
+          {{ userInfo.BirthDate }}
+        </span>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <span class="label">
+          کد ملی
+        </span>
+
+        <span class="info ltr">
+          {{ userInfo.NationalCode }}
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
+

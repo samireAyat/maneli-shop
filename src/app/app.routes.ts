@@ -9,6 +9,7 @@ import { EditProfileComponent } from './features/account/my-account/edit-profile
 import { ADMIN_ROUTES } from './admin/admin.route';
 import { adminGuard } from './core/guards/admin-guard';
 import { SearchResultsComponent } from './layout/header/search-results/search-results.component';
+import { OrderDetailComponent } from './admin/orders/order-detail/order-detail.component';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,13 @@ export const routes: Routes = [
           import(
             './features/products/product-details/product-details.component'
           ).then((m) => m.ProductDetailsComponent),
+      },
+      {
+        path: 'order-detail/:orderNumber',
+        loadComponent: () =>
+          import(
+            './features/account/my-account/orders/order-detail/order-detail.component'
+          ).then((m) => m.OrderDetailComponent),
       },
       {
         path: 'order',
@@ -67,7 +75,7 @@ export const routes: Routes = [
           },
           {
             path: 'orders',
-            component: OrdersComponent
+            component: OrdersComponent,
           },
           {
             path: 'favorites',
@@ -89,6 +97,7 @@ export const routes: Routes = [
         ],
 
       },
+
 
       {
         path: 'search',

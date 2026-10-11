@@ -2,7 +2,7 @@ import { Component, Input, signal } from '@angular/core';
 import { SHARED_IMPORTS } from '../../shared.imports';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserViewModel } from '../../../viewModels/user.viewModel';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../../features/order/cart/services/cart.service';
 import { map } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -10,7 +10,7 @@ import { HeaderComponent } from '../../../layout/header/header.component';
 
 @Component({
   selector: 'app-desktop-nav',
-  imports: [SHARED_IMPORTS, HeaderComponent],
+  imports: [SHARED_IMPORTS, HeaderComponent, RouterLink],
   templateUrl: './desktop-nav.component.html',
   styleUrl: './desktop-nav.component.scss',
 })
